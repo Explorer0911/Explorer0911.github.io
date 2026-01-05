@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2026-01-05T04:36:07.679Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo+Github博客搭建记录</title>
+    <link href="http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
+    <published>2026-01-04T16:00:00.000Z</published>
+    <updated>2026-01-05T04:36:07.679Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hexo博客使用教程：从创建到部署的完整指南<br><a href="https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Hexo博客使用教程：从创建到部署的完整指南&lt;br&gt;&lt;a href=&quot;https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/inde</summary>
+      
+    
+    
+    
+    
+    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    
+    <category term="Github" scheme="http://example.com/tags/Github/"/>
+    
+    <category term="博客" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
