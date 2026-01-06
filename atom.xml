@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2026-01-05T07:37:16.206Z</updated>
+  <updated>2026-01-06T08:14:13.370Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://example.com/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/"/>
     <id>http://example.com/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/</id>
     <published>2026-01-05T07:16:00.000Z</published>
-    <updated>2026-01-05T07:37:16.206Z</updated>
+    <updated>2026-01-06T08:14:13.370Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>适用场景：已经搭好 Hexo + Butterfly（例如根目录有 <code>_config.yml</code> 和 <code>_config.butterfly.yml</code>），现在想把“首页”改成更像个人主页：换 banner、改菜单、加社交图标、做打字副标题、控制文章摘要、加载自定义 CSS&#x2F;JS。</p></blockquote><h2 id="0-先搞清楚：Hexo-首页“内容”到底来自哪？"><a href="#0-先搞清楚：Hexo-首页“内容”到底来自哪？" class="headerlink" title="0. 先搞清楚：Hexo 首页“内容”到底来自哪？"></a>0. 先搞清楚：Hexo 首页“内容”到底来自哪？</h2><p>很多新手会去找一个“首页.md”，但 <strong>Hexo 的首页通常不是某个单独 Markdown 文件</strong>，而是：</p><ul><li><strong>站点配置</strong>（<code>_config.yml</code>）提供网站标题&#x2F;作者等基础信息  </li><li><strong>主题配置</strong>（<code>_config.butterfly.yml</code>）决定首页的布局效果（banner、菜单、社交图标、摘要展示等）  </li><li><strong>主题模板</strong>（<code>themes/butterfly/layout/</code>）负责把“文章列表”渲染成首页页面  </li><li><strong>文章本身</strong>（<code>source/_posts/</code>）决定首页文章卡片展示的标题、封面、摘要等</li></ul><p>所以你要“自定义首页”，大多数时候改的是：<br>✅ <code>_config.yml</code> + <code>_config.butterfly.yml</code>（80% 的效果）<br>更深度再去动：✅ <code>Inject</code> &#x2F; ✅ 模板文件（20% 的效果）</p><hr><h2 id="1-你应该改哪些文件？（结合你的目录）"><a href="#1-你应该改哪些文件？（结合你的目录）" class="headerlink" title="1. 你应该改哪些文件？（结合你的目录）"></a>1. 你应该改哪些文件？（结合你的目录）</h2><p>你的目录大概率是这样：</p><ul><li><code>/_config.yml</code>：Hexo <strong>站点配置</strong></li><li><code>/_config.butterfly.yml</code>：Butterfly <strong>主题配置（推荐改这个）</strong></li><li><code>/source/</code>：<ul><li><code>source/_posts/</code>：文章都在这</li><li><code>source/images/</code> 或 <code>source/img/</code>：放你的 banner、头像等静态资源（推荐）</li></ul></li><li><code>/public/</code>：编译输出目录（<strong>不要手改</strong>，每次 <code>hexo g</code> 都会重建）</li></ul><blockquote><p>建议：自己的图片&#x2F;CSS&#x2F;JS 尽量放在根目录 <code>source</code>，不要放主题目录里，避免以后升级主题被覆盖。</p></blockquote><hr><h2 id="2-自定义顶部大图（首页-Banner）"><a href="#2-自定义顶部大图（首页-Banner）" class="headerlink" title="2. 自定义顶部大图（首页 Banner）"></a>2. 自定义顶部大图（首页 Banner）</h2><p>Butterfly 把“首页顶部图”叫做 <code>index_img</code>。你可以用在线图，也可以用本地图。</p><h3 id="2-1-使用本地图片（推荐）"><a href="#2-1-使用本地图片（推荐）" class="headerlink" title="2.1 使用本地图片（推荐）"></a>2.1 使用本地图片（推荐）</h3><p>把图片放到：<code>source/img/home.jpg</code><br>然后在 <code>_config.butterfly.yml</code> 配置：</p><pre><code class="language-yml"># 顶部图index_img: /img/home.jpg</code></pre>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>适用场景：已搭好 Hexo + Butterfly主题（例如根目录有 <code>_config.yml</code> 和 <code>_config.butterfly.yml</code>），现在想把“首页”改成更像个人主页：换 banner、改菜单、加社交图标、做打字副标题、控制文章摘要、加载自定义 CSS&#x2F;JS。</p></blockquote><h2 id="0-先搞清楚：Hexo-首页“内容”来自哪里？"><a href="#0-先搞清楚：Hexo-首页“内容”来自哪里？" class="headerlink" title="0. 先搞清楚：Hexo 首页“内容”来自哪里？"></a>0. 先搞清楚：Hexo 首页“内容”来自哪里？</h2><p>很多新手会去找一个“首页.md”，但 <strong>Hexo 的首页通常不是某个单独 Markdown 文件</strong>，而是：</p><ul><li><strong>站点配置</strong>（<code>_config.yml</code>）提供网站标题&#x2F;作者等基础信息  </li><li><strong>主题配置</strong>（<code>_config.butterfly.yml</code>）决定首页的布局效果（banner、菜单、社交图标、摘要展示等）  </li><li><strong>主题模板</strong>（<code>themes/butterfly/layout/</code>）负责把“文章列表”渲染成首页页面  </li><li><strong>文章本身</strong>（<code>source/_posts/</code>）决定首页文章卡片展示的标题、封面、摘要等</li></ul><p>所以要“自定义首页”，大多数时候改的是：<br>✅ <code>_config.yml</code> + <code>_config.butterfly.yml</code>（80% 的效果）<br>更深度再去动：✅ <code>Inject</code> &#x2F; ✅ 模板文件（20% 的效果）</p><hr><h2 id="1-可以改哪些文件？（结合目录）"><a href="#1-可以改哪些文件？（结合目录）" class="headerlink" title="1. 可以改哪些文件？（结合目录）"></a>1. 可以改哪些文件？（结合目录）</h2><p>目录大概是这样：</p><ul><li><code>/_config.yml</code>：Hexo <strong>站点配置</strong></li><li><code>/_config.butterfly.yml</code>：Butterfly <strong>主题配置（推荐改这个）</strong></li><li><code>/source/</code>：<ul><li><code>source/_posts/</code>：文章都在这</li><li><code>source/images/</code> 或 <code>source/img/</code>：放你的 banner、头像等静态资源（推荐）</li></ul></li><li><code>/public/</code>：编译输出目录（<strong>不要手改</strong>，每次 <code>hexo g</code> 都会重建）</li></ul><blockquote><p>建议：图片&#x2F;CSS&#x2F;JS 尽量放在根目录 <code>source</code>，不要放主题目录里，避免以后升级主题被覆盖。</p></blockquote><hr><h2 id="2-自定义顶部大图（首页-Banner）"><a href="#2-自定义顶部大图（首页-Banner）" class="headerlink" title="2. 自定义顶部大图（首页 Banner）"></a>2. 自定义顶部大图（首页 Banner）</h2><p>Butterfly 把“首页顶部图”叫做 <code>index_img</code>。可用在线图，也可以用本地图。</p><h3 id="2-1-使用本地图片（推荐）"><a href="#2-1-使用本地图片（推荐）" class="headerlink" title="2.1 使用本地图片（推荐）"></a>2.1 使用本地图片（推荐）</h3><p>把图片放到：<code>source/img/home.jpg</code><br>然后在 <code>_config.butterfly.yml</code> 配置：</p><pre><code class="language-yml"># 顶部图index_img: /img/home.jpg</code></pre>]]></content>
     
     
     <summary type="html">从配置到 Inject，再到模板级改造，一次讲清 Hexo 首页到底改哪里、怎么改。</summary>
@@ -46,7 +46,7 @@
     <link href="http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     <id>http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
     <published>2026-01-04T16:00:00.000Z</published>
-    <updated>2026-01-05T04:36:07.679Z</updated>
+    <updated>2026-01-06T08:14:12.252Z</updated>
     
     <content type="html"><![CDATA[<p>Hexo博客使用教程：从创建到部署的完整指南<br><a href="https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</a></p>]]></content>
     
@@ -57,6 +57,8 @@
       
     
     
+    
+    <category term="博客搭建" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
     
     <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
