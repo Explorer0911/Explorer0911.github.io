@@ -8,8 +8,8 @@ http://example.com/links/index.html
 http://example.com/message/index.html
 http://example.com/
 http://example.com/tags/Hexo/
-http://example.com/tags/Butterfly/
-http://example.com/tags/GitHub-Pages/
 http://example.com/tags/Github/
 http://example.com/tags/%E5%8D%9A%E5%AE%A2/
+http://example.com/tags/Butterfly/
+http://example.com/tags/GitHub-Pages/
 http://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/
