@@ -3,11 +3,11 @@
   <title>Explorer0911 Blog</title>
   
   <subtitle>记录成长与生活</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://explorer0911.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2026-01-06T13:02:44.634Z</updated>
-  <id>http://example.com/</id>
+  <link href="https://explorer0911.github.io/"/>
+  <updated>2026-03-12T05:56:05.965Z</updated>
+  <id>https://explorer0911.github.io/</id>
   
   <author>
     <name>Explorer0911</name>
@@ -18,54 +18,51 @@
   
   <entry>
     <title>如何自定义 Hexo 首页（Butterfly 主题）</title>
-    <link href="http://example.com/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/"/>
-    <id>http://example.com/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/</id>
+    <link href="https://explorer0911.github.io/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/"/>
+    <id>https://explorer0911.github.io/2026/01/05/Hexo%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E8%87%AA%E5%AE%9A%E4%B9%89/</id>
     <published>2026-01-05T07:16:00.000Z</published>
-    <updated>2026-01-06T13:02:44.634Z</updated>
+    <updated>2026-03-12T05:56:05.965Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>适用场景：已搭好 Hexo + Butterfly主题（例如根目录有 <code>_config.yml</code> 和 <code>_config.butterfly.yml</code>），现在想把“首页”改成更像个人主页：换 banner、改菜单、加社交图标、做打字副标题、控制文章摘要、加载自定义 CSS&#x2F;JS。</p></blockquote><h2 id="1-Hexo-首页“内容”来自哪里？"><a href="#1-Hexo-首页“内容”来自哪里？" class="headerlink" title="1. Hexo 首页“内容”来自哪里？"></a>1. Hexo 首页“内容”来自哪里？</h2><p>很多新手会去找一个“首页.md”，但 <strong>Hexo 的首页通常不是某个单独 Markdown 文件</strong>，而是：</p><ul><li><strong>站点配置</strong>（<code>_config.yml</code>）提供网站标题&#x2F;作者等基础信息  </li><li><strong>主题配置</strong>（<code>_config.butterfly.yml</code>）决定首页的布局效果（banner、菜单、社交图标、摘要展示等）  </li><li><strong>主题模板</strong>（<code>themes/butterfly/layout/</code>）负责把“文章列表”渲染成首页页面  </li><li><strong>文章本身</strong>（<code>source/_posts/</code>）决定首页文章卡片展示的标题、封面、摘要等</li></ul><p>所以要“自定义首页”，大多数时候改的是：<br>✅ <code>_config.yml</code> + <code>_config.butterfly.yml</code>（80% 的效果）<br>更深度再去动：✅ <code>Inject</code> &#x2F; ✅ 模板文件（20% 的效果）</p><hr><h2 id="2-可以改哪些文件？（结合目录）"><a href="#2-可以改哪些文件？（结合目录）" class="headerlink" title="2. 可以改哪些文件？（结合目录）"></a>2. 可以改哪些文件？（结合目录）</h2><p>目录大概是这样：</p><ul><li><code>/_config.yml</code>：Hexo <strong>站点配置</strong></li><li><code>/_config.butterfly.yml</code>：Butterfly <strong>主题配置（推荐改这个）</strong></li><li><code>/source/</code>：<ul><li><code>source/_posts/</code>：文章都在这</li><li><code>source/images/</code> 或 <code>source/img/</code>：放你的 banner、头像等静态资源（推荐）</li></ul></li><li><code>/public/</code>：编译输出目录（<strong>不要手改</strong>，每次 <code>hexo g</code> 都会重建）</li></ul><blockquote><p>建议：图片&#x2F;CSS&#x2F;JS 尽量放在根目录 <code>source</code>，不要放主题目录里，避免以后升级主题被覆盖。</p></blockquote><hr><h2 id="3-自定义顶部大图（首页-Banner）"><a href="#3-自定义顶部大图（首页-Banner）" class="headerlink" title="3. 自定义顶部大图（首页 Banner）"></a>3. 自定义顶部大图（首页 Banner）</h2><p>Butterfly 把“首页顶部图”叫做 <code>index_img</code>。可用在线图，也可以用本地图。</p><h3 id="3-1-使用本地图片（推荐）"><a href="#3-1-使用本地图片（推荐）" class="headerlink" title="3.1 使用本地图片（推荐）"></a>3.1 使用本地图片（推荐）</h3><p>把图片放到：<code>source/img/home.jpg</code><br>然后在 <code>_config.butterfly.yml</code> 配置：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 顶部图</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="string">/img/home.jpg</span></span><br></pre></td></tr></table></figure><hr><h2 id="4-主页内容"><a href="#4-主页内容" class="headerlink" title="4. 主页内容"></a>4. 主页内容</h2><p>想要是用自定义主页，当然需要先创建一个自定的主页内容文件，该文件需要位于&#x2F;source&#x2F;文件夹下，文件名需要是index.md，这样才能保证hexo能够读取到这个文件。<br>文件内容可以自定义，如果希望主页内容能够有足够的个性化的话，可以在md文件中通过html、css实现更复杂的功能展示。示例如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--&lt;span style=&quot;font-size: 40px;&quot;&gt;欢迎&lt;/span&gt;--&gt;</span><br><span class="line"></span><br><span class="line">&gt; 这里是我在日常生活中进行记录的地方，包括又不限于工作、生活、知识、娱乐等方方面面。</span><br><span class="line"></span><br><span class="line">&lt;img:/MyBlog/source/img/Frieren.png style=&quot;border-radius: 50%; box-shadow: rgb(221, 222, 222) 0px 0px 0px 5px, white 0px 0px 30px; width: 20%; display: inline-block; float: right;&quot;&gt;</span><br><span class="line">这里是&lt;span style=&quot;font-size: 35px; color: #E76D34;&quot;&gt;Explorer0911&lt;/span&gt;的个人博客。 一个普通学校的普通在读研究生。</span><br><span class="line"></span><br><span class="line">## 我是：</span><br><span class="line">* &lt;span style=&quot;font-size: 35px; color: #3370AC;&quot;&gt;电影迷&lt;/span&gt;，各种电影都喜欢。</span><br><span class="line">* &lt;span style=&quot;font-size: 35px; color: #F9D171;&quot;&gt;追剧狂魔&lt;/span&gt;，日常追剧。</span><br><span class="line">* &lt;span style=&quot;font-size: 35px; color: #AD2625;&quot;&gt;普通人&lt;/span&gt;，自我感觉没有出众的地方。</span><br><span class="line"></span><br><span class="line">请开始[&lt;span style=&quot;font-size: 35px; color: rgb(44, 218, 376);&quot;&gt;阅读&lt;/span&gt;](/MyBlog/source/_posts/)我的blog吧。</span><br><span class="line"></span><br></pre></td></tr></table></figure><hr><h2 id="5-config-yml调整"><a href="#5-config-yml调整" class="headerlink" title="5. _config.yml调整"></a>5. _config.yml调整</h2><p>为了保证能够正常展示自定义主页，并且能够将主页和需要展示的文章列表页进行恰当的链接，需要对_config.yml文件进行调整。主要调整内容如下：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;/articles/&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure><p>index_generator下的path需要调整为一个新的空文件夹的名字，该文件夹下没有内容，这样的话，hexo才能够将原来的主页渲染到这个路径下。<br>自定义主页需要调整的超链接也需要填入当前路径，当然可以是相对路径，从&#x2F;source&#x2F;下算起即可。</p><hr><h2 id="6-调整结果"><a href="#6-调整结果" class="headerlink" title="6. 调整结果"></a>6. 调整结果</h2><p>经过了上述调整后，你的自定义主页就可以生效了，尽情的享受与众不同的快乐吧！</p><p>img: &#x2F;img&#x2F;自定义首页.jpg</p>]]></content>
-    
-    
-    <summary type="html">从配置到 Inject，再到模板级改造，一次讲清 Hexo 首页到底改哪里、怎么改。</summary>
+    <content type="html"><![CDATA[<h2 id="先明确首页到底承担什么职责"><a href="#先明确首页到底承担什么职责" class="headerlink" title="先明确首页到底承担什么职责"></a>先明确首页到底承担什么职责</h2><p>Hexo 默认更偏向“文章流首页”，但个人博客未必一定要这样。</p><p>如果你想让博客更像个人主页，比较稳的做法是：</p><ul><li><code>/</code> 作为自定义首页</li><li><code>/articles/</code> 作为文章列表页</li><li>文章详情继续使用默认 permalink</li></ul><p>这样首页负责展示“我是谁、这里写什么、从哪里开始”，文章列表单独承担内容分发。</p><h2 id="需要改哪些地方"><a href="#需要改哪些地方" class="headerlink" title="需要改哪些地方"></a>需要改哪些地方</h2><h3 id="1-站点配置"><a href="#1-站点配置" class="headerlink" title="1. 站点配置"></a>1. 站点配置</h3><p>在 <code>_config.yml</code> 里，把文章索引页路径改到独立路由：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">articles</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">8</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure><h3 id="2-首页内容"><a href="#2-首页内容" class="headerlink" title="2. 首页内容"></a>2. 首页内容</h3><p>自定义首页内容放在 <code>source/index.md</code>，它会直接生成站点根路径 <code>/</code>。</p><p>建议首页只承担三件事：</p><ul><li>自我介绍</li><li>内容说明</li><li>关键入口导航</li></ul><h3 id="3-主题导航"><a href="#3-主题导航" class="headerlink" title="3. 主题导航"></a>3. 主题导航</h3><p>导航建议直接围绕内容结构来设计：</p><ul><li>首页</li><li>文章</li><li>分类</li><li>标签</li><li>友链</li><li>联系</li><li>关于</li></ul><p>比起在导航里放还没建设完成的页面，先把有效入口打通更重要。</p><h3 id="4-静态资源管理"><a href="#4-静态资源管理" class="headerlink" title="4. 静态资源管理"></a>4. 静态资源管理</h3><p>自定义图片和图标尽量统一放在 <code>source/img/</code>，不要散落在主题目录里。</p><p>原因很直接：</p><ul><li>资源归属清晰</li><li>换主题或升级主题时更安全</li><li>链接路径更稳定</li></ul><h2 id="什么时候才需要改主题源码"><a href="#什么时候才需要改主题源码" class="headerlink" title="什么时候才需要改主题源码"></a>什么时候才需要改主题源码</h2><p>大多数首页调整都可以通过下面两类文件完成：</p><ul><li><code>_config.yml</code></li><li><code>_config.butterfly.yml</code></li></ul><p>只有在你明确需要新增结构、改模板逻辑、改组件布局时，才建议进入 <code>themes/butterfly/layout/</code> 或 <code>themes/butterfly/source/</code>。</p><p>先用配置解决问题，再进入模板层，这是维护成本最低的方式。</p>]]></content>
     
     
+    <summary type="html">从路由、页面内容到主题配置，整理一套更清晰的 Butterfly 首页定制方式。</summary>
     
-    <category term="博客搭建" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
     
-    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    <category term="博客搭建" scheme="https://explorer0911.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
-    <category term="Butterfly" scheme="http://example.com/tags/Butterfly/"/>
     
-    <category term="GitHub Pages" scheme="http://example.com/tags/GitHub-Pages/"/>
+    <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
+    
+    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
+    
+    <category term="Butterfly" scheme="https://explorer0911.github.io/tags/Butterfly/"/>
     
   </entry>
   
   <entry>
-    <title>Hexo+Github博客搭建记录</title>
-    <link href="http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    <id>http://example.com/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
-    <published>2026-01-04T16:00:00.000Z</published>
-    <updated>2026-01-06T13:00:57.508Z</updated>
+    <title>Hexo + GitHub 个人博客搭建记录</title>
+    <link href="https://explorer0911.github.io/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>https://explorer0911.github.io/2026/01/05/Hexo%20+%20Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
+    <published>2026-01-05T06:30:00.000Z</published>
+    <updated>2026-03-12T05:56:05.965Z</updated>
     
-    <content type="html"><![CDATA[<p>Hexo博客使用教程：从创建到部署的完整指南<br><a href="https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="为什么选择这套方案"><a href="#为什么选择这套方案" class="headerlink" title="为什么选择这套方案"></a>为什么选择这套方案</h2><p>我希望博客具备几个特点：</p><ul><li>搭建成本低</li><li>内容以 Markdown 为主，维护负担小</li><li>可以直接部署到 GitHub Pages</li><li>主题和页面结构可继续自定义</li></ul><p>Hexo + GitHub Pages 基本满足这些要求，适合个人博客长期维护。</p><h2 id="基本搭建步骤"><a href="#基本搭建步骤" class="headerlink" title="基本搭建步骤"></a>基本搭建步骤</h2><h3 id="1-初始化项目"><a href="#1-初始化项目" class="headerlink" title="1. 初始化项目"></a>1. 初始化项目</h3><p>先安装 Node.js，然后初始化 Hexo 站点并安装依赖。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure><h3 id="2-本地预览"><a href="#2-本地预览" class="headerlink" title="2. 本地预览"></a>2. 本地预览</h3><p>开发阶段主要用下面的命令验证页面效果：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run server</span><br></pre></td></tr></table></figure><h3 id="3-生成静态文件"><a href="#3-生成静态文件" class="headerlink" title="3. 生成静态文件"></a>3. 生成静态文件</h3><p>确认内容和配置没问题后，执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure><h3 id="4-部署到-GitHub-Pages"><a href="#4-部署到-GitHub-Pages" class="headerlink" title="4. 部署到 GitHub Pages"></a>4. 部署到 GitHub Pages</h3><p>这个项目通过 <code>hexo-deployer-git</code> 把生成结果推送到 GitHub Pages 仓库。</p><p>核心配置在站点根目录的 <code>_config.yml</code>：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:Explorer0911/Explorer0911.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure><p>部署时执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run deploy</span><br></pre></td></tr></table></figure><h2 id="这套方案里最重要的几个目录"><a href="#这套方案里最重要的几个目录" class="headerlink" title="这套方案里最重要的几个目录"></a>这套方案里最重要的几个目录</h2><ul><li><code>source/_posts/</code>：文章内容</li><li><code>source/</code>：页面与静态资源</li><li><code>_config.yml</code>：站点级配置</li><li><code>_config.butterfly.yml</code>：主题级配置</li><li><code>public/</code>：生成后的站点文件</li></ul><h2 id="当前这版博客的整理原则"><a href="#当前这版博客的整理原则" class="headerlink" title="当前这版博客的整理原则"></a>当前这版博客的整理原则</h2><ul><li>首页和文章列表分离</li><li>自定义资源统一放在 <code>source/img</code></li><li>主题尽量通过配置改，少直接改主题源码</li><li>输出目录只作为构建结果，不手工维护</li></ul><p>这几个原则能明显降低后续维护成本。</p>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;p&gt;Hexo博客使用教程：从创建到部署的完整指南&lt;br&gt;&lt;a href=&quot;https://88daxiong.github.io/2024/09/22/hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/inde</summary>
-      
+    <summary type="html">从本地初始化到部署到 GitHub Pages，记录一次完整的个人博客搭建流程。</summary>
     
     
     
-    <category term="博客搭建" scheme="http://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <category term="博客搭建" scheme="https://explorer0911.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
     
-    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
     
-    <category term="Github" scheme="http://example.com/tags/Github/"/>
+    <category term="GitHub" scheme="https://explorer0911.github.io/tags/GitHub/"/>
     
-    <category term="博客" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
     
   </entry>
   
