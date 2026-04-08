@@ -1,15 +1,36 @@
 (function () {
-  const factRows = [
-    ['年份', 'year'],
-    ['地区', 'country'],
-    ['类型', 'genre'],
-    ['语言', 'language'],
-    ['上映', 'release_date'],
-    ['集数', 'episodes'],
-    ['时长', 'runtime'],
-    ['导演', 'director'],
-    ['编剧', 'writer'],
-    ['主演', 'cast']
+  const searchKeys = [
+    'resource_type',
+    'title',
+    'translated_title',
+    'original_title',
+    'english_title',
+    'year',
+    'country',
+    'language',
+    'director',
+    'writer',
+    'summary'
+  ]
+
+  const fieldRows = [
+    ['译名', item => item.translated_title || item.title],
+    ['片名', item => item.original_title || item.english_title],
+    ['年代', item => item.year],
+    ['产地', item => item.country],
+    ['类别', item => formatJoined(item.genre)],
+    ['语言', item => item.language],
+    ['上映日期', item => item.release_date],
+    ['IMDb评分', item => item.imdb_rating],
+    ['IMDb链接', item => item.imdb_url],
+    ['豆瓣评分', item => item.douban_rating],
+    ['豆瓣链接', item => item.douban_url],
+    ['片长', item => item.runtime],
+    ['导演', item => item.director],
+    ['编剧', item => item.writer],
+    ['主演', item => formatJoined(item.cast)],
+    ['简介', item => item.summary],
+    ['获奖情况', item => formatLines(item.awards)]
   ]
 
   const toArray = value => {
@@ -18,7 +39,8 @@
     return [value]
   }
 
-  const stringifyValue = value => toArray(value).join(' / ')
+  const formatJoined = value => toArray(value).join(' / ')
+  const formatLines = value => toArray(value).join('\n')
   const isAbsoluteUrl = value => /^https?:\/\//i.test(String(value || ''))
   const resolvePublicUrl = value => {
     const text = String(value || '').trim()
@@ -39,95 +61,62 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;')
 
-  const createFactMarkup = item => factRows
-    .map(([label, key]) => {
-      const value = stringifyValue(item[key])
-      if (!value) return ''
-      return [
-        '<div class="watch-entry__fact">',
-        '  <dt class="watch-entry__fact-label">' + escapeHtml(label) + '</dt>',
-        '  <dd class="watch-entry__fact-value">' + escapeHtml(value) + '</dd>',
-        '</div>'
-      ].join('')
-    })
-    .filter(Boolean)
-    .join('')
+  const createInfoRows = item => fieldRows.map(([label, getter]) => {
+    const value = getter(item)
+    if (!value) return ''
+    const text = String(value)
+    const isLink = /^https?:\/\//i.test(text)
+    const valueMarkup = isLink
+      ? '<a href="' + escapeHtml(text) + '" target="_blank" rel="noopener external nofollow">' + escapeHtml(text) + '</a>'
+      : escapeHtml(text).replace(/\n/g, '<br>')
+
+    return [
+      '<div class="watch-entry__row">',
+      '  <div class="watch-entry__label"><span class="watch-entry__dot">◎</span><span>' + escapeHtml(label) + '</span></div>',
+      '  <div class="watch-entry__value">' + valueMarkup + '</div>',
+      '</div>'
+    ].join('')
+  }).filter(Boolean).join('')
 
   const createActionMarkup = actions => actions.map(action => {
     const kind = action.kind || 'default'
-    return '<a class="watch-entry__action watch-entry__action--' + escapeHtml(kind) + '" href="' + escapeHtml(action.url) + '" target="_blank" rel="noopener external nofollow">' + escapeHtml(action.label) + '</a>'
+    const url = resolvePublicUrl(action.url)
+    return '<a class="watch-entry__action watch-entry__action--' + escapeHtml(kind) + '" href="' + escapeHtml(url) + '" target="_blank" rel="noopener external nofollow">' + escapeHtml(action.label) + '</a>'
   }).join('')
 
   const createEntryMarkup = (item, index) => {
     const entryId = item.id || ('watch-entry-' + (index + 1))
-    const aliasText = [item.original_title, item.english_title].filter(Boolean).join(' / ')
-    const actions = Array.isArray(item.actions) ? item.actions.filter(action => action && action.label && action.url) : []
-    if (item.review_post_url) {
-      actions.unshift({
-        label: item.review_post_label || '观影记录',
-        url: item.review_post_url,
-        kind: 'note'
-      })
-    }
-
-    const qrTarget = resolvePublicUrl(item.qr_target || item.copy_text || (actions[0] && actions[0].url) || '')
+    const title = item.title || item.translated_title || ('未命名条目 ' + (index + 1))
+    const resourceLinks = Array.isArray(item.resource_links) ? item.resource_links.filter(action => action && action.label && action.url) : []
+    const qrTarget = resolvePublicUrl(item.qr_target || item.copy_text || item.detail_url || (resourceLinks[0] && resourceLinks[0].url) || '')
     const copyValue = resolvePublicUrl(item.copy_text || qrTarget)
-    const posterMarkup = item.cover
-      ? '<div class="watch-entry__poster-wrap"><img class="watch-entry__poster" src="' + escapeHtml(item.cover) + '" alt="' + escapeHtml(item.title || 'Watching cover') + '" loading="lazy"></div>'
-      : '<div class="watch-entry__poster-wrap watch-entry__poster-wrap--placeholder"><i class="fas fa-film" aria-hidden="true"></i><span>等待封面</span></div>'
+    const searchText = searchKeys.map(key => item[key]).concat(item.genre || [], item.cast || []).filter(Boolean).join(' ').toLowerCase()
+    const resourceType = item.resource_type || item.type || '影视'
+    const detailUrl = item.detail_url ? resolvePublicUrl(item.detail_url) : ''
+    const actionMarkup = resourceLinks.length || copyValue
+      ? '<div class="watch-entry__actions">' + createActionMarkup(resourceLinks) + (copyValue ? '<button class="watch-entry__action watch-entry__action--copy" type="button" data-copy="' + escapeHtml(copyValue) + '">复制</button>' : '') + '</div>'
+      : ''
     const qrMarkup = qrTarget
-      ? '<div class="watch-entry__qr"><img class="watch-entry__qr-image" data-qr-target="' + escapeHtml(qrTarget) + '" alt="' + escapeHtml((item.title || 'Watching') + ' 扫码入口') + '" loading="lazy"><p class="watch-entry__qr-text">手机扫码可快速打开当前条目链接</p></div>'
-      : '<div class="watch-entry__qr"><div class="watch-entry__qr-empty"><i class="fas fa-qrcode" aria-hidden="true"></i><span>补充资源链接后，这里会自动生成二维码</span></div></div>'
-    const actionsMarkup = actions.length || copyValue
-      ? '<div class="watch-entry__actions">' + createActionMarkup(actions) + (copyValue ? '<button class="watch-entry__action watch-entry__action--copy" type="button" data-copy="' + escapeHtml(copyValue) + '">复制链接</button>' : '') + '</div>'
-      : ''
-    const updatedMarkup = item.updated_at
-      ? '<div class="watch-entry__updated"><i class="far fa-clock" aria-hidden="true"></i><span>最近更新：' + escapeHtml(item.updated_at) + '</span></div>'
-      : ''
+      ? '<img class="watch-entry__qr-image" data-qr-target="' + escapeHtml(qrTarget) + '" alt="' + escapeHtml(title + ' 二维码') + '" loading="lazy"><p class="watch-entry__qr-text">手机扫一扫，获得更好体验</p>'
+      : '<div class="watch-entry__qr-empty"><i class="fas fa-qrcode" aria-hidden="true"></i><span>补充链接后自动生成二维码</span></div>'
 
     return [
-      '<article class="watch-entry" id="' + escapeHtml(entryId) + '" data-search="' + escapeHtml([
-        item.title,
-        item.original_title,
-        item.english_title,
-        item.type,
-        item.status,
-        item.year,
-        item.country,
-        stringifyValue(item.genre),
-        item.language,
-        item.release_date,
-        item.runtime,
-        item.episodes,
-        item.director,
-        item.writer,
-        stringifyValue(item.cast),
-        item.summary,
-        item.watch_note
-      ].filter(Boolean).join(' ').toLowerCase()) + '">',
-      '  <div class="watch-entry__header">',
-      '    <div class="watch-entry__header-main">',
-      '      <p class="watch-entry__type">' + escapeHtml(item.type || '影视条目') + '</p>',
-      '      <h3 class="watch-entry__title">' + escapeHtml(item.title || ('未命名条目 ' + (index + 1))) + '</h3>',
-      aliasText ? '      <p class="watch-entry__alias">' + escapeHtml(aliasText) + '</p>' : '',
-      '    </div>',
-      item.status ? '    <span class="watch-entry__status">' + escapeHtml(item.status) + '</span>' : '',
+      '<article class="watch-entry" id="' + escapeHtml(entryId) + '" data-search="' + escapeHtml(searchText) + '">',
+      '  <div class="watch-entry__titlebar">',
+      detailUrl ? '    <h3 class="watch-entry__title"><a href="' + escapeHtml(detailUrl) + '">' + escapeHtml(title) + '</a></h3>' : '    <h3 class="watch-entry__title">' + escapeHtml(title) + '</h3>',
       '  </div>',
-      '  <div class="watch-entry__body">',
-      '    <div class="watch-entry__main">',
-      '      <div class="watch-entry__section">',
-      '        <h4 class="watch-entry__section-title">基础信息</h4>',
-      '        <dl class="watch-entry__facts">' + createFactMarkup(item) + '</dl>',
+      '  <div class="watch-entry__panel">',
+      '    <div class="watch-entry__meta">',
+      '      <div class="watch-entry__section-head">',
+      '        <div class="watch-entry__section-label">资源类型</div>',
+      '        <div class="watch-entry__section-value">' + escapeHtml(resourceType) + '</div>',
       '      </div>',
-      item.summary || item.watch_note ? '      <div class="watch-entry__section"><h4 class="watch-entry__section-title">资源描述</h4>' + (item.summary ? '<p class="watch-entry__paragraph">' + escapeHtml(item.summary) + '</p>' : '') + (item.watch_note ? '<p class="watch-entry__paragraph watch-entry__paragraph--note">' + escapeHtml(item.watch_note) + '</p>' : '') + '</div>' : '',
-      updatedMarkup,
+      '      <div class="watch-entry__rows">' + createInfoRows(item) + '</div>',
+      '      <div class="watch-entry__updated"><span class="watch-entry__section-label">更新时间</span><span class="watch-entry__section-value">' + escapeHtml(item.updated_at || '待更新') + '</span></div>',
+      actionMarkup ? '      <div class="watch-entry__resource-line"><span class="watch-entry__section-label">资源地址</span>' + actionMarkup + '</div>' : '',
       '    </div>',
-      '    <aside class="watch-entry__aside">',
-      posterMarkup,
-      qrMarkup,
-      '    </aside>',
+      '    <aside class="watch-entry__qr">' + qrMarkup + '</aside>',
       '  </div>',
-      actionsMarkup,
       '</article>'
     ].filter(Boolean).join('')
   }
@@ -139,6 +128,7 @@
     root.dataset.enhanced = 'true'
 
     const source = root.dataset.source
+    const entryId = root.dataset.entryId || ''
     const listNode = root.querySelector('[data-watching-list]')
     const searchInput = root.querySelector('[data-watching-search]')
     const emptyState = root.querySelector('[data-watching-empty]')
@@ -155,20 +145,19 @@
       if (!response.ok) throw new Error('watching library fetch failed')
 
       const payload = await response.json()
-      const entries = Array.isArray(payload.entries) ? payload.entries : []
+      const allEntries = Array.isArray(payload.entries) ? payload.entries : []
+      const entries = entryId ? allEntries.filter(item => item.id === entryId) : allEntries
       const meta = payload.meta && typeof payload.meta === 'object' ? payload.meta : {}
       const latestUpdatedAt = entries.reduce((result, item) => {
         if (!item || !item.updated_at) return result
         return !result || String(item.updated_at) > String(result) ? item.updated_at : result
       }, '')
       const resourceCount = entries.reduce((result, item) => {
-        const count = Array.isArray(item && item.actions) ? item.actions.length : 0
-        return result + count + (item && item.review_post_url ? 1 : 0)
+        const count = Array.isArray(item && item.resource_links) ? item.resource_links.length : 0
+        return result + count
       }, 0)
 
-      if (searchInput && meta.search_placeholder) {
-        searchInput.placeholder = meta.search_placeholder
-      }
+      if (searchInput && meta.search_placeholder) searchInput.placeholder = meta.search_placeholder
       if (emptyState) {
         emptyState.dataset.emptyText = meta.empty_text || root.dataset.emptyText || '没有找到匹配的影视条目。'
         const textNode = emptyState.querySelector('p')
@@ -187,14 +176,11 @@
       }
 
       listNode.innerHTML = entries.map(createEntryMarkup).join('')
-
       const entryNodes = Array.from(listNode.querySelectorAll('.watch-entry'))
 
       const updateCount = visibleCount => {
         if (countNode) countNode.textContent = String(visibleCount)
-        if (emptyState) {
-          emptyState.hidden = visibleCount !== 0
-        }
+        if (emptyState) emptyState.hidden = visibleCount !== 0
       }
 
       const applySearch = () => {
@@ -211,9 +197,7 @@
         updateCount(visibleCount)
       }
 
-      if (searchInput) {
-        searchInput.addEventListener('input', applySearch)
-      }
+      if (searchInput) searchInput.addEventListener('input', applySearch)
 
       root.addEventListener('click', async event => {
         const button = event.target.closest('[data-copy]')
