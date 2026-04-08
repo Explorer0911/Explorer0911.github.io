@@ -19,6 +19,18 @@
   }
 
   const stringifyValue = value => toArray(value).join(' / ')
+  const isAbsoluteUrl = value => /^https?:\/\//i.test(String(value || ''))
+  const resolvePublicUrl = value => {
+    const text = String(value || '').trim()
+    if (!text) return ''
+    if (isAbsoluteUrl(text)) return text
+
+    try {
+      return new URL(text, window.location.origin).toString()
+    } catch (error) {
+      return text
+    }
+  }
 
   const escapeHtml = value => String(value || '')
     .replace(/&/g, '&amp;')
@@ -58,8 +70,8 @@
       })
     }
 
-    const qrTarget = item.qr_target || item.copy_text || (actions[0] && actions[0].url) || ''
-    const copyValue = item.copy_text || qrTarget
+    const qrTarget = resolvePublicUrl(item.qr_target || item.copy_text || (actions[0] && actions[0].url) || '')
+    const copyValue = resolvePublicUrl(item.copy_text || qrTarget)
     const posterMarkup = item.cover
       ? '<div class="watch-entry__poster-wrap"><img class="watch-entry__poster" src="' + escapeHtml(item.cover) + '" alt="' + escapeHtml(item.title || 'Watching cover') + '" loading="lazy"></div>'
       : '<div class="watch-entry__poster-wrap watch-entry__poster-wrap--placeholder"><i class="fas fa-film" aria-hidden="true"></i><span>等待封面</span></div>'
@@ -245,4 +257,3 @@
 
   document.addEventListener('pjax:complete', initWatchingLibrary)
 })()
-
