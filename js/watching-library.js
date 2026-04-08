@@ -25,6 +25,7 @@
     const blankState = root.querySelector('[data-watching-blank]')
     const countNode = root.querySelector('[data-watch-count]')
     const entryNodes = Array.from(root.querySelectorAll('[data-watch-entry]'))
+    const params = new URLSearchParams(window.location.search)
 
     let activeFilter = 'all'
 
@@ -68,15 +69,22 @@
 
       if (shouldOpen) {
         searchInput.focus()
-      } else {
-        if (searchInput.value) {
-          searchInput.value = ''
-          applyFilters()
-        }
+      } else if (searchInput.value) {
+        searchInput.value = ''
+        applyFilters()
       }
     }
 
     if (searchInput) {
+      const initialKeyword = (params.get('q') || params.get('keyword') || '').trim()
+      if (initialKeyword) {
+        searchInput.value = initialKeyword
+        if (searchPanel && searchToggle) {
+          searchPanel.hidden = false
+          searchToggle.classList.add('is-active')
+        }
+      }
+
       searchInput.addEventListener('input', applyFilters)
       searchInput.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
@@ -112,32 +120,42 @@
     root.dataset.enhanced = 'true'
 
     root.addEventListener('click', async event => {
-      const button = event.target.closest('[data-copy]')
-      if (!button) return
+      const copyButton = event.target.closest('[data-copy]')
+      if (copyButton) {
+        const rawValue = copyButton.getAttribute('data-copy') || ''
+        const value = resolvePublicUrl(rawValue)
+        if (!value) return
 
-      const rawValue = button.getAttribute('data-copy') || ''
-      const value = resolvePublicUrl(rawValue)
-      if (!value) return
+        const originalText = copyButton.textContent
 
-      const originalText = button.textContent
+        try {
+          await navigator.clipboard.writeText(value)
+          copyButton.textContent = '已复制'
+        } catch (error) {
+          copyButton.textContent = '复制失败'
+        }
 
-      try {
-        await navigator.clipboard.writeText(value)
-        button.textContent = '已复制'
-      } catch (error) {
-        button.textContent = '复制失败'
+        window.setTimeout(() => {
+          copyButton.textContent = originalText
+        }, 1600)
+        return
       }
 
-      window.setTimeout(() => {
-        button.textContent = originalText
-      }, 1600)
-    })
+      const tabButton = event.target.closest('[data-watch-side-tab]')
+      if (!tabButton) return
 
-    root.querySelectorAll('.watch-entry__qr-image[data-qr-target]').forEach(image => {
-      const rawTarget = image.getAttribute('data-qr-target')
-      const target = resolvePublicUrl(rawTarget)
-      if (!target) return
-      image.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(target)
+      const section = tabButton.closest('[data-watch-side-section]')
+      if (!section) return
+
+      const target = tabButton.getAttribute('data-watch-side-tab') || ''
+      section.querySelectorAll('[data-watch-side-tab]').forEach(button => {
+        const active = button === tabButton
+        button.classList.toggle('is-active', active)
+        button.setAttribute('aria-selected', active ? 'true' : 'false')
+      })
+      section.querySelectorAll('[data-watch-side-panel]').forEach(panel => {
+        panel.hidden = panel.getAttribute('data-watch-side-panel') !== target
+      })
     })
   }
 
