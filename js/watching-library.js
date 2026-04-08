@@ -18,6 +18,8 @@
     root.dataset.enhanced = 'true'
 
     const searchInput = root.querySelector('[data-watching-search]')
+    const searchPanel = root.querySelector('[data-watch-search-panel]')
+    const searchToggle = root.querySelector('[data-watch-search-toggle]')
     const filtersNode = root.querySelector('[data-watching-filters]')
     const emptyState = root.querySelector('[data-watching-empty]')
     const blankState = root.querySelector('[data-watching-blank]')
@@ -57,7 +59,37 @@
       updateCount(visibleCount)
     }
 
-    if (searchInput) searchInput.addEventListener('input', applyFilters)
+    const toggleSearch = forceOpen => {
+      if (!searchPanel || !searchToggle || !searchInput) return
+
+      const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : searchPanel.hidden
+      searchPanel.hidden = !shouldOpen
+      searchToggle.classList.toggle('is-active', shouldOpen)
+
+      if (shouldOpen) {
+        searchInput.focus()
+      } else {
+        if (searchInput.value) {
+          searchInput.value = ''
+          applyFilters()
+        }
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters)
+      searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          toggleSearch(false)
+        }
+      })
+    }
+
+    if (searchToggle) {
+      searchToggle.addEventListener('click', () => {
+        toggleSearch()
+      })
+    }
 
     if (filtersNode) {
       filtersNode.addEventListener('click', event => {
