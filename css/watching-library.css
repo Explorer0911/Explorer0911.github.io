@@ -1,3 +1,15 @@
+#content-inner.layout.hide-aside {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 18px 0 24px !important;
+}
+
+html.hide-aside #content-inner.layout > #page.page--watching-home.nc,
+#content-inner.layout.hide-aside > #page.page--watching-home.nc {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
 #page.page--watching-home {
   width: 100%;
   padding: 0 !important;
@@ -685,4 +697,5 @@
     grid-template-columns: 1fr;
   }
 }
+
 
