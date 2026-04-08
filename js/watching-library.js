@@ -61,6 +61,13 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;')
 
+  const buildSearchText = item => searchKeys
+    .map(key => item[key])
+    .concat(item.genre || [], item.cast || [])
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+
   const createInfoRows = item => fieldRows.map(([label, getter]) => {
     const value = getter(item)
     if (!value) return ''
@@ -84,15 +91,33 @@
     return '<a class="watch-entry__action watch-entry__action--' + escapeHtml(kind) + '" href="' + escapeHtml(url) + '" target="_blank" rel="noopener external nofollow">' + escapeHtml(action.label) + '</a>'
   }).join('')
 
+  const createDirectoryItemMarkup = (item, index) => {
+    const entryId = item.id || ('watch-entry-' + (index + 1))
+    const title = item.title || item.translated_title || ('未命名条目 ' + (index + 1))
+    const detailUrl = item.detail_url ? resolvePublicUrl(item.detail_url) : ''
+    const metaLine = [item.year, item.country, formatJoined(item.genre), item.language].filter(Boolean).join(' / ')
+
+    return [
+      '<article class="watch-directory__item" id="' + escapeHtml(entryId) + '" data-search="' + escapeHtml(buildSearchText(item)) + '">',
+      '  <div class="watch-directory__body">',
+      detailUrl
+        ? '    <h3 class="watch-directory__title"><a href="' + escapeHtml(detailUrl) + '">' + escapeHtml(title) + '</a></h3>'
+        : '    <h3 class="watch-directory__title">' + escapeHtml(title) + '</h3>',
+      metaLine ? '    <p class="watch-directory__meta">' + escapeHtml(metaLine) + '</p>' : '',
+      item.summary ? '    <p class="watch-directory__summary">' + escapeHtml(item.summary) + '</p>' : '',
+      '  </div>',
+      detailUrl ? '  <a class="watch-directory__open" href="' + escapeHtml(detailUrl) + '">查看详情</a>' : '',
+      '</article>'
+    ].filter(Boolean).join('')
+  }
+
   const createEntryMarkup = (item, index) => {
     const entryId = item.id || ('watch-entry-' + (index + 1))
     const title = item.title || item.translated_title || ('未命名条目 ' + (index + 1))
     const resourceLinks = Array.isArray(item.resource_links) ? item.resource_links.filter(action => action && action.label && action.url) : []
     const qrTarget = resolvePublicUrl(item.qr_target || item.copy_text || item.detail_url || (resourceLinks[0] && resourceLinks[0].url) || '')
     const copyValue = resolvePublicUrl(item.copy_text || qrTarget)
-    const searchText = searchKeys.map(key => item[key]).concat(item.genre || [], item.cast || []).filter(Boolean).join(' ').toLowerCase()
     const resourceType = item.resource_type || item.type || '影视'
-    const detailUrl = item.detail_url ? resolvePublicUrl(item.detail_url) : ''
     const actionMarkup = resourceLinks.length || copyValue
       ? '<div class="watch-entry__actions">' + createActionMarkup(resourceLinks) + (copyValue ? '<button class="watch-entry__action watch-entry__action--copy" type="button" data-copy="' + escapeHtml(copyValue) + '">复制</button>' : '') + '</div>'
       : ''
@@ -101,9 +126,9 @@
       : '<div class="watch-entry__qr-empty"><i class="fas fa-qrcode" aria-hidden="true"></i><span>补充链接后自动生成二维码</span></div>'
 
     return [
-      '<article class="watch-entry" id="' + escapeHtml(entryId) + '" data-search="' + escapeHtml(searchText) + '">',
+      '<article class="watch-entry" id="' + escapeHtml(entryId) + '" data-search="' + escapeHtml(buildSearchText(item)) + '">',
       '  <div class="watch-entry__titlebar">',
-      detailUrl ? '    <h3 class="watch-entry__title"><a href="' + escapeHtml(detailUrl) + '">' + escapeHtml(title) + '</a></h3>' : '    <h3 class="watch-entry__title">' + escapeHtml(title) + '</h3>',
+      '    <h3 class="watch-entry__title">' + escapeHtml(title) + '</h3>',
       '  </div>',
       '  <div class="watch-entry__panel">',
       '    <div class="watch-entry__meta">',
@@ -129,6 +154,7 @@
 
     const source = root.dataset.source
     const entryId = root.dataset.entryId || ''
+    const mode = root.dataset.mode || (entryId ? 'detail' : 'list')
     const listNode = root.querySelector('[data-watching-list]')
     const searchInput = root.querySelector('[data-watching-search]')
     const emptyState = root.querySelector('[data-watching-empty]')
@@ -175,8 +201,11 @@
         return
       }
 
-      listNode.innerHTML = entries.map(createEntryMarkup).join('')
-      const entryNodes = Array.from(listNode.querySelectorAll('.watch-entry'))
+      listNode.innerHTML = mode === 'detail'
+        ? entries.map(createEntryMarkup).join('')
+        : entries.map(createDirectoryItemMarkup).join('')
+
+      const entryNodes = Array.from(listNode.children)
 
       const updateCount = visibleCount => {
         if (countNode) countNode.textContent = String(visibleCount)
