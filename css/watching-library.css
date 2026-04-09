@@ -441,24 +441,40 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
 }
 
 .watch-entry__cover-panel {
-  padding: 14px;
+  position: relative;
+  padding: 10px;
+  min-height: 520px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff, #fafcff);
 }
 
+.watch-entry__cover-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--watch-cover);
+  background-position: center;
+  background-size: cover;
+  filter: blur(24px);
+  opacity: 0.16;
+  transform: scale(1.06);
+}
+
 .watch-entry__cover-image,
 .watch-entry__cover-fallback {
+  position: relative;
+  z-index: 1;
   display: block;
-  width: 92%;
-  max-width: 92%;
-  height: auto;
-  max-height: 380px;
+  width: 100%;
+  max-width: 100%;
+  height: 500px;
+  max-height: 500px;
   margin: 0 auto;
   border-radius: 12px;
 }
 
 .watch-entry__cover-image {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   background: #f3f6fb;
 }
@@ -895,10 +911,10 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
 
   .watch-entry__cover-image,
   .watch-entry__cover-fallback {
-    width: 96%;
-    max-width: 96%;
-    height: auto;
-    max-height: 300px;
+    width: 100%;
+    max-width: 100%;
+    height: 360px;
+    max-height: 360px;
   }
 
   .watch-entry__panel {
@@ -940,8 +956,8 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
   .watch-entry__cover-fallback {
     width: 100%;
     max-width: 100%;
-    height: auto;
-    max-height: 220px;
+    height: 260px;
+    max-height: 260px;
   }
 
   .watch-sidecard__tabs {
