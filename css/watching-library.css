@@ -442,7 +442,7 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
 
 .watch-entry__cover-panel {
   position: relative;
-  width: min(100%, 600px);
+  width: min(100%);
   margin: 0 auto;
   padding: 10px;
   aspect-ratio: 27 / 40;
