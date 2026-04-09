@@ -231,6 +231,35 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
   background: linear-gradient(160deg, #1f2937, #4b5563);
 }
 
+.watch-poster__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.78);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.24);
+  backdrop-filter: blur(8px);
+}
+
+.watch-poster__badge-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.watch-poster__badge-value {
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 .watch-poster__image {
   display: block;
   width: 100%;

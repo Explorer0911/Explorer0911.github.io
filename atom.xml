@@ -118,11 +118,11 @@
     
     <category term="Windows" scheme="https://explorer0911.github.io/tags/Windows/"/>
     
+    <category term="PowerShell" scheme="https://explorer0911.github.io/tags/PowerShell/"/>
+    
     <category term="Chocolatey" scheme="https://explorer0911.github.io/tags/Chocolatey/"/>
     
     <category term="包管理器" scheme="https://explorer0911.github.io/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/"/>
-    
-    <category term="PowerShell" scheme="https://explorer0911.github.io/tags/PowerShell/"/>
     
   </entry>
   
@@ -199,9 +199,9 @@
     
     <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
     
-    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
-    
     <category term="Butterfly" scheme="https://explorer0911.github.io/tags/Butterfly/"/>
+    
+    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
     
   </entry>
   
@@ -224,9 +224,9 @@
     
     <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
     
-    <category term="GitHub" scheme="https://explorer0911.github.io/tags/GitHub/"/>
-    
     <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
+    
+    <category term="GitHub" scheme="https://explorer0911.github.io/tags/GitHub/"/>
     
   </entry>
   
