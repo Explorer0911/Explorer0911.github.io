@@ -476,7 +476,7 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
 }
 
 .watch-entry__cover-image {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   background: rgba(243, 246, 251, 0.85);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
