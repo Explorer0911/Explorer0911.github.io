@@ -30,13 +30,13 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
 
 #page.page--watching-home #article-container.container,
 #page.page--watching-detail #article-container.container {
-  width: calc(100vw - 40px);
+  width: 90vw;
   margin: 0 auto;
   padding: 0;
 }
 
 #page.page--watching-home #article-container.container {
-  max-width: 1540px;
+  max-width:none;/* max-width removed to allow full width with 5% margins */
 }
 
 #page.page--watching-detail #article-container.container {
