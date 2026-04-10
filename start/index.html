@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>导览 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content=".start-page {   display: grid;   gap: 28px; }  .start-hero {   position: relative;   overflow: hidden;   padding: 42px 36px;   border-radius: 28px;   background: linear-gradient(135deg, rgba(34, 94,">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>导览 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content=".start-page {   display: grid;   gap: 28px;   max-width: 1080px;   margin: 0 auto; }  .start-hero {   position: relative;   overflow: hidden;   padding: 42px 36px;   border-radius: 28px;   background">
 <meta property="og:type" content="website">
 <meta property="og:title" content="导览">
 <meta property="og:url" content="https://explorer0911.github.io/start/index.html">
 <meta property="og:site_name" content="Explorer0911 Blog">
-<meta property="og:description" content=".start-page {   display: grid;   gap: 28px; }  .start-hero {   position: relative;   overflow: hidden;   padding: 42px 36px;   border-radius: 28px;   background: linear-gradient(135deg, rgba(34, 94,">
+<meta property="og:description" content=".start-page {   display: grid;   gap: 28px;   max-width: 1080px;   margin: 0 auto; }  .start-hero {   position: relative;   overflow: hidden;   padding: 42px 36px;   border-radius: 28px;   background">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
 <meta property="article:published_time" content="2026-03-12T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-10T13:51:44.348Z">
+<meta property="article:modified_time" content="2026-04-10T14:27:14.657Z">
 <meta property="article:author" content="Explorer0911">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="Butterfly">
@@ -152,6 +152,8 @@
 .start-page {
   display: grid;
   gap: 28px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .start-hero {
@@ -342,6 +344,12 @@
   border-radius: 0 12px 12px 0;
   background: #f4f9ff;
   color: #38536d;
+}
+
+@media (max-width: 768px) {
+  .start-page {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 900px) {
