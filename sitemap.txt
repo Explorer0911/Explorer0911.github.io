@@ -1,3 +1,4 @@
+https://explorer0911.github.io/watching/index.html
 https://explorer0911.github.io/watching/the-silence-of-the-lambs/index.html
 https://explorer0911.github.io/watching/the-matrix/index.html
 https://explorer0911.github.io/watching/the-lord-of-the-rings-the-two-towers/index.html
@@ -21,7 +22,6 @@ https://explorer0911.github.io/watching/the-last-emperor/index.html
 https://explorer0911.github.io/watching/the-green-mile/index.html
 https://explorer0911.github.io/watching/the-good-the-bad-and-the-ugly/index.html
 https://explorer0911.github.io/watching/the-godfather/index.html
-https://explorer0911.github.io/watching/silenced/index.html
 https://explorer0911.github.io/watching/schindler-s-list/index.html
 https://explorer0911.github.io/watching/one-flew-over-the-cuckoo-s-nest/index.html
 https://explorer0911.github.io/watching/les-choristes/index.html
@@ -41,7 +41,6 @@ https://explorer0911.github.io/watching/coco/index.html
 https://explorer0911.github.io/watching/a-chinese-odyssey-part-two-cinderella/index.html
 https://explorer0911.github.io/watching/3-idiots/index.html
 https://explorer0911.github.io/watching/12-angry-men/index.html
-https://explorer0911.github.io/watching/index.html
 https://explorer0911.github.io/watching/the-legend-of-1900/index.html
 https://explorer0911.github.io/watching/green-book/index.html
 https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/
@@ -65,18 +64,18 @@ https://explorer0911.github.io/tags/Windows/
 https://explorer0911.github.io/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/
 https://explorer0911.github.io/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://explorer0911.github.io/tags/Hexo/
-https://explorer0911.github.io/tags/GitHub/
-https://explorer0911.github.io/tags/GitHub-Pages/
 https://explorer0911.github.io/tags/Butterfly/
+https://explorer0911.github.io/tags/GitHub-Pages/
+https://explorer0911.github.io/tags/Chocolatey/
+https://explorer0911.github.io/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/
 https://explorer0911.github.io/tags/PowerShell/
 https://explorer0911.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/
 https://explorer0911.github.io/tags/%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88/
+https://explorer0911.github.io/tags/GitHub/
 https://explorer0911.github.io/tags/%E9%9F%B3%E4%B9%90/
 https://explorer0911.github.io/tags/%E4%B8%93%E8%BE%91/
 https://explorer0911.github.io/tags/Bleachers/
 https://explorer0911.github.io/tags/Jack-Antonoff/
-https://explorer0911.github.io/tags/Chocolatey/
-https://explorer0911.github.io/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/
 https://explorer0911.github.io/tags/Radiohead/
 https://explorer0911.github.io/tags/The-Bends/
 https://explorer0911.github.io/tags/The-1975/
