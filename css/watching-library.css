@@ -727,10 +727,10 @@ html.hide-aside #content-inner.layout > #page.page--watching-detail.nc,
   color: #17324b;
 }
 
-.watch-sidecard__tab-panel {
-  display: grid;
-  gap: 4px;
-  padding: 12px 14px 14px;
+
+
+.watch-sidecard__tab-panel[hidden] {
+  display: none !important;
 }
 
 .watch-sidecard__list-link {
