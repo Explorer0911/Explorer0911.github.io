@@ -6,7 +6,7 @@
   <link href="https://explorer0911.github.io/atom.xml" rel="self"/>
   
   <link href="https://explorer0911.github.io/"/>
-  <updated>2026-03-30T08:26:44.165Z</updated>
+  <updated>2026-04-12T08:14:12.191Z</updated>
   <id>https://explorer0911.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Word 公式自动编号与交叉引用实战</title>
+    <link href="https://explorer0911.github.io/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/"/>
+    <id>https://explorer0911.github.io/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/</id>
+    <published>2026-04-12T03:20:00.000Z</published>
+    <updated>2026-04-12T08:14:12.191Z</updated>
+    
+    <content type="html"><![CDATA[<p>写论文时，最常见的痛点之一就是公式编号和交叉引用。公式一改顺序，编号全乱；正文里的“见公式(3)”也跟着错。</p><p>这篇记录一套可复用的 Word 流程，目标是：</p><ul><li>公式编号自动递增</li><li>正文引用自动联动更新</li><li>插入&#x2F;删除公式后能一键刷新</li></ul><h2 id="1-先给公式做自动编号（SEQ-域）"><a href="#1-先给公式做自动编号（SEQ-域）" class="headerlink" title="1. 先给公式做自动编号（SEQ 域）"></a>1. 先给公式做自动编号（SEQ 域）</h2><h3 id="1-1-插入公式"><a href="#1-1-插入公式" class="headerlink" title="1.1 插入公式"></a>1.1 插入公式</h3><p>把光标放到要插入公式的位置，按 <code>Alt + =</code> 调出公式编辑框，输入公式内容。</p><h3 id="1-2-在公式右侧插入编号域"><a href="#1-2-在公式右侧插入编号域" class="headerlink" title="1.2 在公式右侧插入编号域"></a>1.2 在公式右侧插入编号域</h3><p>常见排版是公式居中、编号右对齐。先在公式行放好括号，例如 <code>( )</code>，再把光标放到括号内，按 <code>Ctrl + F9</code> 插入域代码框。</p><p>你会看到一对大括号（注意必须是 <code>Ctrl + F9</code> 生成，不能手敲）。</p><p>在域内输入：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SEQ eq \* ARABIC</span><br></pre></td></tr></table></figure><p>说明：</p><ul><li><code>SEQ</code>：序列域</li><li><code>eq</code>：序列名（可改成 <code>公式</code>、<code>Eq</code> 等，但全文保持一致）</li><li><code>\* ARABIC</code>：阿拉伯数字编号格式</li></ul><p>然后按 <code>F9</code> 更新域，就会显示编号（1、2、3…）。</p><h3 id="1-3-批量延续编号"><a href="#1-3-批量延续编号" class="headerlink" title="1.3 批量延续编号"></a>1.3 批量延续编号</h3><p>把包含该域的编号结构复制到其他公式位置，Word 会自动给出后续编号。</p><p>如果你中途插入&#x2F;删除了公式，执行：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + A</span><br><span class="line">F9</span><br></pre></td></tr></table></figure><p>即可全局刷新编号。</p><h2 id="2-给每个公式编号打书签（用于正文引用）"><a href="#2-给每个公式编号打书签（用于正文引用）" class="headerlink" title="2. 给每个公式编号打书签（用于正文引用）"></a>2. 给每个公式编号打书签（用于正文引用）</h2><p>要让正文里的“公式( )”自动跟着变，推荐给每个公式编号建立书签。</p><p>操作：</p><ol><li>选中该公式对应的编号域（或编号文本及其括号）。</li><li>点击“插入 -&gt; 书签”。</li><li>输入书签名（如 <code>Eq1</code>、<code>Eq2</code>…）。</li><li>点击“添加”。</li></ol><p>建议命名规则固定，例如 <code>Eq序号</code>，后续维护最省事。</p><h2 id="3-在正文插入公式交叉引用"><a href="#3-在正文插入公式交叉引用" class="headerlink" title="3. 在正文插入公式交叉引用"></a>3. 在正文插入公式交叉引用</h2><p>在正文中把光标放在“见公式( )”的位置，执行：</p><ol><li>点击“引用 -&gt; 交叉引用”</li><li>“引用类型”选择“书签”</li><li>“插入引用内容”选择“书签文字”</li><li>在列表中选中目标书签（例如 <code>Eq1</code>）</li><li>点击“插入”</li></ol><p>后续如果公式顺序变化，仍然用：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + A</span><br><span class="line">F9</span><br></pre></td></tr></table></figure><p>即可同步更新 <code>SEQ</code> 和 <code>REF</code> 两类域。</p><h2 id="4-也可以手动插入-REF-域"><a href="#4-也可以手动插入-REF-域" class="headerlink" title="4. 也可以手动插入 REF 域"></a>4. 也可以手动插入 REF 域</h2><p>如果你习惯直接写域代码，也可以在正文位置按 <code>Ctrl + F9</code>，输入：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REF Eq1</span><br></pre></td></tr></table></figure><p>按 <code>F9</code> 后会显示对应编号值。</p><p>这个方式适合你已经熟悉域代码、希望更可控地批量处理时使用。</p><h2 id="5-多参考文献合并引用（如-1-3-8-）"><a href="#5-多参考文献合并引用（如-1-3-8-）" class="headerlink" title="5. 多参考文献合并引用（如 [1,3,8]）"></a>5. 多参考文献合并引用（如 [1,3,8]）</h2><p>当你需要把多个文献号合并成一个中括号引用时，可以用交叉引用 + 域代码格式控制来完成。</p><p>基本思路：</p><ol><li>先分别插入各文献的交叉引用。</li><li>对每个引用右键“切换域代码”，会看到类似：</li></ol><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; REF _Refxxxx \r \h &#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>通过数字格式开关 <code>\#</code> 控制前后括号，例如：</li></ol><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; REF _RefA \r \h \# &quot;[0&quot; &#125;</span><br><span class="line">&#123; REF _RefB \r \h \# &quot;0&quot; &#125;</span><br><span class="line">&#123; REF _RefC \r \h \# &quot;0]&quot; &#125;</span><br></pre></td></tr></table></figure><ol start="4"><li>中间手动加逗号（或短横线）即可得到如 <code>[1,3,8]</code>（或区间格式）。</li></ol><p>最后同样执行 <code>Ctrl + A</code> + <code>F9</code> 做全局刷新。</p><h2 id="6-一套稳定的使用习惯"><a href="#6-一套稳定的使用习惯" class="headerlink" title="6. 一套稳定的使用习惯"></a>6. 一套稳定的使用习惯</h2><p>为了减少后期返工，建议固定这套顺序：</p><ol><li>公式用 <code>SEQ</code> 自动编号</li><li>编号立即打书签</li><li>正文统一用交叉引用（或 <code>REF</code> 域）</li><li>每次结构改动后统一全局更新</li></ol><p>这样即使文档后期反复改章节、插公式、删公式，编号和引用也能保持一致。</p>]]></content>
+    
+    
+    <summary type="html">一篇讲清楚 Word 中公式自动编号、正文交叉引用，以及多参考文献合并引用格式的小教程。</summary>
+    
+    
+    
+    <category term="效率工具" scheme="https://explorer0911.github.io/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="科研写作" scheme="https://explorer0911.github.io/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/"/>
+    
+    
+    <category term="Word" scheme="https://explorer0911.github.io/tags/Word/"/>
+    
+    <category term="公式编号" scheme="https://explorer0911.github.io/tags/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7/"/>
+    
+    <category term="交叉引用" scheme="https://explorer0911.github.io/tags/%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8/"/>
+    
+    <category term="参考文献" scheme="https://explorer0911.github.io/tags/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</title>
@@ -199,9 +228,9 @@
     
     <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
     
-    <category term="Butterfly" scheme="https://explorer0911.github.io/tags/Butterfly/"/>
-    
     <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
+    
+    <category term="Butterfly" scheme="https://explorer0911.github.io/tags/Butterfly/"/>
     
   </entry>
   
@@ -224,9 +253,9 @@
     
     <category term="Hexo" scheme="https://explorer0911.github.io/tags/Hexo/"/>
     
-    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
-    
     <category term="GitHub" scheme="https://explorer0911.github.io/tags/GitHub/"/>
+    
+    <category term="GitHub Pages" scheme="https://explorer0911.github.io/tags/GitHub-Pages/"/>
     
   </entry>
   
