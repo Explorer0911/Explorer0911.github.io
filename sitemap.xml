@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://explorer0911.github.io/watching/%E5%A4%8F%E6%97%A5%E7%BB%86%E8%AF%AD/index.html</loc>
+    
+    <lastmod>2026-04-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://explorer0911.github.io/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/</loc>
     
     <lastmod>2026-04-12</lastmod>
@@ -544,7 +553,7 @@
 
   <url>
     <loc>https://explorer0911.github.io/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -552,175 +561,175 @@
   
   <url>
     <loc>https://explorer0911.github.io/tags/Hexo/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/GitHub/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/GitHub-Pages/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/Emby/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/Windows/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/Butterfly/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/PowerShell/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/tags/%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/Chocolatey/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/%E9%9F%B3%E4%B9%90/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/PowerShell/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/%E4%B8%93%E8%BE%91/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/Emby/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/Bleachers/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/Jack-Antonoff/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/Word/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/The-1975/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/Butterfly/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://explorer0911.github.io/tags/Being-Funny-In-A-Foreign-Language/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://explorer0911.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/%E9%9F%B3%E4%B9%90/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/%E4%B8%93%E8%BE%91/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/Radiohead/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/tags/The-Bends/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/Bleachers/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/Jack-Antonoff/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/The-1975/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/tags/Being-Funny-In-A-Foreign-Language/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -729,35 +738,35 @@
   
   <url>
     <loc>https://explorer0911.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://explorer0911.github.io/categories/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://explorer0911.github.io/categories/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://explorer0911.github.io/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
