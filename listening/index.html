@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Listening | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="音乐收藏与分享这里会慢慢积累我想留下来的专辑、单曲和阶段性的听歌记录。我不太想把这个栏目写成单纯的“推荐清单”，更想把它当成一个长期整理入口，记下某张专辑为什么会反复回听，某一首歌为什么会在某个阶段突然变得重要。 我想在这里留下什么 专辑分享，以及整张专辑为什么值得从头听到尾 单曲记录，或者某段时间一直在循环的几首歌 阶段性的 listening log，把当下在听的东西集中收住  这个栏目会怎么">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Listening">
+<meta property="og:url" content="https://explorer0911.github.io/listening/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="音乐收藏与分享这里会慢慢积累我想留下来的专辑、单曲和阶段性的听歌记录。我不太想把这个栏目写成单纯的“推荐清单”，更想把它当成一个长期整理入口，记下某张专辑为什么会反复回听，某一首歌为什么会在某个阶段突然变得重要。 我想在这里留下什么 专辑分享，以及整张专辑为什么值得从头听到尾 单曲记录，或者某段时间一直在循环的几首歌 阶段性的 listening log，把当下在听的东西集中收住  这个栏目会怎么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-13T14:10:00.000Z">
+<meta property="article:modified_time" content="2026-03-13T05:45:19.010Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="GitHub Pages">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/listening/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Listening',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'column'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视专栏</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/home-banner.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视专栏</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">Listening</h1></div></header><main class="layout hide-aside" id="content-inner"><style>.column-feed {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.column-feed__head {
+  padding: 22px 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff, #f9fbfd);
+  border: 1px solid rgba(71, 85, 105, 0.08);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+}
+
+.column-feed__eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.column-feed__title {
+  margin: 0;
+  font-size: 1.45rem;
+  color: #183247;
+}
+
+.column-feed__copy {
+  margin: 10px 0 0;
+  color: #51606f;
+  line-height: 1.8;
+}
+
+.column-feed__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.column-feed__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #edf8f6;
+  color: #0f766e;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.column-feed__list {
+  display: grid;
+  gap: 16px;
+}
+
+.column-feed__item {
+  padding: 22px 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  border: 1px solid rgba(71, 85, 105, 0.08);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
+}
+
+.column-feed__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 10px;
+  color: #667788;
+  font-size: 0.92rem;
+}
+
+.column-feed__item-title {
+  margin: 0 0 10px;
+  font-size: 1.34rem;
+  line-height: 1.4;
+}
+
+.column-feed__item-title a {
+  color: #17324b;
+  text-decoration: none;
+}
+
+.column-feed__item-title a:hover {
+  color: #0f766e;
+}
+
+.column-feed__summary {
+  color: #4f5f70;
+  line-height: 1.85;
+}
+
+.column-feed__taxonomies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.column-feed__taxonomy {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f7fb;
+  color: #51606f;
+  font-size: 0.84rem;
+}
+
+.column-feed__empty {
+  padding: 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  border: 1px dashed rgba(71, 85, 105, 0.22);
+  color: #51606f;
+  line-height: 1.9;
+}
+
+@media (max-width: 768px) {
+  .column-feed__head,
+  .column-feed__item,
+  .column-feed__empty {
+    padding: 20px;
+  }
+}
+</style><div id="page"><article class="container" id="article-container"><h2 id="音乐收藏与分享"><a href="#音乐收藏与分享" class="headerlink" title="音乐收藏与分享"></a>音乐收藏与分享</h2><p>这里会慢慢积累我想留下来的专辑、单曲和阶段性的听歌记录。<br>我不太想把这个栏目写成单纯的“推荐清单”，更想把它当成一个长期整理入口，记下某张专辑为什么会反复回听，某一首歌为什么会在某个阶段突然变得重要。</p>
+<h2 id="我想在这里留下什么"><a href="#我想在这里留下什么" class="headerlink" title="我想在这里留下什么"></a>我想在这里留下什么</h2><ul>
+<li>专辑分享，以及整张专辑为什么值得从头听到尾</li>
+<li>单曲记录，或者某段时间一直在循环的几首歌</li>
+<li>阶段性的 listening log，把当下在听的东西集中收住</li>
+</ul>
+<h2 id="这个栏目会怎么继续长"><a href="#这个栏目会怎么继续长" class="headerlink" title="这个栏目会怎么继续长"></a>这个栏目会怎么继续长</h2><p>后面我只需要把相关内容继续写成文章，并保持同一套分类和标签，<code>Listening</code> 页就会自动把它们收进来。<br>所以它不是一个静态展示页，而会慢慢变成一个越来越完整的音乐索引。</p>
+</article><div class="column-feed container"><div class="column-feed__head"><p class="column-feed__eyebrow">Column Feed</p><h2 class="column-feed__title">最近在听</h2><p class="column-feed__copy">这里会自动汇总音乐分享、听歌记录和专辑相关的文章。后面只要继续按同一套分类和标签写下去，这个栏目就会自己长出来。</p><div class="column-feed__filters"><span class="column-feed__chip">音乐分享</span><span class="column-feed__chip">听歌记录</span><span class="column-feed__chip">音乐</span><span class="column-feed__chip">专辑</span><span class="column-feed__chip">歌单</span></div></div><div class="column-feed__list"><div class="column-feed__item"><div class="column-feed__meta"><span>2026-03-16</span><span>分类：音乐分享</span><span>标签：音乐 / 专辑 / Bleachers / Jack Antonoff</span></div><h3 class="column-feed__item-title"><a href="/2026/03/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BC%9A%E6%8A%8A%20Bleachers%20%E7%9A%84%E3%80%8AStrange%20Desire%E3%80%8B%E5%92%8C%E3%80%8AGone%20Now%E3%80%8B%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%E6%8E%A8%E8%8D%90/" title="夏天适合听的两张 Bleachers：《Strange Desire》和《Gone Now》">夏天适合听的两张 Bleachers：《Strange Desire》和《Gone Now》</a></h3><div class="column-feed__summary">这次不想讨论为什么要把它们放在一起推荐，而是想直接记下更重要的判断：Bleachers 的《Strange Desire》和《Gone Now》都很适合夏日欣赏，而 Jack Antonoff 也正是从这里把他的个人气质推到了台前。</div></div><div class="column-feed__item"><div class="column-feed__meta"><span>2026-03-13</span><span>分类：音乐分享</span><span>标签：音乐 / 专辑 / The 1975 / Being Funny In A Foreign Language</span></div><h3 class="column-feed__item-title"><a href="/2026/03/13/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%EF%BC%9AThe%201975%20%E7%9A%84%E3%80%8ABeing%20Funny%20In%20A%20Foreign%20Language%E3%80%8B/" title="最近在听：The 1975 的《Being Funny In A Foreign Language》">最近在听：The 1975 的《Being Funny In A Foreign Language》</a></h3><div class="column-feed__summary">先记下这次重听《Being Funny In A Foreign Language》时最明显的感受：它轻盈、流畅，也比想象中更适合整张听完。</div></div><div class="column-feed__item"><div class="column-feed__meta"><span>2026-03-13</span><span>分类：音乐分享</span><span>标签：音乐 / 专辑 / Radiohead / The Bends</span></div><h3 class="column-feed__item-title"><a href="/2026/03/13/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%EF%BC%9ARadiohead%20%E7%9A%84%E3%80%8AThe%20Bends%E3%80%8B/" title="最近在听：Radiohead 的《The Bends》">最近在听：Radiohead 的《The Bends》</a></h3><div class="column-feed__summary">一张会在不同阶段反复回来的专辑。记下这次重听《The Bends》时，最想留下的几首歌和最直接的感受。</div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

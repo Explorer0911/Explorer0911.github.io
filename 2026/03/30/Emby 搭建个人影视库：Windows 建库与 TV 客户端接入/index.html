@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Emby 搭建个人影视库：Windows 建库与 TV 客户端接入 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于 Emby 官方文档，整理一套在 Windows 上部署 Emby Server、规划影视目录、建立媒体库，并在电视端客户端接入使用的实际流程。重点放在目录结构、命名规则、播放链路和后续维护，不写泛泛介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emby 搭建个人影视库：Windows 建库与 TV 客户端接入">
+<meta property="og:url" content="https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="基于 Emby 官方文档，整理一套在 Windows 上部署 Emby Server、规划影视目录、建立媒体库，并在电视端客户端接入使用的实际流程。重点放在目录结构、命名规则、播放链路和后续维护，不写泛泛介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-30T03:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-30T08:26:44.165Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="Emby">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="媒体服务器">
+<meta property="article:tag" content="影音库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Emby 搭建个人影视库：Windows 建库与 TV 客户端接入",
+  "url": "https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/",
+  "image": "https://explorer0911.github.io/img/Pic.jpg",
+  "datePublished": "2026-03-30T03:30:00.000Z",
+  "dateModified": "2026-03-30T08:26:44.165Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Explorer0911",
+      "url": "https://explorer0911.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Emby 搭建个人影视库：Windows 建库与 TV 客户端接入',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视专栏</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视专栏</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-30T03:30:00.000Z" title="发表于 2026-03-30 11:30:00">2026-03-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-30T08:26:44.165Z" title="更新于 2026-03-30 16:26:44">2026-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>本文只解决一个问题：在 Windows 机器上搭一套可长期维护的 Emby 个人影视库，并在 TV 客户端稳定使用。</p>
+<p>先把边界说清楚。Emby 是个人媒体服务器，不提供影视内容本身；它做的是整理、展示和分发你自己的媒体文件。官方文档对这一点写得很明确：Emby 包含 <code>Server</code> 和 <code>Client</code> 两部分，前者负责管理媒体库，后者负责播放。对家庭场景来说，最小可行链路就是：</p>
+<ul>
+<li>Windows 主机运行 Emby Server</li>
+<li>媒体文件存放在本机磁盘或局域网共享目录</li>
+<li>电视端安装 Emby 客户端</li>
+<li>同一局域网内访问该服务器</li>
+</ul>
+<h2 id="搭建前先定三件事"><a href="#搭建前先定三件事" class="headerlink" title="搭建前先定三件事"></a>搭建前先定三件事</h2><h3 id="1-服务器放在哪台-Windows-机器上"><a href="#1-服务器放在哪台-Windows-机器上" class="headerlink" title="1. 服务器放在哪台 Windows 机器上"></a>1. 服务器放在哪台 Windows 机器上</h3><p>这台机器最好满足三个条件：</p>
+<ul>
+<li>长期开机</li>
+<li>有稳定的本地存储路径</li>
+<li>通过有线网络接入路由器</li>
+</ul>
+<p>如果 Windows 主机只是临时开机的办公电脑，这套库会很快变成“偶尔能用”。Emby 作为媒体库服务器，更像一个长期在线节点，而不是一次性软件。</p>
+<h3 id="2-媒体文件存放策略"><a href="#2-媒体文件存放策略" class="headerlink" title="2. 媒体文件存放策略"></a>2. 媒体文件存放策略</h3><p>先决定媒体文件是：</p>
+<ul>
+<li>全部放在本机硬盘</li>
+<li>放在外接大容量盘</li>
+<li>放在 NAS 或其他 SMB 共享目录</li>
+</ul>
+<p>如果全部在本机盘上，配置最简单；如果放在网络共享目录，后续涉及服务权限和路径映射时会复杂一点。</p>
+<h3 id="3-TV-端准备使用什么客户端"><a href="#3-TV-端准备使用什么客户端" class="headerlink" title="3. TV 端准备使用什么客户端"></a>3. TV 端准备使用什么客户端</h3><p>官方当前提供多种 TV 端应用，包括 Android TV、Apple TV、Fire TV、Roku、LG Smart TV、Samsung Smart TV 等。对家庭自建库场景，我更推荐优先选 Android TV &#x2F; Google TV、Apple TV 或独立电视盒子这一类更可控的客户端。这个建议是基于设备生态稳定性做出的实践判断，不是 Emby 官方强制要求。</p>
+<h2 id="Windows-端安装-Emby-Server"><a href="#Windows-端安装-Emby-Server" class="headerlink" title="Windows 端安装 Emby Server"></a>Windows 端安装 Emby Server</h2><p>官方安装路径很直接：从下载页获取 Windows 版本，安装后启动服务器，再在浏览器打开本地管理界面。官方文档给出的默认入口是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8096</span><br></pre></td></tr></table></figure>
+
+<p>Windows 端实际流程建议按下面做：</p>
+<ol>
+<li>在 Windows 主机上下载并安装 Emby Server</li>
+<li>启动服务后，在浏览器访问 <code>http://localhost:8096</code></li>
+<li>完成首次向导：语言、管理员用户、媒体库、远程访问等</li>
+<li>等待初始扫描完成，再去 TV 客户端接入</li>
+</ol>
+<p>这里有个判断原则：第一次不要急着把所有盘都挂进去。先用一个电影库或剧集库跑通整套流程，再扩展到完整媒体目录。</p>
+<h2 id="先把目录和命名做对"><a href="#先把目录和命名做对" class="headerlink" title="先把目录和命名做对"></a>先把目录和命名做对</h2><p>Emby 建库质量，首先取决于目录结构和文件命名。官方文档在 Quick Start、Movie Naming 和 TV Naming 里讲得很清楚：先分媒体类型，再按规范命名。</p>
+<h3 id="电影库建议"><a href="#电影库建议" class="headerlink" title="电影库建议"></a>电影库建议</h3><p>电影推荐采用“每部电影单独文件夹”的方式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\Media\Movies\Interstellar (2014)\Interstellar (2014).mkv</span><br><span class="line">D:\Media\Movies\Top Gun (1986)\Top Gun (1986).mp4</span><br></pre></td></tr></table></figure>
+
+<p>这样做有三个好处：</p>
+<ul>
+<li>元数据匹配更稳定</li>
+<li>海报、字幕、额外花絮可以和正片放在同一目录</li>
+<li>后面做多版本管理时结构不会乱</li>
+</ul>
+<p>官方也明确建议使用更适合流式播放的格式，例如 <code>MP4</code> 或 <code>MKV</code> 容器，搭配 <code>H.264</code> &#x2F; <code>H.265</code> 视频，以及至少一条兼容性较好的默认音轨。原因很简单：格式越接近客户端原生支持，服务器越容易 <code>Direct Play</code>，越不需要转码。</p>
+<h3 id="剧集库建议"><a href="#剧集库建议" class="headerlink" title="剧集库建议"></a>剧集库建议</h3><p>剧集要单独建库，并按“剧名 &#x2F; 季 &#x2F; 集”的结构组织：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\Media\TV\Severance (2022)\Season 01\Severance S01E01.mkv</span><br><span class="line">D:\Media\TV\Severance (2022)\Season 01\Severance S01E02.mkv</span><br></pre></td></tr></table></figure>
+
+<p>关键点只有两个：</p>
+<ul>
+<li>每个剧必须有自己的独立文件夹</li>
+<li>文件名里要有季号和集号，例如 <code>S01E01</code></li>
+</ul>
+<p>如果剧集存在重启版、同名旧版，年份建议写上，不要偷懒。官方明确提到年份对同名剧区分很有帮助。</p>
+<h3 id="不建议一开始就做混合库"><a href="#不建议一开始就做混合库" class="headerlink" title="不建议一开始就做混合库"></a>不建议一开始就做混合库</h3><p>Emby 支持 Mixed Content Libraries，但官方也说明混合内容支持有限。对第一次搭库来说，最稳的方式仍然是：</p>
+<ul>
+<li>Movies 一个库</li>
+<li>TV 一个库</li>
+<li>Music 一个库</li>
+<li>Photos 一个库</li>
+</ul>
+<p>不要把电影和剧集混在同一路径里赌识别率。</p>
+<h2 id="在-Emby-里建立媒体库"><a href="#在-Emby-里建立媒体库" class="headerlink" title="在 Emby 里建立媒体库"></a>在 Emby 里建立媒体库</h2><p>首次向导和后续后台都可以添加媒体库。核心配置只有三个：</p>
+<ul>
+<li><code>Content Type</code></li>
+<li><code>Display Name</code></li>
+<li><code>Path</code></li>
+</ul>
+<p>这里最重要的是 <code>Content Type</code>。类型选错，后面的识别、海报、季集结构都会跟着错。</p>
+<p>建议起步就建两个库：</p>
+<h3 id="Movies"><a href="#Movies" class="headerlink" title="Movies"></a>Movies</h3><ul>
+<li>Content Type: <code>Movies</code></li>
+<li>Display Name: <code>电影</code></li>
+<li>Path: <code>D:\Media\Movies</code></li>
+</ul>
+<h3 id="TV"><a href="#TV" class="headerlink" title="TV"></a>TV</h3><ul>
+<li>Content Type: <code>TV</code></li>
+<li>Display Name: <code>剧集</code></li>
+<li>Path: <code>D:\Media\TV</code></li>
+</ul>
+<p>如果以后要拆分 4K 库、纪录片库、动画库，可以在跑通基础链路之后再做，不要在第一天就把分类搞得很碎。</p>
+<h2 id="Windows-主机上几个需要马上确认的点"><a href="#Windows-主机上几个需要马上确认的点" class="headerlink" title="Windows 主机上几个需要马上确认的点"></a>Windows 主机上几个需要马上确认的点</h2><h3 id="1-扫描是否正常完成"><a href="#1-扫描是否正常完成" class="headerlink" title="1. 扫描是否正常完成"></a>1. 扫描是否正常完成</h3><p>第一次建库之后，先看 Emby 是否正确识别出：</p>
+<ul>
+<li>电影标题</li>
+<li>年份</li>
+<li>海报</li>
+<li>剧集季集结构</li>
+</ul>
+<p>如果识别异常，第一反应不要去改刮削器，先回头查路径和命名。</p>
+<h3 id="2-路径是否稳定"><a href="#2-路径是否稳定" class="headerlink" title="2. 路径是否稳定"></a>2. 路径是否稳定</h3><p>如果你把库建在移动硬盘或网络共享目录上，最怕的是盘符或共享路径变化。对长期维护来说，路径稳定比“先挂上去再说”重要得多。</p>
+<h3 id="3-实时监控是否开启"><a href="#3-实时监控是否开启" class="headerlink" title="3. 实时监控是否开启"></a>3. 实时监控是否开启</h3><p>Library Setup 文档里提到，Emby 可以监控文件变更并自动刷新库。对日常追加影片来说，这个选项值得开，但改完后建议按官方提示重启一次服务器。</p>
+<h2 id="是否要把-Emby-跑成-Windows-Service"><a href="#是否要把-Emby-跑成-Windows-Service" class="headerlink" title="是否要把 Emby 跑成 Windows Service"></a>是否要把 Emby 跑成 Windows Service</h2><p>如果这台机器需要重启后自动恢复服务，官方提供了把 Emby 作为 Windows Service 运行的方法：使用 <code>NSSM</code> 包装 <code>EmbyServer.exe</code>，参数为 <code>-service</code>。</p>
+<p>但这个方案有两个要点：</p>
+<ul>
+<li>作为 Service 运行时，自动更新不会像普通方式那样工作，升级时要手动下载安装包</li>
+<li>如果媒体文件在网络共享目录上，运行该服务的账户必须有权访问这些共享路径</li>
+</ul>
+<p>所以我的建议是：</p>
+<ul>
+<li>媒体全在本机盘：可以考虑 Service</li>
+<li>媒体大量依赖 SMB &#x2F; NAS 共享：先确认权限模型，再决定是否上 Service</li>
+</ul>
+<p>如果只是家庭个人使用，先用普通启动方式跑稳定，再考虑服务化，不要一开始就把问题叠太多。</p>
+<h2 id="TV-客户端怎么接入"><a href="#TV-客户端怎么接入" class="headerlink" title="TV 客户端怎么接入"></a>TV 客户端怎么接入</h2><p>搭完 Server 之后，电视端只做两件事：安装客户端，连接服务器。</p>
+<h3 id="第一步：安装-TV-客户端"><a href="#第一步：安装-TV-客户端" class="headerlink" title="第一步：安装 TV 客户端"></a>第一步：安装 TV 客户端</h3><p>Emby 官方下载页当前列出了多个 TV 平台客户端，包括 Android TV、Apple TV、LG Smart TV、Samsung Smart TV、Roku、Fire TV 等。</p>
+<p>如果你的电视本身是 Android TV &#x2F; Google TV，直接从应用商店安装 Emby 是最自然的路径。官方 Android TV 文档也明确写到可从 Google Play 安装。</p>
+<h3 id="第二步：连接到你的-Windows-服务器"><a href="#第二步：连接到你的-Windows-服务器" class="headerlink" title="第二步：连接到你的 Windows 服务器"></a>第二步：连接到你的 Windows 服务器</h3><p>这一部分的目标不是“能看到登录页”，而是“能稳定进库并直接播放”。实际接入时建议优先满足：</p>
+<ul>
+<li>TV 和 Windows 主机在同一局域网</li>
+<li>Windows 主机使用固定内网 IP</li>
+<li>客户端优先连接局域网地址，而不是每次依赖自动发现</li>
+</ul>
+<p>这里“固定 IP 和优先用内网地址”是实践建议，不是 Emby 文档的强制要求，但它能明显减少电视端偶发找不到服务器的问题。</p>
+<h2 id="电视端要优先追求-Direct-Play"><a href="#电视端要优先追求-Direct-Play" class="headerlink" title="电视端要优先追求 Direct Play"></a>电视端要优先追求 Direct Play</h2><p>TV 客户端的体验，核心不是“能播”，而是“尽量不转码”。</p>
+<p>Emby 官方在 Movie Naming 文档里明确建议使用更适合流媒体的封装和编码格式，本质原因也是这个：减少服务器临时转码负担。</p>
+<p>如果你希望电视端更稳，建议把媒体文件尽量准备成下面这种思路：</p>
+<ul>
+<li>容器优先 <code>MKV</code> &#x2F; <code>MP4</code></li>
+<li>视频编码优先 <code>H.264</code> &#x2F; <code>H.265</code></li>
+<li>默认音轨尽量准备一条兼容性好的 AAC &#x2F; AC3</li>
+<li>字幕优先内封常见格式或单独保存为规范命名字幕文件</li>
+</ul>
+<p>如果某些影片在 TV 端频繁触发转码，排查顺序一般是：</p>
+<ol>
+<li>先看视频编码是否超出电视硬解能力</li>
+<li>再看音轨是否为电视不支持的格式</li>
+<li>再看字幕是否触发烧录</li>
+<li>最后才考虑是不是服务器性能不够</li>
+</ol>
+<h2 id="一套够用的目录示例"><a href="#一套够用的目录示例" class="headerlink" title="一套够用的目录示例"></a>一套够用的目录示例</h2><p>如果现在从零开始，我会直接用下面这种结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">D:\Media</span><br><span class="line">  \Movies</span><br><span class="line">    \Interstellar (2014)</span><br><span class="line">      Interstellar (2014).mkv</span><br><span class="line">    \Top Gun (1986)</span><br><span class="line">      Top Gun (1986).mp4</span><br><span class="line">  \TV</span><br><span class="line">    \Severance (2022)</span><br><span class="line">      \Season 01</span><br><span class="line">        Severance S01E01.mkv</span><br><span class="line">        Severance S01E02.mkv</span><br><span class="line">  \Music</span><br><span class="line">    \Artist</span><br><span class="line">      \Album</span><br><span class="line">        01 Track.flac</span><br></pre></td></tr></table></figure>
+
+<p>然后在 Emby 里对应建立：</p>
+<ul>
+<li>电影库 -&gt; <code>D:\Media\Movies</code></li>
+<li>剧集库 -&gt; <code>D:\Media\TV</code></li>
+<li>音乐库 -&gt; <code>D:\Media\Music</code></li>
+</ul>
+<p>这个结构不花哨，但后续最省事。</p>
+<h2 id="后续维护建议"><a href="#后续维护建议" class="headerlink" title="后续维护建议"></a>后续维护建议</h2><p>真正决定一套库能不能长期用的，不是首装那天，而是后面每周加片时是否还保持一致。</p>
+<p>我觉得下面几条足够：</p>
+<ul>
+<li>新增电影时，坚持“电影名 (年份)”命名</li>
+<li>新增剧集时，坚持“剧名 &#x2F; Season &#x2F; SxxExx”结构</li>
+<li>先在 Windows 端确认匹配正确，再去 TV 端看效果</li>
+<li>不要频繁改库根路径</li>
+<li>不要把大量临时文件夹直接挂入正式媒体库</li>
+</ul>
+<p>如果目录纪律一开始立住，Emby 后面会轻松很多。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>Windows 上搭 Emby，不难；难的是一开始就把目录、命名和播放链路想对。</p>
+<p>真正关键的只有四件事：</p>
+<ul>
+<li>Windows 主机要稳定在线</li>
+<li>Movies &#x2F; TV 分库，不做混合库起步</li>
+<li>文件命名按官方规则来</li>
+<li>TV 客户端优先追求 Direct Play，而不是依赖服务器临时转码兜底</li>
+</ul>
+<p>只要这四步站稳，后面无论你继续加电影、剧集，还是再接手机、平板、盒子，整套系统都会顺得多。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>Emby Quick Start: <a target="_blank" rel="noopener" href="https://support.emby.media/support/articles/Quick-Start.html">https://support.emby.media/support/articles/Quick-Start.html</a></li>
+<li>Emby Installation: <a target="_blank" rel="noopener" href="https://support.emby.media/support/articles/Installation.html">https://support.emby.media/support/articles/Installation.html</a></li>
+<li>Emby Library Setup: <a target="_blank" rel="noopener" href="https://support.emby.media/support/articles/Library-Setup.html">https://support.emby.media/support/articles/Library-Setup.html</a></li>
+<li>Emby Movie Naming: <a target="_blank" rel="noopener" href="https://support.emby.media/support/articles/Movie-Naming.html">https://support.emby.media/support/articles/Movie-Naming.html</a></li>
+<li>Emby TV Naming: <a target="_blank" rel="noopener" href="https://support.emby.media/support/articles/TV-Naming.html">https://support.emby.media/support/articles/TV-Naming.html</a></li>
+<li>Emby Running as Windows Service: <a target="_blank" rel="noopener" href="https://emby.media/support/articles/Run-as-Windows-Service.html">https://emby.media/support/articles/Run-as-Windows-Service.html</a></li>
+<li>Emby Download &#x2F; Apps: <a target="_blank" rel="noopener" href="https://download.emby.media/">https://download.emby.media/</a></li>
+<li>Emby for Android TV: <a target="_blank" rel="noopener" href="https://docs.emby.media/emby-for-android-tv.html">https://docs.emby.media/emby-for-android-tv.html</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io">Explorer0911</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/">https://explorer0911.github.io/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://explorer0911.github.io" target="_blank">Explorer0911 Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Emby/">Emby</a><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/">影音库</a><a class="post-meta__tags" href="/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/">媒体服务器</a></div><div class="post-share"><div class="social-share" data-image="/img/Pic.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Word 公式自动编号与交叉引用实战</div></div><div class="info-2"><div class="info-item-1">一篇讲清楚 Word 中公式自动编号、正文交叉引用，以及多参考文献合并引用格式的小教程。</div></div></div></a><a class="pagination-related" href="/2026/03/16/Hexo%E5%8D%9A%E5%AE%A2%E5%8F%8C%E9%93%BE%E8%B7%AF%EF%BC%9A%E6%9C%AC%E5%9C%B0%E7%A7%81%E6%9C%89%E9%A2%84%E8%A7%88%20+%20GitHub%20Pages%20%E5%85%AC%E7%BD%91%E5%8F%91%E5%B8%83/" title="Hexo 博客双链路：本地私有预览 + GitHub Pages 公网发布"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hexo 博客双链路：本地私有预览 + GitHub Pages 公网发布</div></div><div class="info-2"><div class="info-item-1">记录当前博客如何同时维护本地私有链路和 GitHub Pages 公网链路，包括目录组织、配置文件、构建命令，以及后续写作时应该怎样分别使用两套流程。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/14/Windows%20%E4%B8%8B%E5%AE%89%E8%A3%85%20Chocolatey%EF%BC%9A%E6%8A%8A%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%BA%A4%E7%BB%99%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" title="Windows 下安装 Chocolatey：把软件安装交给包管理器"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-14</div><div class="info-item-2">Windows 下安装 Chocolatey：把软件安装交给包管理器</div></div><div class="info-2"><div class="info-item-1">记录一次在 Windows 下安装 Chocolatey 的过程。重点不是把命令贴上去就结束，而是说明它解决了什么问题、安装时要注意什么、装完后该先会哪些命令。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%89%8D%E5%85%88%E5%AE%9A%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="toc-text">搭建前先定三件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%94%BE%E5%9C%A8%E5%93%AA%E5%8F%B0-Windows-%E6%9C%BA%E5%99%A8%E4%B8%8A"><span class="toc-text">1. 服务器放在哪台 Windows 机器上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E7%AD%96%E7%95%A5"><span class="toc-text">2. 媒体文件存放策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-TV-%E7%AB%AF%E5%87%86%E5%A4%87%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">3. TV 端准备使用什么客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E7%AB%AF%E5%AE%89%E8%A3%85-Emby-Server"><span class="toc-text">Windows 端安装 Emby Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%8A%8A%E7%9B%AE%E5%BD%95%E5%92%8C%E5%91%BD%E5%90%8D%E5%81%9A%E5%AF%B9"><span class="toc-text">先把目录和命名做对</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%BD%B1%E5%BA%93%E5%BB%BA%E8%AE%AE"><span class="toc-text">电影库建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%A7%E9%9B%86%E5%BA%93%E5%BB%BA%E8%AE%AE"><span class="toc-text">剧集库建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E5%81%9A%E6%B7%B7%E5%90%88%E5%BA%93"><span class="toc-text">不建议一开始就做混合库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-Emby-%E9%87%8C%E5%BB%BA%E7%AB%8B%E5%AA%92%E4%BD%93%E5%BA%93"><span class="toc-text">在 Emby 里建立媒体库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Movies"><span class="toc-text">Movies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TV"><span class="toc-text">TV</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E4%B8%BB%E6%9C%BA%E4%B8%8A%E5%87%A0%E4%B8%AA%E9%9C%80%E8%A6%81%E9%A9%AC%E4%B8%8A%E7%A1%AE%E8%AE%A4%E7%9A%84%E7%82%B9"><span class="toc-text">Windows 主机上几个需要马上确认的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%AB%E6%8F%8F%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%AE%8C%E6%88%90"><span class="toc-text">1. 扫描是否正常完成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%B7%AF%E5%BE%84%E6%98%AF%E5%90%A6%E7%A8%B3%E5%AE%9A"><span class="toc-text">2. 路径是否稳定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7%E6%98%AF%E5%90%A6%E5%BC%80%E5%90%AF"><span class="toc-text">3. 实时监控是否开启</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E8%A6%81%E6%8A%8A-Emby-%E8%B7%91%E6%88%90-Windows-Service"><span class="toc-text">是否要把 Emby 跑成 Windows Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TV-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%80%8E%E4%B9%88%E6%8E%A5%E5%85%A5"><span class="toc-text">TV 客户端怎么接入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85-TV-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">第一步：安装 TV 客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%BD%A0%E7%9A%84-Windows-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">第二步：连接到你的 Windows 服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%A7%86%E7%AB%AF%E8%A6%81%E4%BC%98%E5%85%88%E8%BF%BD%E6%B1%82-Direct-Play"><span class="toc-text">电视端要优先追求 Direct Play</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%A5%97%E5%A4%9F%E7%94%A8%E7%9A%84%E7%9B%AE%E5%BD%95%E7%A4%BA%E4%BE%8B"><span class="toc-text">一套够用的目录示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E7%BB%B4%E6%8A%A4%E5%BB%BA%E8%AE%AE"><span class="toc-text">后续维护建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/" title="Emby 搭建个人影视库：Windows 建库与 TV 客户端接入">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</a><time datetime="2026-03-30T03:30:00.000Z" title="发表于 2026-03-30 11:30:00">2026-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/16/Hexo%E5%8D%9A%E5%AE%A2%E5%8F%8C%E9%93%BE%E8%B7%AF%EF%BC%9A%E6%9C%AC%E5%9C%B0%E7%A7%81%E6%9C%89%E9%A2%84%E8%A7%88%20+%20GitHub%20Pages%20%E5%85%AC%E7%BD%91%E5%8F%91%E5%B8%83/" title="Hexo 博客双链路：本地私有预览 + GitHub Pages 公网发布">Hexo 博客双链路：本地私有预览 + GitHub Pages 公网发布</a><time datetime="2026-03-16T07:30:00.000Z" title="发表于 2026-03-16 15:30:00">2026-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BC%9A%E6%8A%8A%20Bleachers%20%E7%9A%84%E3%80%8AStrange%20Desire%E3%80%8B%E5%92%8C%E3%80%8AGone%20Now%E3%80%8B%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%E6%8E%A8%E8%8D%90/" title="夏天适合听的两张 Bleachers：《Strange Desire》和《Gone Now》">夏天适合听的两张 Bleachers：《Strange Desire》和《Gone Now》</a><time datetime="2026-03-16T02:10:00.000Z" title="发表于 2026-03-16 10:10:00">2026-03-16</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
