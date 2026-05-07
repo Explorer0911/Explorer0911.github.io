@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
 <meta property="article:published_time" content="2026-05-07T08:30:00.000Z">
-<meta property="article:modified_time" content="2026-05-07T08:17:04.879Z">
+<meta property="article:modified_time" content="2026-05-07T08:27:17.939Z">
 <meta property="article:author" content="Explorer0911">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="Butterfly">
@@ -326,6 +326,30 @@
   gap: 10px;
 }
 
+.drill-results--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.drill-mse-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap: 18px;
+}
+
+.drill-mse-column {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.drill-mse-column__title {
+  margin: 0;
+  color: var(--drill-ink);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
 .drill-result {
   min-height: 82px;
   padding: 12px;
@@ -420,7 +444,9 @@
 
 @media (max-width: 900px) {
   .drill-tools__grid,
-  .drill-results {
+  .drill-results,
+  .drill-results--two,
+  .drill-mse-panel {
     grid-template-columns: 1fr;
   }
 
@@ -461,7 +487,7 @@
           <h2 class="drill-card__title">机械钻速 ROP</h2>
           <p class="drill-card__note">常见记录单位为 m/h，程序计算通常需要 m/s 或 mm/s。</p>
         </div>
-        <span class="drill-badge">rate</span>
+        <span class="drill-badge">Rate of Penetration</span>
       </div>
       <div class="drill-form">
         <div class="drill-row">
@@ -495,7 +521,7 @@
           <label for="rpm-value">转速</label>
           <input id="rpm-value" type="number" step="any" value="120" data-drill-input="rpm">
           <select disabled>
-            <option>rpm</option>
+            <option>Revolutions/Rotation Per Minute</option>
           </select>
         </div>
       </div>
@@ -549,72 +575,60 @@
       </div>
       <p class="drill-formula">DOC = ROP / rev/s。若 rpm = 0，DOC 不定义。</p>
     </article>
-    <article class="drill-card">
-      <div class="drill-card__head">
-        <div>
-          <h2 class="drill-card__title">钻压 WOB 单位换算</h2>
-          <p class="drill-card__note">与 MSE 估算共用下方 WOB 输入，输出常用力单位。</p>
-        </div>
-        <span class="drill-badge">force</span>
-      </div>
-      <div class="drill-results">
-        <div class="drill-result"><span class="drill-result__label">N</span><span class="drill-result__value" data-out="wob_n">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">kN</span><span class="drill-result__value" data-out="wob_kn">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">tf</span><span class="drill-result__value" data-out="wob_tf">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">lbf</span><span class="drill-result__value" data-out="wob_lbf">-</span></div>
-      </div>
-      <p class="drill-formula">换算：1 kN = 1000 N，1 tf = 9806.65 N，1 lbf = 4.4482216153 N。</p>
-    </article>
-    <article class="drill-card">
-      <div class="drill-card__head">
-        <div>
-          <h2 class="drill-card__title">扭矩 T 单位换算</h2>
-          <p class="drill-card__note">与 MSE 估算共用下方扭矩输入，输出常用扭矩单位。</p>
-        </div>
-        <span class="drill-badge">torque</span>
-      </div>
-      <div class="drill-results">
-        <div class="drill-result"><span class="drill-result__label">N·m</span><span class="drill-result__value" data-out="torque_nm">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">kN·m</span><span class="drill-result__value" data-out="torque_knm">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">ft·lbf</span><span class="drill-result__value" data-out="torque_ftlbf">-</span></div>
-      </div>
-      <p class="drill-formula">换算：1 kN·m = 1000 N·m，1 ft·lbf = 1.3558179483 N·m。</p>
-    </article>
     <article class="drill-card drill-card--wide">
       <div class="drill-card__head">
         <div>
-          <h2 class="drill-card__title">机械比能 MSE 估算</h2>
-          <p class="drill-card__note">采用常见形式 MSE = WOB / A + 2πNT / (A × ROP)。其中 N 为 rev/s。</p>
+          <h2 class="drill-card__title">钻压 WOB、扭矩 T 与机械比能 MSE</h2>
+          <p class="drill-card__note">左侧输入 WOB 和扭矩并完成单位换算；右侧基于当前 ROP、RPM 和井底面积计算 MSE。</p>
         </div>
         <span class="drill-badge">mse</span>
       </div>
-      <div class="drill-form">
-        <div class="drill-row">
-          <label for="wob-value">钻压 WOB</label>
-          <input id="wob-value" type="number" step="any" value="80" data-drill-input="wob">
-          <select data-drill-unit="wob">
-            <option value="kN" selected>kN</option>
-            <option value="N">N</option>
-            <option value="tf">tf</option>
-            <option value="lbf">lbf</option>
-          </select>
+      <div class="drill-mse-panel">
+        <div class="drill-mse-column">
+          <h3 class="drill-mse-column__title">输入与单位换算</h3>
+          <div class="drill-form">
+            <div class="drill-row">
+              <label for="wob-value">WOB</label>
+              <input id="wob-value" type="number" step="any" value="80" data-drill-input="wob">
+              <select data-drill-unit="wob">
+                <option value="kN" selected>kN</option>
+                <option value="N">N</option>
+                <option value="tf">tf</option>
+                <option value="lbf">lbf</option>
+              </select>
+            </div>
+            <div class="drill-row">
+              <label for="torque-value">扭矩 T</label>
+              <input id="torque-value" type="number" step="any" value="8" data-drill-input="torque">
+              <select data-drill-unit="torque">
+                <option value="kNm" selected>kN·m</option>
+                <option value="Nm">N·m</option>
+                <option value="ftlbf">ft·lbf</option>
+              </select>
+            </div>
+          </div>
+          <div class="drill-results drill-results--two">
+            <div class="drill-result"><span class="drill-result__label">WOB N</span><span class="drill-result__value" data-out="wob_n">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">WOB kN</span><span class="drill-result__value" data-out="wob_kn">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">WOB tf</span><span class="drill-result__value" data-out="wob_tf">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">WOB lbf</span><span class="drill-result__value" data-out="wob_lbf">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">Torque N·m</span><span class="drill-result__value" data-out="torque_nm">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">Torque kN·m</span><span class="drill-result__value" data-out="torque_knm">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">Torque ft·lbf</span><span class="drill-result__value" data-out="torque_ftlbf">-</span></div>
+          </div>
+          <p class="drill-formula">WOB：1 kN = 1000 N，1 tf = 9806.65 N。扭矩：1 kN·m = 1000 N·m，1 ft·lbf = 1.3558179483 N·m。</p>
         </div>
-        <div class="drill-row">
-          <label for="torque-value">扭矩 T</label>
-          <input id="torque-value" type="number" step="any" value="8" data-drill-input="torque">
-          <select data-drill-unit="torque">
-            <option value="kNm" selected>kN·m</option>
-            <option value="Nm">N·m</option>
-            <option value="ftlbf">ft·lbf</option>
-          </select>
+        <div class="drill-mse-column">
+          <h3 class="drill-mse-column__title">MSE 估算</h3>
+          <div class="drill-results">
+            <div class="drill-result"><span class="drill-result__label">MSE MPa</span><span class="drill-result__value" data-out="mse_mpa">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">WOB / A MPa</span><span class="drill-result__value" data-out="mse_axial_mpa">-</span></div>
+            <div class="drill-result"><span class="drill-result__label">2πNT / AROP MPa</span><span class="drill-result__value" data-out="mse_rotary_mpa">-</span></div>
+          </div>
+          <p class="drill-formula">MSE = WOB / A + 2πNT / (A × ROP)。其中 N 为 rev/s，A 为井底面积。</p>
+          <p class="drill-formula">MSE 只做工程估算。ROP 过低时旋转项会急剧放大，应结合工况判断数据是否有效。</p>
         </div>
       </div>
-      <div class="drill-results">
-        <div class="drill-result"><span class="drill-result__label">WOB N</span><span class="drill-result__value" data-out="wob_n">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">Torque N·m</span><span class="drill-result__value" data-out="torque_nm">-</span></div>
-        <div class="drill-result"><span class="drill-result__label">MSE MPa</span><span class="drill-result__value" data-out="mse_mpa">-</span></div>
-      </div>
-      <p class="drill-formula">MSE 只做工程估算。ROP 过低时旋转项会急剧放大，应结合工况判断数据是否有效。</p>
     </article>
     <article class="drill-card drill-card--wide">
       <div class="drill-card__head">
@@ -743,8 +757,12 @@
 
     const wob = wobToNewton()
     const torque = torqueToNewtonMeter()
-    const mse = bitArea > 0 && rop > 0
-      ? (wob / bitArea) + (2 * Math.PI * revPerSecond * torque) / (bitArea * rop)
+    const mseAxial = bitArea > 0 ? wob / bitArea : NaN
+    const mseRotary = bitArea > 0 && rop > 0
+      ? (2 * Math.PI * revPerSecond * torque) / (bitArea * rop)
+      : NaN
+    const mse = Number.isFinite(mseAxial) && Number.isFinite(mseRotary)
+      ? mseAxial + mseRotary
       : NaN
 
     setOut('rop_m_s', rop, 8)
@@ -771,6 +789,8 @@
     setOut('torque_knm', torque / 1000, 4)
     setOut('torque_ftlbf', torque / 1.3558179483, 2)
     setOut('mse_mpa', mse / 1000000, 4)
+    setOut('mse_axial_mpa', mseAxial / 1000000, 4)
+    setOut('mse_rotary_mpa', mseRotary / 1000000, 4)
   }
 
   root.addEventListener('input', event => {
