@@ -1,0 +1,768 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>钻井破岩参数换算 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="钻井破岩常用参数换算工具，覆盖机械钻速、转速、钻头直径、井底面积、每转进尺和机械比能估算。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="钻井破岩参数换算">
+<meta property="og:url" content="https://explorer0911.github.io/drilling-tools/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="钻井破岩常用参数换算工具，覆盖机械钻速、转速、钻头直径、井底面积、每转进尺和机械比能估算。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-05-07T08:30:00.000Z">
+<meta property="article:modified_time" content="2026-05-07T07:55:05.053Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="GitHub Pages">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/drilling-tools/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '钻井破岩参数换算',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">钻井破岩参数换算</h1></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="page-title">钻井破岩参数换算</div><div class="container" id="article-container"><style>
+.drill-tools {
+  --drill-ink: #172033;
+  --drill-muted: #667085;
+  --drill-line: rgba(23, 32, 51, 0.12);
+  --drill-panel: #ffffff;
+  --drill-soft: #f4f7fb;
+  --drill-accent: #0f766e;
+  --drill-accent-2: #b45309;
+  display: grid;
+  gap: 18px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.drill-tools * {
+  box-sizing: border-box;
+}
+
+.drill-tools__hero {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--drill-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.1), transparent 36%),
+    linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.drill-tools__eyebrow {
+  margin: 0;
+  color: var(--drill-accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drill-tools__title {
+  margin: 0;
+  color: var(--drill-ink);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.18;
+}
+
+.drill-tools__desc {
+  max-width: 860px;
+  margin: 0;
+  color: var(--drill-muted);
+  line-height: 1.85;
+}
+
+.drill-tools__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.drill-card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--drill-line);
+  border-radius: 8px;
+  background: var(--drill-panel);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.drill-card--wide {
+  grid-column: 1 / -1;
+}
+
+.drill-card__head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.drill-card__title {
+  margin: 0;
+  color: var(--drill-ink);
+  font-size: 1.16rem;
+  line-height: 1.45;
+}
+
+.drill-card__note {
+  margin: 4px 0 0;
+  color: var(--drill-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.drill-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: var(--drill-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.drill-form {
+  display: grid;
+  gap: 12px;
+}
+
+.drill-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) 92px;
+  gap: 10px;
+  align-items: center;
+}
+
+.drill-row label {
+  color: var(--drill-ink);
+  font-weight: 700;
+}
+
+.drill-row input,
+.drill-row select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid var(--drill-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--drill-ink);
+  font: inherit;
+}
+
+.drill-row input {
+  padding: 0 12px;
+}
+
+.drill-row select {
+  padding: 0 8px;
+}
+
+.drill-row input:focus,
+.drill-row select:focus {
+  outline: 2px solid rgba(15, 118, 110, 0.2);
+  border-color: rgba(15, 118, 110, 0.5);
+}
+
+.drill-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.drill-result {
+  min-height: 82px;
+  padding: 12px;
+  border: 1px solid var(--drill-line);
+  border-radius: 8px;
+  background: var(--drill-soft);
+}
+
+.drill-result__label {
+  display: block;
+  color: var(--drill-muted);
+  font-size: 0.82rem;
+}
+
+.drill-result__value {
+  display: block;
+  margin-top: 6px;
+  color: var(--drill-ink);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.drill-formula {
+  margin: 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--drill-accent);
+  background: #f0fdfa;
+  color: #134e4a;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.drill-tools__table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--drill-line);
+  border-radius: 8px;
+}
+
+.drill-tools__table th,
+.drill-tools__table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--drill-line);
+  text-align: left;
+}
+
+.drill-tools__table th {
+  background: #f8fafc;
+  color: var(--drill-ink);
+}
+
+.drill-tools__table td {
+  color: var(--drill-muted);
+}
+
+.drill-tools__table tr:last-child td {
+  border-bottom: 0;
+}
+
+[data-theme='dark'] .drill-tools {
+  --drill-ink: #e5edf7;
+  --drill-muted: rgba(226, 232, 240, 0.75);
+  --drill-line: rgba(148, 163, 184, 0.16);
+  --drill-panel: rgba(15, 23, 42, 0.96);
+  --drill-soft: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .drill-tools__hero,
+[data-theme='dark'] .drill-card {
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.16), transparent 40%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.98));
+}
+
+[data-theme='dark'] .drill-row input,
+[data-theme='dark'] .drill-row select {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--drill-ink);
+}
+
+[data-theme='dark'] .drill-formula {
+  background: rgba(15, 118, 110, 0.16);
+  color: #99f6e4;
+}
+
+[data-theme='dark'] .drill-tools__table th {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 900px) {
+  .drill-tools__grid,
+  .drill-results {
+    grid-template-columns: 1fr;
+  }
+
+  .drill-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .drill-tools__hero,
+  .drill-card {
+    padding: 18px;
+  }
+
+  .drill-card__head {
+    display: grid;
+  }
+}
+</style>
+
+<div class="drill-tools" data-drill-tools>
+  <section class="drill-tools__hero">
+    <p class="drill-tools__eyebrow">Drilling Calculator</p>
+    <h1 class="drill-tools__title">钻井破岩参数换算</h1>
+    <p class="drill-tools__desc">
+      面向钻井破岩计算的常用单位换算页。当前覆盖机械钻速、转速、钻头直径、井底面积、每转进尺和机械比能估算。输入统一转成 SI 单位后再计算，方便后续接入数值模型或实验数据表。
+    </p>
+  </section>
+
+  <section class="drill-tools__grid">
+    <article class="drill-card">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">机械钻速 ROP</h2>
+          <p class="drill-card__note">常见记录单位为 m/h，程序计算通常需要 m/s 或 mm/s。</p>
+        </div>
+        <span class="drill-badge">rate</span>
+      </div>
+      <div class="drill-form">
+        <div class="drill-row">
+          <label for="rop-value">输入值</label>
+          <input id="rop-value" type="number" step="any" value="12" data-drill-input="rop">
+          <select data-drill-unit="rop">
+            <option value="m_h" selected>m/h</option>
+            <option value="m_s">m/s</option>
+            <option value="mm_s">mm/s</option>
+            <option value="ft_h">ft/h</option>
+          </select>
+        </div>
+      </div>
+      <div class="drill-results">
+        <div class="drill-result"><span class="drill-result__label">m/s</span><span class="drill-result__value" data-out="rop_m_s">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">mm/s</span><span class="drill-result__value" data-out="rop_mm_s">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">m/h</span><span class="drill-result__value" data-out="rop_m_h">-</span></div>
+      </div>
+      <p class="drill-formula">换算：1 m/h = 1 / 3600 m/s = 0.277777... mm/s。</p>
+    </article>
+    <article class="drill-card">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">转速 RPM</h2>
+          <p class="drill-card__note">转速参与每转进尺和机械比能计算，需要换成 rev/s 与 rad/s。</p>
+        </div>
+        <span class="drill-badge">rotation</span>
+      </div>
+      <div class="drill-form">
+        <div class="drill-row">
+          <label for="rpm-value">转速</label>
+          <input id="rpm-value" type="number" step="any" value="120" data-drill-input="rpm">
+          <select disabled>
+            <option>rpm</option>
+          </select>
+        </div>
+      </div>
+      <div class="drill-results">
+        <div class="drill-result"><span class="drill-result__label">rev/s</span><span class="drill-result__value" data-out="rpm_rev_s">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">rad/s</span><span class="drill-result__value" data-out="rpm_rad_s">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">每转时间</span><span class="drill-result__value" data-out="rpm_period">-</span></div>
+      </div>
+      <p class="drill-formula">换算：rev/s = rpm / 60，rad/s = 2π × rev/s。</p>
+    </article>
+    <article class="drill-card">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">钻头直径与井底面积</h2>
+          <p class="drill-card__note">用于 WOB / A、MSE 等指标。默认按圆形井底截面积估算。</p>
+        </div>
+        <span class="drill-badge">bit</span>
+      </div>
+      <div class="drill-form">
+        <div class="drill-row">
+          <label for="bit-value">钻头直径</label>
+          <input id="bit-value" type="number" step="any" value="215.9" data-drill-input="bit">
+          <select data-drill-unit="bit">
+            <option value="mm" selected>mm</option>
+            <option value="in">in</option>
+            <option value="m">m</option>
+          </select>
+        </div>
+      </div>
+      <div class="drill-results">
+        <div class="drill-result"><span class="drill-result__label">直径 m</span><span class="drill-result__value" data-out="bit_m">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">面积 m²</span><span class="drill-result__value" data-out="bit_area">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">面积 mm²</span><span class="drill-result__value" data-out="bit_area_mm2">-</span></div>
+      </div>
+      <p class="drill-formula">面积：A = πD² / 4。8.5 in 钻头约等于 215.9 mm。</p>
+    </article>
+    <article class="drill-card">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">每转进尺 DOC</h2>
+          <p class="drill-card__note">DOC 由机械钻速和转速共同决定，常用于破岩效率对比。</p>
+        </div>
+        <span class="drill-badge">doc</span>
+      </div>
+      <div class="drill-results">
+        <div class="drill-result"><span class="drill-result__label">m/rev</span><span class="drill-result__value" data-out="doc_m_rev">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">mm/rev</span><span class="drill-result__value" data-out="doc_mm_rev">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">in/rev</span><span class="drill-result__value" data-out="doc_in_rev">-</span></div>
+      </div>
+      <p class="drill-formula">DOC = ROP / rev/s。若 rpm = 0，DOC 不定义。</p>
+    </article>
+    <article class="drill-card drill-card--wide">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">机械比能 MSE 估算</h2>
+          <p class="drill-card__note">采用常见形式 MSE = WOB / A + 2πNT / (A × ROP)。其中 N 为 rev/s。</p>
+        </div>
+        <span class="drill-badge">mse</span>
+      </div>
+      <div class="drill-form">
+        <div class="drill-row">
+          <label for="wob-value">钻压 WOB</label>
+          <input id="wob-value" type="number" step="any" value="80" data-drill-input="wob">
+          <select data-drill-unit="wob">
+            <option value="kN" selected>kN</option>
+            <option value="N">N</option>
+            <option value="tf">tf</option>
+            <option value="lbf">lbf</option>
+          </select>
+        </div>
+        <div class="drill-row">
+          <label for="torque-value">扭矩 T</label>
+          <input id="torque-value" type="number" step="any" value="8" data-drill-input="torque">
+          <select data-drill-unit="torque">
+            <option value="kNm" selected>kN·m</option>
+            <option value="Nm">N·m</option>
+            <option value="ftlbf">ft·lbf</option>
+          </select>
+        </div>
+      </div>
+      <div class="drill-results">
+        <div class="drill-result"><span class="drill-result__label">WOB N</span><span class="drill-result__value" data-out="wob_n">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">Torque N·m</span><span class="drill-result__value" data-out="torque_nm">-</span></div>
+        <div class="drill-result"><span class="drill-result__label">MSE MPa</span><span class="drill-result__value" data-out="mse_mpa">-</span></div>
+      </div>
+      <p class="drill-formula">MSE 只做工程估算。ROP 过低时旋转项会急剧放大，应结合工况判断数据是否有效。</p>
+    </article>
+    <article class="drill-card drill-card--wide">
+      <div class="drill-card__head">
+        <div>
+          <h2 class="drill-card__title">常用换算关系</h2>
+          <p class="drill-card__note">页面内计算统一换到 SI 单位，再输出常用工程单位。</p>
+        </div>
+      </div>
+      <table class="drill-tools__table">
+        <thead>
+          <tr><th>参数</th><th>关系</th><th>备注</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>机械钻速</td><td>1 m/h = 0.0002777778 m/s = 0.2777778 mm/s</td><td>建模时优先用 m/s</td></tr>
+          <tr><td>转速</td><td>1 rpm = 1 / 60 rev/s = 2π / 60 rad/s</td><td>MSE 公式中 N 取 rev/s</td></tr>
+          <tr><td>直径</td><td>1 in = 25.4 mm</td><td>钻头尺寸常用英寸</td></tr>
+          <tr><td>钻压</td><td>1 kN = 1000 N，1 tf = 9806.65 N</td><td>吨力不是质量单位</td></tr>
+          <tr><td>扭矩</td><td>1 kN·m = 1000 N·m，1 ft·lbf = 1.355817948 N·m</td><td>统一到 N·m</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+</div>
+
+<script>
+(function () {
+  const root = document.querySelector('[data-drill-tools]')
+  if (!root) return
+
+  const getNumber = name => {
+    const node = root.querySelector('[data-drill-input="' + name + '"]')
+    const value = Number(node && node.value)
+    return Number.isFinite(value) ? value : 0
+  }
+
+  const getUnit = name => {
+    const node = root.querySelector('[data-drill-unit="' + name + '"]')
+    return node ? node.value : ''
+  }
+
+  const setOut = (name, value, digits) => {
+    const node = root.querySelector('[data-out="' + name + '"]')
+    if (!node) return
+    if (!Number.isFinite(value)) {
+      node.textContent = '-'
+      return
+    }
+    node.textContent = format(value, digits)
+  }
+
+  const format = (value, digits) => {
+    const abs = Math.abs(value)
+    if (abs !== 0 && (abs < 0.001 || abs >= 1000000)) return value.toExponential(4)
+    return value.toLocaleString('zh-CN', {
+      maximumFractionDigits: digits,
+      minimumFractionDigits: 0
+    })
+  }
+
+  const ropToMeterPerSecond = () => {
+    const value = getNumber('rop')
+    const unit = getUnit('rop')
+    if (unit === 'm_s') return value
+    if (unit === 'mm_s') return value / 1000
+    if (unit === 'ft_h') return value * 0.3048 / 3600
+    return value / 3600
+  }
+
+  const bitToMeter = () => {
+    const value = getNumber('bit')
+    const unit = getUnit('bit')
+    if (unit === 'm') return value
+    if (unit === 'in') return value * 0.0254
+    return value / 1000
+  }
+
+  const wobToNewton = () => {
+    const value = getNumber('wob')
+    const unit = getUnit('wob')
+    if (unit === 'N') return value
+    if (unit === 'tf') return value * 9806.65
+    if (unit === 'lbf') return value * 4.4482216153
+    return value * 1000
+  }
+
+  const torqueToNewtonMeter = () => {
+    const value = getNumber('torque')
+    const unit = getUnit('torque')
+    if (unit === 'Nm') return value
+    if (unit === 'ftlbf') return value * 1.3558179483
+    return value * 1000
+  }
+
+  const compute = () => {
+    const rop = ropToMeterPerSecond()
+    const rpm = getNumber('rpm')
+    const revPerSecond = rpm / 60
+    const radPerSecond = 2 * Math.PI * revPerSecond
+    const period = revPerSecond > 0 ? 1 / revPerSecond : NaN
+
+    const bitDiameter = bitToMeter()
+    const bitArea = Math.PI * bitDiameter * bitDiameter / 4
+    const doc = revPerSecond > 0 ? rop / revPerSecond : NaN
+
+    const wob = wobToNewton()
+    const torque = torqueToNewtonMeter()
+    const mse = bitArea > 0 && rop > 0
+      ? (wob / bitArea) + (2 * Math.PI * revPerSecond * torque) / (bitArea * rop)
+      : NaN
+
+    setOut('rop_m_s', rop, 8)
+    setOut('rop_mm_s', rop * 1000, 6)
+    setOut('rop_m_h', rop * 3600, 4)
+
+    setOut('rpm_rev_s', revPerSecond, 6)
+    setOut('rpm_rad_s', radPerSecond, 6)
+    setOut('rpm_period', period, 6)
+
+    setOut('bit_m', bitDiameter, 6)
+    setOut('bit_area', bitArea, 8)
+    setOut('bit_area_mm2', bitArea * 1000000, 2)
+
+    setOut('doc_m_rev', doc, 8)
+    setOut('doc_mm_rev', doc * 1000, 6)
+    setOut('doc_in_rev', doc / 0.0254, 6)
+
+    setOut('wob_n', wob, 2)
+    setOut('torque_nm', torque, 2)
+    setOut('mse_mpa', mse / 1000000, 4)
+  }
+
+  root.addEventListener('input', compute)
+  root.addEventListener('change', compute)
+  compute()
+})()
+</script>
+</div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
