@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>0.1 几何精确梁理论的研究对象与适用范围 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从“几何精确梁到底在研究什么”出发，梳理其研究对象、适用范围、能力边界及典型应用场景。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="0.1 几何精确梁理论的研究对象与适用范围">
+<meta property="og:url" content="https://explorer0911.github.io/geb/articles/geb-main-01.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="从“几何精确梁到底在研究什么”出发，梳理其研究对象、适用范围、能力边界及典型应用场景。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-29T13:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-12T06:36:37.947Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="几何精确梁">
+<meta property="article:tag" content="建模总论">
+<meta property="article:tag" content="文献线索">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/geb/articles/geb-main-01.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0.1 几何精确梁理论的研究对象与适用范围',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">0.1 几何精确梁理论的研究对象与适用范围</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><p>几何精确梁理论并不是对经典梁理论的简单修饰，也不只是把梁方程写得更复杂一些。它所面对的是一类很具体的问题：当细长柔性结构发生明显位移和有限转动，且截面姿态、剪切与扭转效应都不能忽略时，怎样在保持梁模型计算效率的同时，对其几何关系、应变测度和动力学行为进行较为准确的描述。</p>
+<p>因此，这一理论的核心不在于“公式更多”，而在于它针对大位形问题重新组织了梁的位形描述、转动处理和应变表达方式。也正因为如此，几何精确梁已经成为细长柔性结构非线性建模中的一类重要框架。</p>
+<h2 id="一、研究对象：哪些结构适合用几何精确梁"><a href="#一、研究对象：哪些结构适合用几何精确梁" class="headerlink" title="一、研究对象：哪些结构适合用几何精确梁"></a>一、研究对象：哪些结构适合用几何精确梁</h2><p>几何精确梁主要面向具有明显细长特征的结构。所谓细长，是指结构沿长度方向的尺度明显大于截面尺度，因此其主要几何信息可以压缩到一条中心线以及沿中心线分布的截面姿态上。对这类对象而言，若仍采用三维实体模型，虽然描述最直接，但自由度和计算代价通常较高；若继续沿用小挠度、小转角梁模型，则又难以处理整体姿态显著变化时的非线性效应。</p>
+<p><img src="/img/geb/01-%E5%87%A0%E4%BD%95%E7%B2%BE%E7%A1%AE%E6%A2%81%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="几何精确梁示意图"></p>
+<p>从建模角度看，几何精确梁适合处理的对象通常具有以下几个特点。</p>
+<p>第一，结构具有明确的梁状或杆状特征，可以沿中心线进行降维描述。</p>
+<p>第二，结构在运动或受载过程中可能出现明显的大位移和有限转动，因此不能再依赖小转角近似。</p>
+<p>第三，研究中往往不仅关心弯曲，还需要同时描述拉伸、剪切和扭转等效应。第四，截面姿态的变化会直接影响应变、内力乃至动力学响应，因此不能被简单忽略。</p>
+<p>换言之，几何精确梁研究的不是一般意义上的“细梁”，而是大位形条件下仍需保留截面转动与多种变形耦合效应的细长柔性构件。</p>
+<h2 id="二、适用范围与能力边界"><a href="#二、适用范围与能力边界" class="headerlink" title="二、适用范围与能力边界"></a>二、适用范围与能力边界</h2><p>几何精确梁最适合解决的，是“细长 + 大位形 + 截面转动不可忽略”这类结构问题。对于这类问题，它比纯刚体模型保留了柔性变形能力，比线性梁模型更能处理大位移与有限转动，比直接采用三维连续体模型又更具计算效率。因此，在许多非线性动力学、柔性多体系统和工程细长结构分析中，它都具有很强的适用性。</p>
+<p>但几何精确梁并不是没有边界的通用模型。它仍然建立在梁的降维思想之上，因此其适用前提是：研究对象确实可以被合理地抽象为沿中心线展开的细长构件。如果问题的重点转向截面内部局部应力场、厚壁构件的三维效应、显著截面畸变，或者局部损伤、断裂与复杂失效过程，那么单纯依靠梁模型往往是不够的，此时通常需要壳体模型或实体模型进一步分析。</p>
+<p>因此，所谓“几何精确”，并不是说这套理论对一切结构细节都不作近似，而是说在梁这一降维框架下，它对大位移、有限转动和截面姿态变化的处理更加严格，也更适合用于构造细长结构的大位形力学模型。</p>
+<h2 id="三、典型应用场景"><a href="#三、典型应用场景" class="headerlink" title="三、典型应用场景"></a>三、典型应用场景</h2><p>如果只从概念层面理解，几何精确梁仍然会显得有些抽象。把它放到实际问题中，它的对象特征和方法优势就会清楚得多。</p>
+<p>首先是钻柱、套管、连续管以及各类井下细长工具。它们通常工作在受约束的井筒空间中，会同时经历轴向运动、旋转、弯曲、扭转以及与井壁之间的接触摩擦。尤其在定向井、水平井或复杂井轨迹条件下，整条管柱的空间姿态变化往往十分明显，小挠度梁模型很难同时把弯曲、扭转、剪切和接触效应协调起来。对于这类问题，几何精确梁提供了一种较为自然的统一建模框架。</p>
+<p><img src="/img/geb/01-%E5%BC%AF%E6%9B%B2%E5%AD%94%E4%B8%AD%E6%9D%86%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="弯曲孔中杆示意图"></p>
+<p>其次，在柔性机械臂、连续体机器人和柔性多体系统中，几何精确梁也有广泛应用。这类对象不仅会发生明显弯曲，还可能伴随整体大转动、末端姿态变化以及复杂驱动耦合。与刚体模型相比，几何精确梁能够保留柔性；与三维连续体模型相比，它又能以较少的自由度描述主要几何与动力学特征，因此很适合作为这类系统的结构建模基础。</p>
+<p><img src="/img/geb/01-GEB%E8%BF%9E%E7%BB%AD%E4%BD%93%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="GEB连续体机器人示意图"></p>
+<p>再如航空航天中的高展弦比柔性翼、旋翼叶片及其他细长柔性部件，在大挠曲、预扭、旋转和气动载荷共同作用下，也常需要使用几何精确梁构造低阶非线性结构模型，再与气动力、控制方程或飞行动力学方程进行耦合分析。</p>
+<p><img src="/img/geb/01-%E4%B8%89%E7%BB%B4%E9%A3%9E%E8%A1%8C%E9%9D%A2%E6%9D%A1%E7%A4%BA%E6%84%8F%E5%9B%BE.gif" alt="三维飞行面条示意图"></p>
+<p>这些应用虽然分布在不同领域，但它们有一个共同点：研究对象都具有明显的细长柔性特征，整体位形变化较大，而截面姿态和多种变形模式之间的耦合又不能被忽略。从这个意义上说，几何精确梁并不是只服务于某一个行业的专用模型，而是一类具有较强通用性的细长结构大位形建模框架。</p>
+<h2 id="四、本系列后续将讨论什么"><a href="#四、本系列后续将讨论什么" class="headerlink" title="四、本系列后续将讨论什么"></a>四、本系列后续将讨论什么</h2><p>明确研究对象和适用范围之后，后续问题就比较自然了：细长结构的大位形到底应该怎样表示？有限转动为什么不能像普通向量那样直接相加？应变为什么常写在贴体坐标下？动力学方程为什么通常从弱式出发？连续模型又该怎样离散成可计算的代数方程？</p>
+<p>围绕这些问题，本系列后续将依次讨论几何精确梁的位形描述、三维有限转动、应变测度、弱式表达、空间离散、时间积分、非线性求解以及数值验证等内容。0.1 这一篇的作用，主要是先把研究对象、适用范围和方法边界立住，后面的文章再逐步进入更具体的建模与求解细节。</p>
+<ul>
+<li><a href="/geb/articles/geb-main-00.html">返回系列目录</a></li>
+<li><a href="/geb/articles/geb-main-02.html">下一篇：0.2 几何精确梁与经典梁理论的区别</a></li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li>E. Reissner, <em>On One-Dimensional Finite-Strain Beam Theory: The Plane Problem</em>, ZAMP, 23(5), 795-804, 1972. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/BF01602645">DOI</a></li>
+<li>J. C. Simo and L. Vu-Quoc, <em>A Three-Dimensional Finite-Strain Rod Model. Part II: Computational Aspects</em>, Computer Methods in Applied Mechanics and Engineering, 58(1), 79-116, 1986. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0045-7825(86)90079-4">DOI</a></li>
+<li>Tobias Martin and Hans Bihs, <em>A Numerical Solution for Modelling Mooring Dynamics, Including Bending and Shearing Effects, Using a Geometrically Exact Beam Model</em>, Journal of Marine Science and Engineering, 2021. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/jmse9050486">DOI</a></li>
+<li>Gerold Huber, Dirk Wollherr, Martin Buss, <em>A Concise and Geometrically Exact Planar Beam Model for Arbitrarily Large Elastic Deformation Dynamics</em>, Frontiers in Robotics and AI, 2021. <a target="_blank" rel="noopener" href="https://doi.org/10.3389/frobt.2020.609478">DOI</a></li>
+<li>Li, X., Yu, W., Baghaee, M. et al. <em>Geometrically Exact Finite Element Formulation for Tendon-Driven Continuum Robots. Acta Mech. Solida Sin. 35, 552–570 (2022).</em><a target="_blank" rel="noopener" href="https://doi.org/10.1007/s10338-022-00311-w">DOI</a></li>
+<li>Wang, Y. (2015). <em>Aeroelastic modelling and control of very flexible air vehicles using a nonlinear modal formulation.</em></li>
+<li>chrdz GitHub: <a target="_blank" rel="noopener" href="https://github.com/chrdz/2022-GEBdivSimu">Simulations for geometrically exact beams in different settings</a></li>
+</ol>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/" title="Emby 搭建个人影视库：Windows 建库与 TV 客户端接入">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</a><time datetime="2026-03-30T03:30:00.000Z" title="发表于 2026-03-30 11:30:00">2026-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/29/Codex%20%E4%BC%9A%E8%AF%9D%E5%8D%A1%E5%9C%A8%20Thinking%20%E6%97%B6%E7%9A%84%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95/" title="Codex App 卡在 Thinking 的处理办法">Codex App 卡在 Thinking 的处理办法</a><time datetime="2026-03-29T02:30:00.000Z" title="发表于 2026-03-29 10:30:00">2026-03-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/16/%E5%A4%8F%E5%A4%A9%E9%80%82%E5%90%88%E5%90%AC%E7%9A%84%20Bleachers%20%E7%9A%84%E4%B8%A4%E5%BC%A0%E4%B8%93%E8%BE%91/" title="夏天适合听的 Bleachers 的两张专辑：《Strange Desire》和《Gone Now》">夏天适合听的 Bleachers 的两张专辑：《Strange Desire》和《Gone Now》</a><time datetime="2026-03-16T02:10:00.000Z" title="发表于 2026-03-16 10:10:00">2026-03-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"><span class="card-category-list-name">信号处理</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"><span class="card-category-list-name">数据处理</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">博客搭建</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">开发工具</span><span class="card-category-list-count">3</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/"><span class="card-category-list-name">问题排查</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">效率工具</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/"><span class="card-category-list-name">科研写作</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">音乐分享</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Jack-Antonoff/" style="font-size: 1.1em; color: #999">Jack Antonoff</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%B9%B3%E6%BB%91/" style="font-size: 1.1em; color: #999">数据平滑</a> <a href="/tags/ChatGPT/" style="font-size: 1.1em; color: #999">ChatGPT</a> <a href="/tags/Chocolatey/" style="font-size: 1.1em; color: #999">Chocolatey</a> <a href="/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/" style="font-size: 1.1em; color: #999">影音库</a> <a href="/tags/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7/" style="font-size: 1.1em; color: #999">公式编号</a> <a href="/tags/Being-Funny-In-A-Foreign-Language/" style="font-size: 1.1em; color: #999">Being Funny In A Foreign Language</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8/" style="font-size: 1.1em; color: #999">交叉引用</a> <a href="/tags/%E6%BB%A4%E6%B3%A2/" style="font-size: 1.1em; color: #999">滤波</a> <a href="/tags/GitHub-Pages/" style="font-size: 1.3em; color: #99a1ac">GitHub Pages</a> <a href="/tags/Codex/" style="font-size: 1.1em; color: #999">Codex</a> <a href="/tags/PowerShell/" style="font-size: 1.1em; color: #999">PowerShell</a> <a href="/tags/Butterfly/" style="font-size: 1.1em; color: #999">Butterfly</a> <a href="/tags/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" style="font-size: 1.1em; color: #999">问题排查</a> <a href="/tags/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" style="font-size: 1.1em; color: #999">参考文献</a> <a href="/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.1em; color: #999">媒体服务器</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/The-Bends/" style="font-size: 1.1em; color: #999">The Bends</a> <a href="/tags/Word/" style="font-size: 1.1em; color: #999">Word</a> <a href="/tags/%E4%B8%93%E8%BE%91/" style="font-size: 1.5em; color: #99a9bf">专辑</a> <a href="/tags/Emby/" style="font-size: 1.1em; color: #999">Emby</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 1.5em; color: #99a9bf">音乐</a> <a href="/tags/%E4%BC%9A%E8%AF%9D%E6%81%A2%E5%A4%8D/" style="font-size: 1.1em; color: #999">会话恢复</a> <a href="/tags/Savitzky-Golay/" style="font-size: 1.1em; color: #999">Savitzky-Golay</a> <a href="/tags/The-1975/" style="font-size: 1.1em; color: #999">The 1975</a> <a href="/tags/MATLAB/" style="font-size: 1.1em; color: #999">MATLAB</a> <a href="/tags/Hexo/" style="font-size: 1.3em; color: #99a1ac">Hexo</a> <a href="/tags/Windows/" style="font-size: 1.3em; color: #99a1ac">Windows</a> <a href="/tags/Radiohead/" style="font-size: 1.1em; color: #999">Radiohead</a> <a href="/tags/Bleachers/" style="font-size: 1.1em; color: #999">Bleachers</a> <a href="/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" style="font-size: 1.1em; color: #999">包管理器</a> <a href="/tags/Python/" style="font-size: 1.1em; color: #999">Python</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              2026-04
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              2026-03
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              2026-01
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2026-01-05T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-12T06:57:03.250Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>支线 4D. 惯性项的“等效平衡”理解 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="几何精确梁支线专题占位文章，后续将围绕“支线 4D. 惯性项的“等效平衡”理解”展开。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="支线 4D. 惯性项的“等效平衡”理解">
+<meta property="og:url" content="https://explorer0911.github.io/geb/articles/geb-branch-4d.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="几何精确梁支线专题占位文章，后续将围绕“支线 4D. 惯性项的“等效平衡”理解”展开。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-29T15:47:00.000Z">
+<meta property="article:modified_time" content="2026-06-12T05:43:52.429Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="几何精确梁">
+<meta property="article:tag" content="学习路径">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/geb/articles/geb-branch-4d.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '支线 4D. 惯性项的“等效平衡”理解',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">支线 4D. 惯性项的“等效平衡”理解</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><p>本文是支线专题占位文章，后续将围绕“支线 4D. 惯性项的“等效平衡”理解”展开。</p>
+<p><a href="/2026/03/29/00.%E5%87%A0%E4%BD%95%E7%B2%BE%E7%A1%AE%E6%A2%81%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">几何精确梁学习路径</a></p>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/" title="Emby 搭建个人影视库：Windows 建库与 TV 客户端接入">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</a><time datetime="2026-03-30T03:30:00.000Z" title="发表于 2026-03-30 11:30:00">2026-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/29/Codex%20%E4%BC%9A%E8%AF%9D%E5%8D%A1%E5%9C%A8%20Thinking%20%E6%97%B6%E7%9A%84%E6%8E%92%E6%9F%A5%E8%AE%B0%E5%BD%95/" title="Codex App 卡在 Thinking 的处理办法">Codex App 卡在 Thinking 的处理办法</a><time datetime="2026-03-29T02:30:00.000Z" title="发表于 2026-03-29 10:30:00">2026-03-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/16/%E5%A4%8F%E5%A4%A9%E9%80%82%E5%90%88%E5%90%AC%E7%9A%84%20Bleachers%20%E7%9A%84%E4%B8%A4%E5%BC%A0%E4%B8%93%E8%BE%91/" title="夏天适合听的 Bleachers 的两张专辑：《Strange Desire》和《Gone Now》">夏天适合听的 Bleachers 的两张专辑：《Strange Desire》和《Gone Now》</a><time datetime="2026-03-16T02:10:00.000Z" title="发表于 2026-03-16 10:10:00">2026-03-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"><span class="card-category-list-name">信号处理</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"><span class="card-category-list-name">数据处理</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><span class="card-category-list-name">博客搭建</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">开发工具</span><span class="card-category-list-count">3</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/"><span class="card-category-list-name">问题排查</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">效率工具</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C/"><span class="card-category-list-name">科研写作</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">音乐分享</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Jack-Antonoff/" style="font-size: 1.1em; color: #999">Jack Antonoff</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%B9%B3%E6%BB%91/" style="font-size: 1.1em; color: #999">数据平滑</a> <a href="/tags/ChatGPT/" style="font-size: 1.1em; color: #999">ChatGPT</a> <a href="/tags/Chocolatey/" style="font-size: 1.1em; color: #999">Chocolatey</a> <a href="/tags/%E5%BD%B1%E9%9F%B3%E5%BA%93/" style="font-size: 1.1em; color: #999">影音库</a> <a href="/tags/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7/" style="font-size: 1.1em; color: #999">公式编号</a> <a href="/tags/Being-Funny-In-A-Foreign-Language/" style="font-size: 1.1em; color: #999">Being Funny In A Foreign Language</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8/" style="font-size: 1.1em; color: #999">交叉引用</a> <a href="/tags/%E6%BB%A4%E6%B3%A2/" style="font-size: 1.1em; color: #999">滤波</a> <a href="/tags/GitHub-Pages/" style="font-size: 1.3em; color: #99a1ac">GitHub Pages</a> <a href="/tags/Codex/" style="font-size: 1.1em; color: #999">Codex</a> <a href="/tags/PowerShell/" style="font-size: 1.1em; color: #999">PowerShell</a> <a href="/tags/Butterfly/" style="font-size: 1.1em; color: #999">Butterfly</a> <a href="/tags/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" style="font-size: 1.1em; color: #999">问题排查</a> <a href="/tags/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE/" style="font-size: 1.1em; color: #999">参考文献</a> <a href="/tags/%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.1em; color: #999">媒体服务器</a> <a href="/tags/GitHub/" style="font-size: 1.1em; color: #999">GitHub</a> <a href="/tags/The-Bends/" style="font-size: 1.1em; color: #999">The Bends</a> <a href="/tags/Word/" style="font-size: 1.1em; color: #999">Word</a> <a href="/tags/%E4%B8%93%E8%BE%91/" style="font-size: 1.5em; color: #99a9bf">专辑</a> <a href="/tags/Emby/" style="font-size: 1.1em; color: #999">Emby</a> <a href="/tags/%E9%9F%B3%E4%B9%90/" style="font-size: 1.5em; color: #99a9bf">音乐</a> <a href="/tags/%E4%BC%9A%E8%AF%9D%E6%81%A2%E5%A4%8D/" style="font-size: 1.1em; color: #999">会话恢复</a> <a href="/tags/Savitzky-Golay/" style="font-size: 1.1em; color: #999">Savitzky-Golay</a> <a href="/tags/The-1975/" style="font-size: 1.1em; color: #999">The 1975</a> <a href="/tags/MATLAB/" style="font-size: 1.1em; color: #999">MATLAB</a> <a href="/tags/Hexo/" style="font-size: 1.3em; color: #99a1ac">Hexo</a> <a href="/tags/Windows/" style="font-size: 1.3em; color: #99a1ac">Windows</a> <a href="/tags/Radiohead/" style="font-size: 1.1em; color: #999">Radiohead</a> <a href="/tags/Bleachers/" style="font-size: 1.1em; color: #999">Bleachers</a> <a href="/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/" style="font-size: 1.1em; color: #999">包管理器</a> <a href="/tags/Python/" style="font-size: 1.1em; color: #999">Python</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              2026-04
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              2026-03
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              2026-01
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2026-01-05T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-12T06:57:03.250Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
