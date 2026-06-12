@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>0.4 大变形梁问题中的位形、应变与动力学 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从大变形梁问题出发，说明几何精确梁中位形、应变与动力学为何必须统一组织，并为后续有限转动、局部应变与弱式表达铺路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0.4 大变形梁问题中的位形、应变与动力学">
+<meta property="og:url" content="https://explorer0911.github.io/2026/03/31/GEB/geb-main-04/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="从大变形梁问题出发，说明几何精确梁中位形、应变与动力学为何必须统一组织，并为后续有限转动、局部应变与弱式表达铺路。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-31T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-12T07:20:33.755Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="位形">
+<meta property="article:tag" content="几何精确梁">
+<meta property="article:tag" content="动力学">
+<meta property="article:tag" content="应变">
+<meta property="article:tag" content="建模总论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "0.4 大变形梁问题中的位形、应变与动力学",
+  "url": "https://explorer0911.github.io/2026/03/31/GEB/geb-main-04/",
+  "image": "https://explorer0911.github.io/img/Pic.jpg",
+  "datePublished": "2026-03-31T04:00:00.000Z",
+  "dateModified": "2026-06-12T07:20:33.755Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Explorer0911",
+      "url": "https://explorer0911.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/2026/03/31/GEB/geb-main-04/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '0.4 大变形梁问题中的位形、应变与动力学',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">0.4 大变形梁问题中的位形、应变与动力学</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">0.4 大变形梁问题中的位形、应变与动力学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-31T04:00:00.000Z" title="发表于 2026-03-31 12:00:00">2026-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-12T07:20:33.755Z" title="更新于 2026-06-12 15:20:33">2026-06-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6%E5%AD%A6%E4%B9%A0/">结构力学学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E5%8A%9B%E5%AD%A6/">计算力学</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在小变形梁问题里，人们往往习惯于把“位移”看成最核心的未知量。只要梁的挠度不大、转角很小，这样的处理通常已经足够；但一旦进入大位移、大转动问题，这种理解就开始变得不完整。因为这时梁的变化不再只是“中心线偏离了多少”，还包括每个截面的姿态发生了怎样的转动，以及这种空间姿态变化如何继续影响应变、内力和惯性响应。</p>
+<p>也正因为如此，几何精确梁并不把大变形问题简单理解为“线性梁方程写得更复杂一些”，而是从一开始就把问题组织为三条彼此关联的主线：位形、应变和动力学。位形回答“梁在空间中如何存在”；应变回答“这个位形沿梁轴怎样变化”；动力学回答“这个位形如何随时间演化”。只有把这三者放在同一个框架里，大变形梁问题才真正能够被一致地描述。</p>
+<h2 id="一、为什么大变形梁问题不能只看位移"><a href="#一、为什么大变形梁问题不能只看位移" class="headerlink" title="一、为什么大变形梁问题不能只看位移"></a>一、为什么大变形梁问题不能只看位移</h2><p>对小变形梁来说，常见的做法是把挠度、转角、轴向位移分别写成若干标量场，再在线性化条件下推导应变和内力。这种写法的前提是：结构整体姿态变化不大，旋转量足够小，以至于位移和转角可以近似地按普通向量那样处理。</p>
+<p>但在大变形梁问题中，真正困难的地方恰恰在于这个前提不再成立。梁可能会发生明显弯曲、显著扭转，甚至整体空间姿态都产生较大变化。此时，如果仍然只盯着“位移”本身，就很容易把两个不同层面的变化混在一起：一类是中心线位置的改变，另一类是截面姿态的改变。前者对应平移，后者对应转动，而大转动并不是一个可以随意线性叠加的量。</p>
+<p>所以，大变形梁问题首先要求我们换一种看问题的方式：不要再把梁仅仅理解为一条会移动的线，而要把它理解为一条会在空间中运动和变形的中心线，以及附着在这条中心线上的一系列截面。这样一来，后续很多原本看似分散的内容就会自然连起来：为什么要引入局部坐标系，为什么要讨论有限转动，为什么应变要写到贴体坐标中，为什么动力学里不仅有线速度，还有角速度。这些问题的共同起点，其实都在于梁的未知量已经不再只是位移，而是更完整的位形。</p>
+<h2 id="二、大变形梁的位形：中心线位置与截面姿态"><a href="#二、大变形梁的位形：中心线位置与截面姿态" class="headerlink" title="二、大变形梁的位形：中心线位置与截面姿态"></a>二、大变形梁的位形：中心线位置与截面姿态</h2><p>在平截面假设成立的前提下，梁的三维实体可以被压缩成一条中心线和一系列作为整体运动的截面。于是，梁在任意时刻的状态就不需要用每个材料点的三维坐标去逐一描述，而可以通过两组对象来表示：</p>
+<ul>
+<li>中心线在空间中的位置；</li>
+<li>截面相对于参考构型的姿态。</li>
+</ul>
+<p>如果把梁轴参数记作 $s$，时间记作 $t$，那么一个典型的大变形梁位形可以概括为</p>
+<p>$$<br>\mathbf{r}(s,t) \quad \text{和} \quad \mathbf{R}(s,t),<br>$$</p>
+<p>其中 $\mathbf{r}(s,t)$ 描述中心线位置，$\mathbf{R}(s,t)$ 描述截面姿态。前者告诉我们“截面中心到了哪里”，后者告诉我们“截面转成了什么方向”。</p>
+<p>这一步非常关键，因为它意味着：几何精确梁中的位形不是单纯的位移场，而是一个由平移和转动共同构成的对象。也正因为这样，后续所有与梁有关的量——无论是应变、速度、惯性力，还是内力矩——都必须围绕这组位形变量来组织。</p>
+<p>从建模角度看，这种写法还有两层意义。</p>
+<p>第一，它延续了梁理论最核心的降维思想。我们没有回到三维实体模型去追踪所有局部细节，而是保留了“中心线 + 截面姿态”这条主线，使问题仍然维持在一维结构模型的框架中。</p>
+<p>第二，它为处理大转动提供了自然入口。只要把截面姿态本身作为未知量引入，后面关于有限转动张量、转动向量、指数映射以及角速度更新的问题，就不再是额外补充的技术细节，而成为位形描述的自然延伸。</p>
+<p>所以，从这一点看，位形并不是后面推导中的一个记号选择，而是整套几何精确梁理论的起点。位形怎么选，后面的应变和动力学就会怎么写。</p>
+<h2 id="三、应变：位形沿梁轴的空间变化"><a href="#三、应变：位形沿梁轴的空间变化" class="headerlink" title="三、应变：位形沿梁轴的空间变化"></a>三、应变：位形沿梁轴的空间变化</h2><p>一旦位形已经由中心线位置和截面姿态来描述，接下来的问题就变成：如何从这些量中提取出梁真正的变形信息。这里最重要的一点是，应变不是“位形本身”，而是位形沿梁轴方向的相对变化。</p>
+<p>换句话说，如果只知道某一个截面处在什么位置、转到了什么方向，这还不足以判断梁有没有发生变形。真正反映变形的，是相邻截面之间的相对关系：它们之间的距离是否改变了，它们之间的方向关系是否改变了，它们是否出现了剪切滑移、弯曲偏转或扭转累积。也正因为如此，应变天然是一个和“沿长度方向比较”有关的量。</p>
+<p>对梁来说，这种相对变化大体可以分成两类。</p>
+<p>第一类是与中心线位置变化有关的应变。它对应的是拉伸和剪切，反映了相邻截面之间在平移意义上的相对变化。若中心线切向长度发生改变，就会体现为轴向伸长或压缩；若截面法向方向与中心线切向之间出现偏离，则会体现为横向剪切。</p>
+<p>第二类是与截面姿态变化有关的应变。它对应的是弯曲和扭转，反映了相邻截面之间在转动意义上的相对变化。若截面姿态沿梁轴逐渐发生定向改变，就会表现为弯曲曲率或扭转率。</p>
+<p>从这个角度看，应变本质上并不是“位移写出来再做一点代数处理”，而是位形在空间上的导数型信息。它衡量的是梁作为一条细长结构，在长度方向上的局部变形方式。也正因为这样，几何精确梁才会特别强调局部坐标系和贴体表达：只有把这些相对变化放在合适的参考系里，应变的物理意义才会足够清楚。</p>
+<p>这里还需要特别强调一点：几何精确梁中的“几何精确”，并不是指它把一切都无近似地还原为三维连续体，而是指在梁模型这一级别上，它对应变测度的组织是认真和一致的。它不会因为发生大转动就把弯曲、扭转和剪切混写在含糊不清的线性近似里，而是努力让这些变形模式在统一的位形框架下被清楚地区分出来。</p>
+<h2 id="四、动力学：位形随时间的演化"><a href="#四、动力学：位形随时间的演化" class="headerlink" title="四、动力学：位形随时间的演化"></a>四、动力学：位形随时间的演化</h2><p>如果说应变来源于位形沿梁轴的空间变化，那么动力学对应的就是位形随时间的变化。也就是说，动力学并不是在几何模型之外额外附加的一层内容，而是同一组位形变量在时间维度上的演化结果。</p>
+<p>只要位形已经由 $\mathbf{r}(s,t)$ 和 $\mathbf{R}(s,t)$ 组织起来，动力学量也就自然分成两部分：</p>
+<ul>
+<li>与中心线位置有关的线速度、线加速度；</li>
+<li>与截面姿态有关的角速度、角加速度。</li>
+</ul>
+<p>这样一来，大变形梁动力学就不再只是“位移对时间求两次导”，而是平移与转动共同参与的演化问题。惯性也因此不再只有质量乘加速度这一类平动惯性，还包括和截面转动相关的转动惯性效应。对于细长梁在高速转动、空间大姿态变化和长期瞬态响应中的问题，这一点尤其重要。</p>
+<p>从概念上讲，静力问题和动力学问题的差别，不在于前者“没有变形”、后者“有运动”，而在于：</p>
+<ul>
+<li>静力问题关注的是某一时刻构型下的平衡；</li>
+<li>动力学问题关注的是构型、速度与惯性共同作用下的时间演化。</li>
+</ul>
+<p>但无论是静力还是动力学，它们都建立在同一组位形变量之上。正因为如此，几何精确梁的动力学从来不是在静力模型后面机械地补上一个质量矩阵，而是要围绕中心线位置、截面姿态、线速度、角速度、应变、内力和惯性项进行统一组织。后面进入虚功原理、弱式表达和时间积分时，这种统一性会体现得更加明显。</p>
+<h2 id="五、位形、应变与动力学之间的逻辑链条"><a href="#五、位形、应变与动力学之间的逻辑链条" class="headerlink" title="五、位形、应变与动力学之间的逻辑链条"></a>五、位形、应变与动力学之间的逻辑链条</h2><p>从前面的讨论可以看出，大变形梁问题中的位形、应变与动力学并不是三个彼此独立的话题，而是一条连续展开的逻辑链。</p>
+<ul>
+<li>位形回答的是：梁在空间中如何存在；</li>
+<li>应变回答的是：这个位形沿梁轴怎样变化；</li>
+<li>动力学回答的是：这个位形如何随时间演化。</li>
+</ul>
+<p>因此，大变形梁建模的关键，并不在于先孤立地写出某一个应变公式，或者先单独列出某一组动力学方程，而在于先选定合适的位形描述，再由这一位形一致地导出应变测度、速度、角速度以及后续的动力学量。位形是一切后续推导的起点；应变是位形的空间导数信息；动力学是位形的时间导数信息。三者共享同一组基本变量，也必须在同一套几何框架下被理解。</p>
+<p>这也解释了为什么几何精确梁的学习路径看起来像是在同时讨论几何、应变和动力学。并不是因为这些内容彼此缠绕得过于复杂，而是因为它们本来就属于同一个问题：如何在梁模型的降维框架里，一致地描述细长柔性结构的大位移、大转动和动态响应。</p>
+<p>因此，后续内容并不会立刻跳到一堆彼此分散的公式，而是会沿着这条主线逐步展开：先进一步说明有限转动及其参数化，再讨论局部坐标中的应变表达，然后进入弱式、空间离散、时间积分和非线性求解。前面的导论部分之所以反复强调位形、截面姿态和平截面假设，目的就在于为这条正式建模路线做准备。</p>
+<h2 id="六、一个适合理解本篇内容的总图式"><a href="#六、一个适合理解本篇内容的总图式" class="headerlink" title="六、一个适合理解本篇内容的总图式"></a>六、一个适合理解本篇内容的总图式</h2><p>如果要把本篇的核心思想压缩成一张图，那么最适合放在图中的不是某一个具体公式，而是一条简单的关系链：</p>
+<p>$$<br>\text{位形} ; \longrightarrow ; \text{应变} ; \longrightarrow ; \text{内力与动力学响应}<br>$$</p>
+<p>其中，位形又可以进一步拆成</p>
+<p>$$<br>\text{位形} &#x3D; \text{中心线位置} + \text{截面姿态}。<br>$$</p>
+<p>在这个基础上：</p>
+<ul>
+<li>位形沿梁轴的变化，给出拉伸、剪切、弯曲和扭转等应变信息；</li>
+<li>位形随时间的变化，给出线速度、角速度以及后续的惯性响应；</li>
+<li>二者共同进入虚功原理和动力学方程，形成完整的大变形梁模型。</li>
+</ul>
+<p>如果读者在这一篇里能够先把这条关系链看清楚，那么后面遇到旋转张量、局部应变、虚应变、一致线性化和时间积分时，就不会觉得这些内容是零散出现的技术环节，而会知道它们其实都只是围绕同一个位形框架展开的不同部分。</p>
+<blockquote>
+<p>图示建议：本篇很适合配一张“中心线位置 $\mathbf{r}(s,t)$ — 截面姿态 $\mathbf{R}(s,t)$ — 空间导数得到应变 — 时间导数得到速度&#x2F;角速度”的总示意图，用来把后续主线一次性连起来。</p>
+</blockquote>
+<p>下一篇 <code>0.5</code> 将继续沿着这条思路向前，把前面较为概念化的讨论收束为一个更明确的求解视角：如果位形、应变和动力学都已经统一到同一个框架里，那么几何精确梁的数值求解流程到底应该怎样组织。</p>
+<ul>
+<li><a href="/2026/03/31/GEB/geb-main-00/" title="几何精确梁学习路径">返回系列目录</a></li>
+<li><a href="/2026/03/29/GEB/geb-main-03/" title="0.3 平截面假设的几何意义与力学意义">上一篇：0.3 平截面假设的几何意义与力学意义</a></li>
+<li><a href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程">下一篇：0.5 几何精确梁数值求解的总体流程</a></li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li>E. Reissner, <em>On One-Dimensional Finite-Strain Beam Theory: The Plane Problem</em>, ZAMP, 23(5), 795-804, 1972. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/BF01602645">DOI</a></li>
+<li>J. C. Simo, <em>A Finite Strain Beam Formulation. The Three-Dimensional Dynamic Problem. Part I</em>, Computer Methods in Applied Mechanics and Engineering, 49(1), 55-70, 1985. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0045-7825(85)90050-7">DOI</a></li>
+<li>J. C. Simo and L. Vu-Quoc, <em>A Three-Dimensional Finite-Strain Rod Model. Part II: Computational Aspects</em>, Computer Methods in Applied Mechanics and Engineering, 58(1), 79-116, 1986. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0045-7825(86)90079-4">DOI</a></li>
+<li>F. Auricchio, L. Beirão da Veiga, C. Lovadina and A. Reali, <em>A consistent geometrically exact beam model from finite elasticity</em>, Computer Methods in Applied Mechanics and Engineering, 198(1-4), 37-50, 2008. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.cma.2008.02.015">DOI</a></li>
+<li>V. Sonneville, P. Cardona and O. Brüls, <em>Geometrically exact beam finite element formulated on the special Euclidean group SE(3)</em>, Computer Methods in Applied Mechanics and Engineering, 268, 451-474, 2014. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.cma.2013.10.008">DOI</a></li>
+<li>G. Jelenić and M. A. Crisfield, <em>Geometrically exact 3D beam theory: implementation of a strain-invariant finite element for statics and dynamics</em>, Computer Methods in Applied Mechanics and Engineering, 171(1-2), 141-171, 1999. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/S0045-7825(98)00249-7">DOI</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io">Explorer0911</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io/2026/03/31/GEB/geb-main-04/">https://explorer0911.github.io/2026/03/31/GEB/geb-main-04/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://explorer0911.github.io" target="_blank">Explorer0911 Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%87%A0%E4%BD%95%E7%B2%BE%E7%A1%AE%E6%A2%81/">几何精确梁</a><a class="post-meta__tags" href="/tags/%E5%BB%BA%E6%A8%A1%E6%80%BB%E8%AE%BA/">建模总论</a><a class="post-meta__tags" href="/tags/%E4%BD%8D%E5%BD%A2/">位形</a><a class="post-meta__tags" href="/tags/%E5%BA%94%E5%8F%98/">应变</a><a class="post-meta__tags" href="/tags/%E5%8A%A8%E5%8A%9B%E5%AD%A6/">动力学</a></div><div class="post-share"><div class="social-share" data-image="/img/Pic.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/31/GEB/geb-main-12/" title="1.2 旋转张量的定义、性质及几何意义"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">1.2 旋转张量的定义、性质及几何意义</div></div><div class="info-2"><div class="info-item-1">从有限转动的矩阵表示出发，说明旋转张量的定义、基本性质及其几何意义，并为后续转动向量、指数映射与更新公式奠定基础。</div></div></div></a><a class="pagination-related" href="/2026/03/31/GEB/geb-main-11/" title="1.1 欧拉定理与三维有限转动的轴角表示"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">1.1 欧拉定理与三维有限转动的轴角表示</div></div><div class="info-2"><div class="info-item-1">从欧拉定理出发，说明三维有限转动为何不能仅用单一转角描述，并引入轴角表示与转动向量，为后续有限转动张量与指数映射奠定基础。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-01</div><div class="info-item-2">0.5 几何精确梁数值求解的总体流程</div></div><div class="info-2"><div class="info-item-1">从参考构型、空间离散、时间推进到 Newton 迭代与收敛，按程序真正执行的顺序梳理几何精确梁是怎样一步步被算出来的。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-02/" title="0.2 几何精确梁与经典梁理论的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">0.2 几何精确梁与经典梁理论的区别</div></div><div class="info-2"><div class="info-item-1">各种梁理论的适用性与局限性对比。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-01/" title="0.1 几何精确梁理论的研究对象与适用范围"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">0.1 几何精确梁理论的研究对象与适用范围</div></div><div class="info-2"><div class="info-item-1">从“几何精确梁到底在研究什么”出发，梳理其研究对象、适用范围、能力边界及典型应用场景。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-03/" title="0.3 平截面假设的几何意义与力学意义"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">0.3 平截面假设的几何意义与力学意义</div></div><div class="info-2"><div class="info-item-1">从平截面假设出发，理解几何精确梁为什么能够把三维实体压缩为中心线与截面姿态的问题，并明确这种降维建模保留了什么、舍弃了什么以及它的适用边界。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-23/" title="2.3 刚体转动动力学的牛顿—欧拉方程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">2.3 刚体转动动力学的牛顿—欧拉方程</div></div><div class="info-2"><div class="info-item-1">几何精确梁学习路径中的占位文章，后续将围绕“2.3 刚体转动动力学的牛顿—欧拉方程”展开。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-math-91/" title="9.1 向量与矩阵的基本运算"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">9.1 向量与矩阵的基本运算</div></div><div class="info-2"><div class="info-item-1">数学与力学预备知识占位文章，后续将围绕“9.1 向量与矩阵的基本运算”展开。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E5%8F%98%E5%BD%A2%E6%A2%81%E9%97%AE%E9%A2%98%E4%B8%8D%E8%83%BD%E5%8F%AA%E7%9C%8B%E4%BD%8D%E7%A7%BB"><span class="toc-text">一、为什么大变形梁问题不能只看位移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A4%A7%E5%8F%98%E5%BD%A2%E6%A2%81%E7%9A%84%E4%BD%8D%E5%BD%A2%EF%BC%9A%E4%B8%AD%E5%BF%83%E7%BA%BF%E4%BD%8D%E7%BD%AE%E4%B8%8E%E6%88%AA%E9%9D%A2%E5%A7%BF%E6%80%81"><span class="toc-text">二、大变形梁的位形：中心线位置与截面姿态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BA%94%E5%8F%98%EF%BC%9A%E4%BD%8D%E5%BD%A2%E6%B2%BF%E6%A2%81%E8%BD%B4%E7%9A%84%E7%A9%BA%E9%97%B4%E5%8F%98%E5%8C%96"><span class="toc-text">三、应变：位形沿梁轴的空间变化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8A%A8%E5%8A%9B%E5%AD%A6%EF%BC%9A%E4%BD%8D%E5%BD%A2%E9%9A%8F%E6%97%B6%E9%97%B4%E7%9A%84%E6%BC%94%E5%8C%96"><span class="toc-text">四、动力学：位形随时间的演化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%8D%E5%BD%A2%E3%80%81%E5%BA%94%E5%8F%98%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE%E6%9D%A1"><span class="toc-text">五、位形、应变与动力学之间的逻辑链条</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%80%E4%B8%AA%E9%80%82%E5%90%88%E7%90%86%E8%A7%A3%E6%9C%AC%E7%AF%87%E5%86%85%E5%AE%B9%E7%9A%84%E6%80%BB%E5%9B%BE%E5%BC%8F"><span class="toc-text">六、一个适合理解本篇内容的总图式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/GEB/geb-main-52/" title="5.2 求积元方法的基本原理">5.2 求积元方法的基本原理</a><time datetime="2026-04-02T03:00:00.000Z" title="发表于 2026-04-02 11:00:00">2026-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/GEB/geb-main-51/" title="5.1 连续梁模型的离散化思想">5.1 连续梁模型的离散化思想</a><time datetime="2026-04-02T02:00:00.000Z" title="发表于 2026-04-02 10:00:00">2026-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程">0.5 几何精确梁数值求解的总体流程</a><time datetime="2026-04-01T02:30:00.000Z" title="发表于 2026-04-01 10:30:00">2026-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
