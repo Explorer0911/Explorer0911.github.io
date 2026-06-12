@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>1.1 欧拉定理与三维有限转动的轴角表示 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从欧拉定理出发，说明三维有限转动为何不能仅用单一转角描述，并引入轴角表示与转动向量，为后续有限转动张量与指数映射奠定基础。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.1 欧拉定理与三维有限转动的轴角表示">
+<meta property="og:url" content="https://explorer0911.github.io/2026/03/31/GEB/geb-main-11/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="从欧拉定理出发，说明三维有限转动为何不能仅用单一转角描述，并引入轴角表示与转动向量，为后续有限转动张量与指数映射奠定基础。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-03-31T03:20:00.000Z">
+<meta property="article:modified_time" content="2026-06-12T05:43:52.482Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="几何精确梁">
+<meta property="article:tag" content="有限转动">
+<meta property="article:tag" content="欧拉定理">
+<meta property="article:tag" content="轴角表示">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "1.1 欧拉定理与三维有限转动的轴角表示",
+  "url": "https://explorer0911.github.io/2026/03/31/GEB/geb-main-11/",
+  "image": "https://explorer0911.github.io/img/Pic.jpg",
+  "datePublished": "2026-03-31T03:20:00.000Z",
+  "dateModified": "2026-06-12T05:43:52.482Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Explorer0911",
+      "url": "https://explorer0911.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/2026/03/31/GEB/geb-main-11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1.1 欧拉定理与三维有限转动的轴角表示',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">1.1 欧拉定理与三维有限转动的轴角表示</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">1.1 欧拉定理与三维有限转动的轴角表示</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-31T03:20:00.000Z" title="发表于 2026-03-31 11:20:00">2026-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-12T05:43:52.482Z" title="更新于 2026-06-12 13:43:52">2026-06-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6%E5%AD%A6%E4%B9%A0/">结构力学学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BB%93%E6%9E%84%E5%8A%9B%E5%AD%A6%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E5%8A%9B%E5%AD%A6/">计算力学</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>在平面问题中，刚体转动通常只需要一个角度就可以描述，因此人们很容易形成一种直觉：转动不过就是“转过了多少”。但在三维空间中，这种理解已经不够。因为一个刚体即使转过相同大小的角度，只要转动轴不同，最终姿态也会不同。也就是说，三维有限转动不仅包含“大小”，还包含“方向”。</p>
+<p>对几何精确梁而言，这一点尤为关键。梁的截面在大变形过程中会发生显著转动，如果仍然沿用小转角线性叠加的思路，后续关于位形更新、应变测度和时间积分的处理就很容易失去几何一致性。因此，在进入有限转动张量、转动向量和指数映射之前，首先需要回答一个更基础的问题：<strong>三维有限转动到底应该怎样理解和表示？</strong></p>
+<p>这一篇先从最基本的几何事实出发，说明：为什么三维有限转动不能只看“转角大小”，欧拉定理到底说了什么，轴角表示为什么会成为有限转动理论的自然起点，以及它与后续有限转动张量、转动向量之间是什么关系。</p>
+<h2 id="一、为什么三维有限转动不能只看“转角大小”"><a href="#一、为什么三维有限转动不能只看“转角大小”" class="headerlink" title="一、为什么三维有限转动不能只看“转角大小”"></a>一、为什么三维有限转动不能只看“转角大小”</h2><p>如果只看平面内的刚体运动，转动是很容易理解的。一个平面刚体绕垂直于平面的方向转过某个角度，它的姿态就确定了。因此，在二维问题里，转动常常只需要一个标量角度就足够描述。</p>
+<p>但三维情况不同。设想一个空间中的刚体，先绕 $x$ 轴转过 $30^\circ$，与先绕 $z$ 轴转过 $30^\circ$，虽然转角大小相同，但最终姿态显然不同。这说明：在三维空间中，单独给出“转了多少”还不够，还必须同时说明“绕哪一根轴转”。</p>
+<p>这也是三维有限转动与普通平移最本质的区别之一。平移只涉及位置改变量，而三维转动本身带有方向结构。换句话说，三维有限转动不是单纯的一个数字，而是一个带有几何内容的对象。</p>
+<p>对几何精确梁来说，这种差别并不是抽象的数学问题，而是建模中的基本事实。梁的每一个截面都可能在空间中经历明显的姿态变化，因此必须使用能够描述三维有限转动的变量体系。只有先把“转动是什么”说清楚，后面关于有限转动张量、转动更新和变分表达的内容才真正有基础。</p>
+<h2 id="二、欧拉定理：任意有限转动都等价于绕一根固定轴的单次转动"><a href="#二、欧拉定理：任意有限转动都等价于绕一根固定轴的单次转动" class="headerlink" title="二、欧拉定理：任意有限转动都等价于绕一根固定轴的单次转动"></a>二、欧拉定理：任意有限转动都等价于绕一根固定轴的单次转动</h2><p>三维有限转动虽然比平面转动复杂，但它并不是没有结构的。欧拉定理指出：<strong>对于一个具有固定点的刚体，任意一次有限转动都可以等价表示为绕某一根通过该固定点的固定轴旋转一个角度。</strong></p>
+<p>更正式地说，若一刚体绕固定点发生一次有限转动，则总存在一根单位轴向量 $\mathbf e$ 和一个转角 $\theta$，使该转动可表示为绕 $\mathbf e$ 旋转角度 $\theta$。这里的 $\mathbf e$ 称为<strong>欧拉轴</strong>，$\theta$ 称为<strong>转角</strong>。</p>
+<p>这一定理的意义不在于立刻给出某种具体计算公式，而在于它说明：三维有限转动虽然不是线性对象，但它仍然具有明确的几何结构。无论最终姿态看起来多么一般，只要它是由一次有限转动得到的，就总能找到一根不动的轴，以及绕该轴的一个转角，用来完整描述这次转动。</p>
+<p>若进一步用有限转动张量 $\boldsymbol{\Lambda}$ 表示该转动，则欧拉定理意味着：存在某个非零向量 $\mathbf e$，使得</p>
+<p>$$<br>\boldsymbol{\Lambda}\mathbf e&#x3D;\mathbf e<br>$$</p>
+<p>这表明沿欧拉轴方向的向量在转动前后保持不变，而垂直于该轴的向量则会在对应平面内发生旋转。</p>
+<p>从线性代数角度看，这个结论还可以写成：三维旋转矩阵一定存在特征值为 $+1$ 的特征向量，而这个特征向量所对应的方向正是旋转轴。这个观点很重要，因为它把“固定轴存在”这一几何事实与“旋转矩阵的特征结构”联系了起来。</p>
+<p>这里还需要特别区分两件容易混淆的事情。这里讨论的是<strong>欧拉定理</strong>所给出的“轴 + 角”几何描述，而不是工程中常说的<strong>欧拉角</strong>分解。前者是关于三维有限转动几何结构的基本事实，后者则是一种具体的姿态参数化方式。二者都和三维转动有关，但并不是同一个概念。</p>
+<h2 id="三、轴角表示：把欧拉定理写成参数形式"><a href="#三、轴角表示：把欧拉定理写成参数形式" class="headerlink" title="三、轴角表示：把欧拉定理写成参数形式"></a>三、轴角表示：把欧拉定理写成参数形式</h2><p>既然欧拉定理说明任意有限转动都可以等价为绕某一根固定轴转过某一角度，那么最直接的表示方式，就是把这根轴和这个角度显式写出来。这就是所谓的<strong>轴角表示</strong>。</p>
+<p>在轴角表示中，通常用一个单位向量 $\mathbf e$ 表示转轴方向，用一个标量 $\theta$ 表示转角大小，即</p>
+<p>$$<br>(\mathbf e,\theta) , \qquad |\mathbf e|&#x3D;1<br>$$</p>
+<p>其中，$\mathbf e$ 给出“绕哪根轴转”，$\theta$ 给出“转过多少角”。</p>
+<p>这种表示方式最大的优点，就是几何意义非常直接。它不是先给出一组代数分量，再让读者去猜这些分量代表什么，而是直接把三维转动最本质的两个元素摆出来：方向和角度。</p>
+<p>从理解上看，轴角表示至少有三点值得强调：</p>
+<ol>
+<li><p><strong>三维有限转动一定同时包含方向与大小。</strong><br>只有转角而没有转轴，无法唯一确定最终姿态。</p>
+</li>
+<li><p><strong>有限转动首先是几何对象，而不只是代数量。</strong><br>它应先被理解为“绕某轴转动”，然后再去寻找适合的矩阵或向量表示。</p>
+</li>
+<li><p><strong>后续更复杂的表示方法并没有脱离这个几何核心。</strong><br>无论是有限转动张量、转动向量还是指数映射，最终都可以回到“轴 + 角”的图像上理解。</p>
+</li>
+</ol>
+<p>因此，轴角表示虽然不是唯一的有限转动表示方法，却是最贴近欧拉定理原始几何意义的一种表示。</p>
+<h2 id="四、从轴角表示到转动向量"><a href="#四、从轴角表示到转动向量" class="headerlink" title="四、从轴角表示到转动向量"></a>四、从轴角表示到转动向量</h2><p>虽然轴角表示在几何上很直观，但在推导和计算中，人们通常希望把它写得更紧凑一些。最自然的做法，就是把转轴方向和转角大小合并到一个向量里，定义</p>
+<p>$$<br>\boldsymbol{\theta}&#x3D;\theta \mathbf e<br>$$</p>
+<p>这就是转动向量。若写成分量形式，则有</p>
+<p>$$<br>\boldsymbol{\theta}&#x3D;<br>\begin{bmatrix}<br>\theta_x &amp; \theta_y &amp; \theta_z<br>\end{bmatrix}^{T}<br>$$</p>
+<p>其物理意义可以概括为：</p>
+<ul>
+<li>转动向量的模长表示旋转角度，<br>$$<br>|\boldsymbol{\theta}|&#x3D;\theta<br>$$</li>
+<li>转动向量的方向表示旋转轴方向，<br>$$<br>\frac{\boldsymbol{\theta}}{\theta}&#x3D;\mathbf e<br>$$</li>
+</ul>
+<p>因此，转动向量本质上并不是一种全新的物理对象，而是轴角表示的一种紧凑写法。若把轴角表示写成 $(\mathbf e,\theta)$，则转动向量就是它的三维向量形式。</p>
+<p>需要特别注意的是，转动向量虽然形式上像一个普通三维向量，但它并不应被简单理解为“分别绕三个坐标轴独立转过多少角度”。更准确地说，它的三个分量是作为一个整体来定义的：向量整体的方向决定转轴，向量整体的模长决定转角。也就是说，它只是把有限转动写成了一种三参数局部表示，而不是把旋转问题真正变成了普通欧氏空间中的平移问题。</p>
+<h2 id="五、有限转动张量的轴角表达"><a href="#五、有限转动张量的轴角表达" class="headerlink" title="五、有限转动张量的轴角表达"></a>五、有限转动张量的轴角表达</h2><p>由欧拉轴 $\mathbf e$ 和转角 $\theta$ 可以构造对应的有限转动张量 $\boldsymbol{\Lambda}$：</p>
+<p>$$<br>\boldsymbol{\Lambda}&#x3D;<br>\mathbf I +<br>(1-\cos\theta),\mathbf e\mathbf e^{T} +<br>\sin\theta,\widehat{\mathbf e}<br>$$</p>
+<p>其中，$\widehat{\mathbf e}$ 表示由向量 $\mathbf e$ 构造的反对称矩阵：</p>
+<p>$$<br>\widehat{\mathbf e} &#x3D;<br>\begin{bmatrix}<br>0 &amp; -e_3 &amp; e_2 \<br>e_3 &amp; 0 &amp; -e_1 \<br>-e_2 &amp; e_1 &amp; 0<br>\end{bmatrix}<br>$$</p>
+<p>这一表达式说明，有限转动张量并不是任意矩阵，而是由“转轴 + 转角”构造出的特殊正交张量。它满足：</p>
+<p>$$<br>\boldsymbol{\Lambda}^{T}\boldsymbol{\Lambda}&#x3D;\mathbf I ，<br>\qquad<br>\det(\boldsymbol{\Lambda})&#x3D;1<br>$$</p>
+<p>这正是后续旋转张量、指数映射和更新公式的基础。</p>
+<h2 id="六、由有限转动张量提取转角与转轴"><a href="#六、由有限转动张量提取转角与转轴" class="headerlink" title="六、由有限转动张量提取转角与转轴"></a>六、由有限转动张量提取转角与转轴</h2><p>既然有限转动张量可以由轴和角构造出来，那么反过来，自然也可以从矩阵中提取出轴和角。这个结论对于理解后续“矩阵表示”和“几何表示”的统一非常有帮助。</p>
+<h3 id="1-由迹求转角"><a href="#1-由迹求转角" class="headerlink" title="1. 由迹求转角"></a>1. 由迹求转角</h3><p>若 $\boldsymbol{\Lambda}$ 表示一次有限转动，则其特征值为 ${1,e^{i\theta},e^{-i\theta}}$。因此，矩阵的迹满足</p>
+<p>$$<br>\mathrm{tr}(\boldsymbol{\Lambda})&#x3D;<br>1+2\cos\theta<br>$$</p>
+<p>于是可以得到转角公式：</p>
+<p>$$<br>\cos\theta&#x3D;<br>\frac{\mathrm{tr}(\boldsymbol{\Lambda})-1}{2}<br>$$</p>
+<p>这说明，旋转角度实际上已经被编码在有限转动张量的对角元素之和中。</p>
+<h3 id="2-由反对称部分求转轴"><a href="#2-由反对称部分求转轴" class="headerlink" title="2. 由反对称部分求转轴"></a>2. 由反对称部分求转轴</h3><p>有限转动张量的反对称部分与欧拉轴直接相关：</p>
+<p>$$<br>\boldsymbol{\Lambda}-\boldsymbol{\Lambda}^{T}&#x3D;<br>2\sin\theta,\widehat{\mathbf e}<br>$$</p>
+<p>因此，当 $\sin\theta \neq 0$ 时，欧拉轴的分量可由下式读出：</p>
+<p>$$<br>e_1&#x3D;<br>\frac{\Lambda_{32}-\Lambda_{23}}{2\sin\theta},<br>\qquad<br>e_2&#x3D;<br>\frac{\Lambda_{13}-\Lambda_{31}}{2\sin\theta},<br>\qquad<br>e_3&#x3D;<br>\frac{\Lambda_{21}-\Lambda_{12}}{2\sin\theta}<br>$$</p>
+<p>这组公式表明：轴角表示和有限转动张量并不是两套彼此分离的描述方法。前者给出几何图景，后者给出矩阵表达，它们描述的是同一个有限转动。</p>
+<h2 id="七、这一节在几何精确梁中的作用"><a href="#七、这一节在几何精确梁中的作用" class="headerlink" title="七、这一节在几何精确梁中的作用"></a>七、这一节在几何精确梁中的作用</h2><p>在几何精确梁中，梁的位形并不是单纯由中心线位置决定的，而是由“中心线位置 + 截面姿态”共同决定的。论文第 2 章把梁任意点的运动写成“截面中心移动 + 绕截面中心转动”的组合形式，并将截面姿态记为 $\boldsymbol{\Lambda}(x,t)$。这意味着，有限转动的表示方式不是附属技术，而是位形描述本身的一部分。</p>
+<p>进一步地，论文后续还在这套记号下定义了平动应变向量 $\boldsymbol{\gamma}$、转动应变向量 $\boldsymbol{\kappa}$，并在时间积分中继续使用转动向量、角速度和角加速度的记号。因此，从欧拉定理、轴角表示和转动向量开始，第 1 章实际上已经在为后续位形描述、应变测度、时间积分和 Newton 迭代做准备。</p>
+<p>因此，这一节的意义并不只是“介绍一个经典定理”。更重要的是，它告诉我们：<strong>三维有限转动是有明确几何结构的，而这种几何结构正是几何精确梁后续建模与计算的起点。</strong></p>
+<h2 id="八、从几何图景走向代数表达"><a href="#八、从几何图景走向代数表达" class="headerlink" title="八、从几何图景走向代数表达"></a>八、从几何图景走向代数表达</h2><p>到这里为止，已经完成了从“几何图景”到“参数表示”的第一步：</p>
+<ul>
+<li>欧拉定理说明，任意有限转动都可以理解为绕某一固定轴转过某一角度；</li>
+<li>轴角表示把这一几何结构写成 $(\mathbf e,\theta)$；</li>
+<li>转动向量进一步将其压缩成三参数形式 $\boldsymbol{\theta}&#x3D;\theta\mathbf e$；</li>
+<li>有限转动张量 $\boldsymbol{\Lambda}$ 则把这种几何结构写成了可以直接作用在向量上的矩阵映射。</li>
+</ul>
+<p>但这仍然不是终点。接下来还需要继续回答几个问题：</p>
+<ul>
+<li>有限转动张量满足哪些几何和代数性质？</li>
+<li>转动向量怎样系统地构造出有限转动张量？</li>
+<li>多次有限转动怎样进行复合与更新？</li>
+<li>在变分、线性化和数值离散中，转动增量应当怎样表达？</li>
+</ul>
+<p>这正是后续 1.2～1.7 要展开的内容。对 1.1 而言，最重要的收获只有一条：<strong>三维有限转动并不是“一个大一点的角度”，而是一个具有明确几何结构的对象；欧拉定理给出了这套结构的起点，轴角表示与转动向量则为后续矩阵表示和数值实现提供了桥梁。</strong></p>
+<ul>
+<li><a href="/2026/03/31/GEB/geb-main-00/" title="几何精确梁学习路径">返回系列目录</a></li>
+<li><a href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程">上一篇：0.5 几何精确梁数值求解的总体流程</a></li>
+<li><a href="/2026/03/31/GEB/geb-main-12/" title="1.2 旋转张量的定义、性质及几何意义">下一篇：1.2 旋转张量的定义、性质及几何意义</a></li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li><p>Reissner, E. <em>On One-Dimensional Finite-Strain Beam Theory: The Plane Problem</em>. ZAMP, 23(5), 795-804, 1972. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/BF01602645">DOI</a></p>
+</li>
+<li><p>Simo, J. C. <em>A Finite Strain Beam Formulation. The Three-Dimensional Dynamic Problem. Part I</em>. Computer Methods in Applied Mechanics and Engineering, 49(1), 55-70, 1985. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0045-7825(85)90050-7">DOI</a></p>
+</li>
+<li><p>Simo, J. C. and Vu-Quoc, L. <em>A Three-Dimensional Finite-Strain Rod Model. Part II: Computational Aspects</em>. Computer Methods in Applied Mechanics and Engineering, 58(1), 79-116, 1986. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0045-7825(86)90079-4">DOI</a></p>
+</li>
+<li><p>Murray, R. M., Li, Z. and Sastry, S. S. <em>A Mathematical Introduction to Robotic Manipulation</em>. CRC Press, 1994.</p>
+</li>
+<li><p>欧拉旋转定理 | Bohrium SciencePedia. <a target="_blank" rel="noopener" href="https://www.bohrium.com/sciencepedia/feynman/keyword/euler_s_rotation_theorem">DOI</a></p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io">Explorer0911</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://explorer0911.github.io/2026/03/31/GEB/geb-main-11/">https://explorer0911.github.io/2026/03/31/GEB/geb-main-11/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://explorer0911.github.io" target="_blank">Explorer0911 Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%87%A0%E4%BD%95%E7%B2%BE%E7%A1%AE%E6%A2%81/">几何精确梁</a><a class="post-meta__tags" href="/tags/%E6%9C%89%E9%99%90%E8%BD%AC%E5%8A%A8/">有限转动</a><a class="post-meta__tags" href="/tags/%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86/">欧拉定理</a><a class="post-meta__tags" href="/tags/%E8%BD%B4%E8%A7%92%E8%A1%A8%E7%A4%BA/">轴角表示</a></div><div class="post-share"><div class="social-share" data-image="/img/Pic.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/31/GEB/geb-main-04/" title="0.4 大变形梁问题中的位形、应变与动力学"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">0.4 大变形梁问题中的位形、应变与动力学</div></div><div class="info-2"><div class="info-item-1">从大变形梁问题出发，说明几何精确梁中位形、应变与动力学为何必须统一组织，并为后续有限转动、局部应变与弱式表达铺路。</div></div></div></a><a class="pagination-related" href="/2026/03/31/GEB/geb-main-00/" title="几何精确梁学习路径"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">几何精确梁学习路径</div></div><div class="info-2"><div class="info-item-1">面向学习与建模实现的几何精确梁系统化目录页，包含快速导航、主线与支线联合目录、预备知识与建议阅读顺序。</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/03/31/GEB/geb-main-13/" title="1.3 转动向量的参数化方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">1.3 转动向量的参数化方法</div></div><div class="info-2"><div class="info-item-1">从轴角表示出发，引入转动向量作为三维有限转动的三参数局部表示，并说明其几何意义、局部有效性及其在几何精确梁中的作用。</div></div></div></a><a class="pagination-related" href="/2026/03/31/GEB/geb-main-12/" title="1.2 旋转张量的定义、性质及几何意义"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-31</div><div class="info-item-2">1.2 旋转张量的定义、性质及几何意义</div></div><div class="info-2"><div class="info-item-1">从有限转动的矩阵表示出发，说明旋转张量的定义、基本性质及其几何意义，并为后续转动向量、指数映射与更新公式奠定基础。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-43/" title="4.3 内力虚功的构造与物理意义"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">4.3 内力虚功的构造与物理意义</div></div><div class="info-2"><div class="info-item-1">几何精确梁学习路径中的占位文章，后续将围绕“4.3 内力虚功的构造与物理意义”展开。</div></div></div></a><a class="pagination-related" href="/2026/03/30/GEB/geb-branch-8a/" title="支线 8A. 悬臂梁问题的经典解析背景"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-30</div><div class="info-item-2">支线 8A. 悬臂梁问题的经典解析背景</div></div><div class="info-2"><div class="info-item-1">几何精确梁支线专题占位文章，后续将围绕“支线 8A. 悬臂梁问题的经典解析背景”展开。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-main-44/" title="4.4 惯性力虚功的构造与物理意义"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">4.4 惯性力虚功的构造与物理意义</div></div><div class="info-2"><div class="info-item-1">几何精确梁学习路径中的占位文章，后续将围绕“4.4 惯性力虚功的构造与物理意义”展开。</div></div></div></a><a class="pagination-related" href="/2026/03/29/GEB/geb-mech-911/" title="9.11 力、力矩与功"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-29</div><div class="info-item-2">9.11 力、力矩与功</div></div><div class="info-2"><div class="info-item-1">数学与力学预备知识占位文章，后续将围绕“9.11 力、力矩与功”展开。</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%89%E7%BB%B4%E6%9C%89%E9%99%90%E8%BD%AC%E5%8A%A8%E4%B8%8D%E8%83%BD%E5%8F%AA%E7%9C%8B%E2%80%9C%E8%BD%AC%E8%A7%92%E5%A4%A7%E5%B0%8F%E2%80%9D"><span class="toc-text">一、为什么三维有限转动不能只看“转角大小”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%EF%BC%9A%E4%BB%BB%E6%84%8F%E6%9C%89%E9%99%90%E8%BD%AC%E5%8A%A8%E9%83%BD%E7%AD%89%E4%BB%B7%E4%BA%8E%E7%BB%95%E4%B8%80%E6%A0%B9%E5%9B%BA%E5%AE%9A%E8%BD%B4%E7%9A%84%E5%8D%95%E6%AC%A1%E8%BD%AC%E5%8A%A8"><span class="toc-text">二、欧拉定理：任意有限转动都等价于绕一根固定轴的单次转动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BD%B4%E8%A7%92%E8%A1%A8%E7%A4%BA%EF%BC%9A%E6%8A%8A%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E5%86%99%E6%88%90%E5%8F%82%E6%95%B0%E5%BD%A2%E5%BC%8F"><span class="toc-text">三、轴角表示：把欧拉定理写成参数形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%8E%E8%BD%B4%E8%A7%92%E8%A1%A8%E7%A4%BA%E5%88%B0%E8%BD%AC%E5%8A%A8%E5%90%91%E9%87%8F"><span class="toc-text">四、从轴角表示到转动向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9C%89%E9%99%90%E8%BD%AC%E5%8A%A8%E5%BC%A0%E9%87%8F%E7%9A%84%E8%BD%B4%E8%A7%92%E8%A1%A8%E8%BE%BE"><span class="toc-text">五、有限转动张量的轴角表达</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%94%B1%E6%9C%89%E9%99%90%E8%BD%AC%E5%8A%A8%E5%BC%A0%E9%87%8F%E6%8F%90%E5%8F%96%E8%BD%AC%E8%A7%92%E4%B8%8E%E8%BD%AC%E8%BD%B4"><span class="toc-text">六、由有限转动张量提取转角与转轴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%94%B1%E8%BF%B9%E6%B1%82%E8%BD%AC%E8%A7%92"><span class="toc-text">1. 由迹求转角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%94%B1%E5%8F%8D%E5%AF%B9%E7%A7%B0%E9%83%A8%E5%88%86%E6%B1%82%E8%BD%AC%E8%BD%B4"><span class="toc-text">2. 由反对称部分求转轴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BF%99%E4%B8%80%E8%8A%82%E5%9C%A8%E5%87%A0%E4%BD%95%E7%B2%BE%E7%A1%AE%E6%A2%81%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">七、这一节在几何精确梁中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E4%BB%8E%E5%87%A0%E4%BD%95%E5%9B%BE%E6%99%AF%E8%B5%B0%E5%90%91%E4%BB%A3%E6%95%B0%E8%A1%A8%E8%BE%BE"><span class="toc-text">八、从几何图景走向代数表达</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/GEB/geb-main-52/" title="5.2 求积元方法的基本原理">5.2 求积元方法的基本原理</a><time datetime="2026-04-02T03:00:00.000Z" title="发表于 2026-04-02 11:00:00">2026-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/GEB/geb-main-51/" title="5.1 连续梁模型的离散化思想">5.1 连续梁模型的离散化思想</a><time datetime="2026-04-02T02:00:00.000Z" title="发表于 2026-04-02 10:00:00">2026-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程">0.5 几何精确梁数值求解的总体流程</a><time datetime="2026-04-01T02:30:00.000Z" title="发表于 2026-04-01 10:30:00">2026-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

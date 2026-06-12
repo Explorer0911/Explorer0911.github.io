@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>几何精确梁学习首页 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="公网版几何精确梁学习入口，汇总系列目录、推荐阅读顺序和章节跳转。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="几何精确梁学习首页">
+<meta property="og:url" content="https://explorer0911.github.io/geb/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="公网版几何精确梁学习入口，汇总系列目录、推荐阅读顺序和章节跳转。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:published_time" content="2026-06-12T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-06-12T05:43:52.595Z">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="GitHub Pages">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/geb/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '几何精确梁学习首页',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 联系</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">几何精确梁学习首页</h1></div></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="container" id="article-container"><style>
+.geb-home{display:grid;gap:28px;}
+.geb-hero{position:relative;overflow:hidden;padding:42px 36px;border-radius:30px;background:linear-gradient(135deg,#0e3455 0%,#1d6fa5 52%,#6ec3d9 100%);color:#fff;box-shadow:0 24px 60px rgba(10,42,70,.22);}
+.geb-hero:before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08);}
+.geb-hero:after{content:"";position:absolute;left:-40px;bottom:-70px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);}
+.geb-hero__inner{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:end;}
+.geb-kicker{margin:0 0 10px;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;opacity:.76;}
+.geb-title{margin:0;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;font-weight:800;}
+.geb-subtitle{margin:16px 0 0;max-width:760px;font-size:1rem;line-height:1.9;color:rgba(255,255,255,.92);}
+.geb-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
+.geb-btn{display:inline-flex;align-items:center;justify-content:center;min-width:146px;padding:12px 18px;border-radius:999px;text-decoration:none!important;font-weight:700;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;}
+.geb-btn:hover{transform:translateY(-2px);}
+.geb-btn--light{background:#fff;color:#0f3a5d!important;box-shadow:0 16px 32px rgba(10,28,45,.18);}
+.geb-btn--glass{background:rgba(255,255,255,.12);color:#fff!important;border:1px solid rgba(255,255,255,.18);}
+.geb-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.geb-stat{padding:18px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);}
+.geb-stat strong{display:block;font-size:1.8rem;line-height:1;color:#fff;margin-bottom:6px;}
+.geb-stat span{font-size:.92rem;color:rgba(255,255,255,.82);}
+.geb-panel{padding:26px;border-radius:24px;background:#fff;border:1px solid rgba(29,111,165,.08);box-shadow:0 16px 38px rgba(20,46,76,.08);}
+.geb-panel h2,.geb-panel h3{margin-top:0;color:#10314d;}
+.geb-flow{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.geb-chip{display:inline-flex;align-items:center;padding:10px 14px;border-radius:999px;background:#eef7fc;color:#16527d!important;text-decoration:none!important;border:1px solid rgba(29,111,165,.12);font-weight:600;}
+.geb-entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.geb-entry{padding:18px;border-radius:20px;background:linear-gradient(180deg,#ffffff,#f7fbff);border:1px solid rgba(29,111,165,.08);}
+.geb-entry h3{margin:0 0 10px;color:#173854;}
+.geb-entry p{margin:0;color:#516276;line-height:1.8;}
+.geb-list{margin:0;padding-left:18px;columns:2;column-gap:28px;}
+.geb-list li{break-inside:avoid;margin-bottom:10px;color:#415266;}
+.geb-list a{color:#1a5d90;text-decoration:none!important;}
+.geb-note{padding:15px 18px;border-left:4px solid #2f82bf;border-radius:0 14px 14px 0;background:#f3f9fe;color:#3e566b;line-height:1.85;}
+@media (max-width:960px){.geb-hero__inner,.geb-entry-grid,.geb-stats{grid-template-columns:1fr;}.geb-list{columns:1;}}
+</style>
+
+<div class="geb-home">
+  <section class="geb-hero">
+    <div class="geb-hero__inner">
+      <div>
+        <p class="geb-kicker">Explorer0911 Blog / Geometrically Exact Beam</p>
+        <h1 class="geb-title">几何精确梁学习首页</h1>
+        <p class="geb-subtitle">
+          这是公网版的几何精确梁专题入口。这里不替代系列文章本身，而是把整套内容的入口、阅读顺序和章节跳转集中到一页，便于从导论一路走到离散、时间积分和非线性求解。
+        </p>
+        <div class="geb-actions">
+          <a class="geb-btn geb-btn--light" href="/2026/03/31/GEB/geb-main-00/">查看系列总目录</a>
+          <a class="geb-btn geb-btn--glass" href="/2026/03/29/GEB/geb-main-01/">从 0.1 开始</a>
+          <a class="geb-btn geb-btn--glass" href="/start/">返回导览页</a>
+        </div>
+      </div>
+      <div class="geb-stats">
+        <div class="geb-stat"><strong>71</strong><span>主线文章</span></div>
+        <div class="geb-stat"><strong>36</strong><span>支线专题</span></div>
+        <div class="geb-stat"><strong>13</strong><span>预备知识</span></div>
+        <div class="geb-stat"><strong>1</strong><span>系列总目录页</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="geb-panel">
+    <h2>从哪里进入</h2>
+    <div class="geb-flow">
+      <a class="geb-chip" href="/2026/03/31/GEB/geb-main-00/">系列总目录</a>
+      <a class="geb-chip" href="/2026/03/29/GEB/geb-main-01/">0.1 研究对象与适用范围</a>
+      <a class="geb-chip" href="/2026/04/01/GEB/geb-main-05/">0.5 数值求解总体流程</a>
+      <a class="geb-chip" href="/2026/03/31/GEB/geb-main-11/">1.1 有限转动起步</a>
+      <a class="geb-chip" href="/2026/03/29/GEB/geb-main-31/">3.1 位形描述</a>
+      <a class="geb-chip" href="/2026/04/02/GEB/geb-main-51/">5.1 空间离散</a>
+      <a class="geb-chip" href="/2026/03/29/GEB/geb-main-61/">6.1 时间积分</a>
+      <a class="geb-chip" href="/2026/03/29/GEB/geb-main-71/">7.1 非线性求解</a>
+    </div>
+  </section>
+
+  <section class="geb-entry-grid">
+    <div class="geb-entry">
+      <h3>面向入门</h3>
+      <p>先读 0.1 到 0.5，建立“研究对象、适用边界、位形、应变和求解流程”的整体框架。</p>
+    </div>
+    <div class="geb-entry">
+      <h3>面向实现</h3>
+      <p>优先走 3 章、4 章、5 章、6 章、7 章，把变量、弱式、离散、时间推进和 Newton 迭代串起来。</p>
+    </div>
+    <div class="geb-entry">
+      <h3>卡点补课</h3>
+      <p>如果卡在 SO(3)、叉乘、虚功、数值积分或线性化，就回到总目录页里的支线和预备知识部分。</p>
+    </div>
+  </section>
+
+  <section class="geb-panel">
+    <h2>推荐阅读路线</h2>
+    <div class="geb-note">这一系列已经不是零散博客，而是按“导论 → 有限转动 → 刚体基础 → 位形与应变 → 弱式 → 空间离散 → 时间积分 → 非线性求解 → 算例验证”组织的完整路线。</div>
+    <ul class="geb-list">
+      <li><a href="/2026/03/31/GEB/geb-main-00/" title="几何精确梁学习路径">总目录：完整知识树</a></li>
+      <li><a href="/2026/03/29/GEB/geb-main-01/" title="0.1 几何精确梁理论的研究对象与适用范围">0.1 几何精确梁理论的研究对象与适用范围</a></li>
+      <li><a href="/2026/03/29/GEB/geb-main-02/" title="0.2 几何精确梁与经典梁理论的区别">0.2 几何精确梁与经典梁理论的区别</a></li>
+      <li><a href="/2026/03/29/GEB/geb-main-03/" title="0.3 平截面假设的几何意义与力学意义">0.3 平截面假设的几何意义与力学意义</a></li>
+      <li><a href="/2026/03/31/GEB/geb-main-04/" title="0.4 大变形梁问题中的位形、应变与动力学">0.4 大变形梁问题中的位形、应变与动力学</a></li>
+      <li><a href="/2026/04/01/GEB/geb-main-05/" title="0.5 几何精确梁数值求解的总体流程">0.5 几何精确梁数值求解的总体流程</a></li>
+    </ul>
+  </section>
+</div>
+
+</div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
