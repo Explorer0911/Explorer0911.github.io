@@ -1,0 +1,58 @@
+/* Site-wide desktop layout refinement.
+ * Keep mobile/tablet behavior from Butterfly; use the extra width only on large screens.
+ */
+@media (min-width:1200px){
+  #content-inner.layout{
+    gap:20px;
+    width:calc(100% - 24px);
+    max-width:1440px;
+    padding:36px 0 52px;
+  }
+
+  #content-inner.layout > div:first-child{
+    flex:1 1 auto;
+    width:auto;
+    min-width:0;
+  }
+
+  #content-inner.layout > div:first-child:not(.nc){
+    padding:46px 36px;
+  }
+
+  #content-inner.layout.hide-aside{
+    max-width:1120px;
+  }
+
+  #content-inner.layout.hide-aside > div:first-child{
+    width:100%;
+  }
+
+  #aside-content{
+    flex:0 0 270px;
+    width:270px;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  #aside-content .sticky_layout{
+    top:18px;
+  }
+
+  #aside-content .card-widget{
+    margin-bottom:16px;
+    padding:18px 20px;
+  }
+
+  #body-wrap.post:not(.type-geb-map) #article-container{
+    max-width:1020px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+@media (min-width:1600px){
+  #content-inner.layout{
+    width:calc(100% - 48px);
+    max-width:1480px;
+  }
+}
