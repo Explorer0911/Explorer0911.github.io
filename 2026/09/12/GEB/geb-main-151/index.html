@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GEB 私有文章 | Explorer0911 Blog</title><meta name="author" content="Explorer0911"><meta name="copyright" content="Explorer0911"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这篇 GEB 内容已加密。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GEB 私有文章">
+<meta property="og:url" content="https://explorer0911.github.io/2026/09/12/GEB/geb-main-151/index.html">
+<meta property="og:site_name" content="Explorer0911 Blog">
+<meta property="og:description" content="这篇 GEB 内容已加密。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://explorer0911.github.io/img/Pic.jpg">
+<meta property="article:author" content="Explorer0911">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="GitHub Pages">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://explorer0911.github.io/img/Pic.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "GEB 私有文章",
+  "url": "https://explorer0911.github.io/2026/09/12/GEB/geb-main-151/",
+  "image": "https://explorer0911.github.io/img/Pic.jpg",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Explorer0911",
+      "url": "https://explorer0911.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://explorer0911.github.io/2026/09/12/GEB/geb-main-151/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GEB 私有文章',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/font-controls.css"><link rel="stylesheet" href="/css/music-card.css"><link rel="stylesheet" href="/css/watching-library.css"><link rel="stylesheet" href="/css/frieren-pet.css"><link rel="stylesheet" href="/css/site-layout.css"><link rel="stylesheet" href="/css/geb-knowledge-map.css"><link rel="stylesheet" href="/css/geb-portal.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Explorer0911 Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">177</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/lion-woman.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Explorer0911 Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">GEB 私有文章</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-book-open"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/watching/"><i class="fa-fw fas fa-clapperboard"></i><span> 佳片有约</span></a></div><div class="menus_item"><a class="site-page" href="/drilling-tools/"><i class="fa-fw fas fa-calculator"></i><span> 工具</span></a></div><div class="menus_item"><a class="site-page" href="/start/"><i class="fa-fw fas fa-compass"></i><span> 导览</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div class="geb-private-post-info" id="post-info" data-geb-private-header><h1 class="post-title" data-geb-private-title>GEB 私有文章</h1><div id="post-meta"><div class="meta-firstline"><span class="geb-private-lock-meta" data-geb-private-meta><i class="fas fa-lock fa-fw post-meta-icon"></i><span>受保护内容 · 解锁后显示文章信息</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container">
+<div class="geb-encrypted" data-geb-encrypted data-payload="{&quot;salt&quot;:&quot;h9sN+vTviHvwz/Lij+Q72Q==&quot;,&quot;iv&quot;:&quot;FNjiA7CtQwlxUdUJ&quot;,&quot;tag&quot;:&quot;yb8BpZEZOfYnWHSnmREdYQ==&quot;,&quot;payload&quot;:&quot;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&quot;}">
+  <div class="geb-encrypted__panel">
+    <p class="geb-encrypted__eyebrow">Protected GEB Notes</p>
+    <div class="geb-encrypted__title" role="heading" aria-level="2">GEB 私有文章</div>
+    <p class="geb-encrypted__desc">这篇几何精确梁建模内容已加密。请输入访问密码后阅读。</p>
+    <form class="geb-encrypted__form" data-geb-form>
+      <input class="geb-encrypted__input" data-geb-password type="password" autocomplete="current-password" placeholder="访问密码" aria-label="GEB 访问密码">
+      <button class="geb-encrypted__button" type="submit">解锁阅读</button>
+    </form>
+    <p class="geb-encrypted__status" data-geb-status aria-live="polite"></p>
+  </div>
+</div>
+<style>
+.geb-encrypted{display:grid;place-items:center;min-height:360px;padding:32px 16px;}
+.geb-encrypted__panel{width:min(100%,560px);padding:30px;border:1px solid rgba(15,118,110,.16);border-radius:18px;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 18px 42px rgba(15,23,42,.08);}
+.geb-encrypted__eyebrow{margin:0 0 10px;color:#0f766e;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.geb-encrypted__title{margin:0;color:#17324b;font-size:1.6rem;line-height:1.4;}
+.geb-encrypted__desc{margin:14px 0 18px;color:#51606f;line-height:1.8;}
+.geb-encrypted__form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;}
+.geb-encrypted__input{height:44px;min-width:0;padding:0 14px;border:1px solid rgba(15,118,110,.18);border-radius:10px;background:#fff;color:#17324b;font:inherit;}
+.geb-encrypted__button{height:44px;padding:0 18px;border:0;border-radius:10px;background:#0f766e;color:#fff;font-weight:800;cursor:pointer;}
+.geb-encrypted__status{min-height:24px;margin:12px 0 0;color:#b45309;font-size:.92rem;line-height:1.6;}
+[data-theme='dark'] .geb-encrypted__panel{background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(15,23,42,.98));border-color:rgba(148,163,184,.14);}
+[data-theme='dark'] .geb-encrypted__title{color:#e5edf7;}
+[data-theme='dark'] .geb-encrypted__desc,[data-theme='dark'] .geb-encrypted__status{color:rgba(226,232,240,.78);}
+[data-theme='dark'] .geb-encrypted__input{background:rgba(255,255,255,.05);color:#e5edf7;border-color:rgba(148,163,184,.16);}
+@media (max-width:560px){.geb-encrypted__panel{padding:22px}.geb-encrypted__form{grid-template-columns:1fr}.geb-encrypted__button{width:100%;}}
+</style>
+<script>
+(function () {
+  var root = document.querySelector('[data-geb-encrypted]')
+  if (!root || root.dataset.bound === 'true') return
+  root.dataset.bound = 'true'
+
+  var sessionPasswordKey = 'geb.unlock.password.v1'
+  var form = root.querySelector('[data-geb-form]')
+  var input = root.querySelector('[data-geb-password]')
+  var status = root.querySelector('[data-geb-status]')
+
+  var fromBase64 = function (value) {
+    var binary = atob(value)
+    var bytes = new Uint8Array(binary.length)
+    for (var index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index)
+    return bytes
+  }
+
+  var setStatus = function (message) {
+    if (status) status.textContent = message || ''
+  }
+
+  var readSessionPassword = function () {
+    try {
+      return window.sessionStorage ? window.sessionStorage.getItem(sessionPasswordKey) || '' : ''
+    } catch (error) {
+      return ''
+    }
+  }
+
+  var saveSessionPassword = function (password) {
+    try {
+      if (window.sessionStorage) window.sessionStorage.setItem(sessionPasswordKey, password)
+    } catch (error) {}
+  }
+
+  var clearSessionPassword = function () {
+    try {
+      if (window.sessionStorage) window.sessionStorage.removeItem(sessionPasswordKey)
+    } catch (error) {}
+  }
+
+  var decodePrivatePayload = function (plainBuffer) {
+    var text = new TextDecoder().decode(plainBuffer)
+    try {
+      var decoded = JSON.parse(text)
+      if (decoded && typeof decoded.html === 'string') return decoded
+    } catch (error) {}
+    return { html: text, title: '', date: '', updated: '' }
+  }
+
+  var restorePrivateHeader = function (privatePayload) {
+    var title = privatePayload && privatePayload.title ? privatePayload.title : ''
+    var date = privatePayload && privatePayload.date ? privatePayload.date : ''
+    var updated = privatePayload && privatePayload.updated ? privatePayload.updated : ''
+
+    if (title) {
+      document.querySelectorAll('[data-geb-private-title]').forEach(function (node) {
+        node.textContent = title
+      })
+      if (document.title.indexOf('GEB 私有文章') === 0) {
+        document.title = document.title.replace(/^GEB 私有文章/, title)
+      }
+    }
+
+    var metaText = ''
+    if (date) metaText = '发布于 ' + date
+    if (updated && updated !== date) metaText += (metaText ? ' · ' : '') + '更新于 ' + updated
+    if (metaText) {
+      document.querySelectorAll('[data-geb-private-meta]').forEach(function (node) {
+        node.textContent = metaText
+      })
+    }
+  }
+
+  var installPrivateToolbar = function () {
+    if (document.querySelector('[data-geb-private-toolbar]')) return
+    var article = document.getElementById('article-container')
+    if (!article || !article.parentNode) return
+
+    var toolbar = document.createElement('div')
+    toolbar.className = 'geb-private-toolbar'
+    toolbar.setAttribute('data-geb-private-toolbar', '')
+
+    var onPortal = /^\/geb\/?(?:index\.html)?$/.test(window.location.pathname)
+    if (!onPortal) {
+      var back = document.createElement('a')
+      back.className = 'geb-private-toolbar__link'
+      back.href = '/geb/'
+      back.textContent = '← 返回 GEB 知识库'
+      toolbar.appendChild(back)
+    }
+
+    var exit = document.createElement('button')
+    exit.type = 'button'
+    exit.className = 'geb-private-toolbar__exit'
+    exit.textContent = '退出 GEB'
+    exit.addEventListener('click', function () {
+      clearSessionPassword()
+      delete document.documentElement.dataset.gebUnlocked
+      if (onPortal) window.location.reload()
+      else window.location.replace('/geb/')
+    })
+    toolbar.appendChild(exit)
+
+    article.parentNode.insertBefore(toolbar, article)
+  }
+
+  var decryptEnvelope = function (data, password) {
+    var salt = fromBase64(data.salt)
+    var iv = fromBase64(data.iv)
+    var tag = fromBase64(data.tag)
+    var payload = fromBase64(data.payload)
+    var ciphertext = new Uint8Array(payload.length + tag.length)
+    ciphertext.set(payload, 0)
+    ciphertext.set(tag, payload.length)
+
+    return window.crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey'])
+      .then(function (baseKey) {
+        return window.crypto.subtle.deriveKey(
+          { name: 'PBKDF2', salt: salt, iterations: 250000, hash: 'SHA-256' },
+          baseKey,
+          { name: 'AES-GCM', length: 256 },
+          false,
+          ['decrypt']
+        )
+      })
+      .then(function (key) {
+        return window.crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ciphertext)
+      })
+  }
+
+  var hydrateProtectedImages = function (password) {
+    var images = document.querySelectorAll('img[data-geb-protected-src]')
+    images.forEach(function (image) {
+      var url = image.getAttribute('data-geb-protected-src')
+      if (!url) return
+
+      fetch(url, { credentials: 'same-origin' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Unable to load protected GEB image.')
+          return response.json()
+        })
+        .then(function (data) {
+          return decryptEnvelope(data, password).then(function (plainBuffer) {
+            var blob = new Blob([plainBuffer], { type: data.mime || 'application/octet-stream' })
+            image.src = URL.createObjectURL(blob)
+            image.removeAttribute('data-geb-protected-src')
+          })
+        })
+        .catch(function () {
+          image.alt = (image.alt || 'GEB image') + '（图片解锁失败）'
+        })
+    })
+  }
+
+  var rebuildGebToc = function () {
+    var article = document.getElementById('article-container')
+    var card = document.getElementById('card-toc')
+    if (!article || !card) return
+
+    var tocContent = card.querySelector('.toc-content')
+    if (!tocContent) return
+
+    var headings = Array.prototype.slice.call(article.querySelectorAll('h1,h2,h3,h4,h5,h6'))
+      .filter(function (heading) { return !!heading.id })
+
+    tocContent.innerHTML = ''
+    if (!headings.length) {
+      card.style.display = 'none'
+      return
+    }
+
+    var rootList = document.createElement('ol')
+    rootList.className = 'toc'
+    var firstLevel = parseInt(headings[0].tagName.slice(1), 10)
+    var stack = [{ level: firstLevel, list: rootList }]
+
+    headings.forEach(function (heading) {
+      var level = parseInt(heading.tagName.slice(1), 10)
+
+      while (stack.length > 1 && level < stack[stack.length - 1].level) stack.pop()
+
+      if (level > stack[stack.length - 1].level) {
+        var parentList = stack[stack.length - 1].list
+        var parentItem = parentList.lastElementChild
+        if (parentItem) {
+          var childList = document.createElement('ol')
+          childList.className = 'toc-child'
+          parentItem.appendChild(childList)
+          stack.push({ level: level, list: childList })
+        }
+      }
+
+      var currentList = stack[stack.length - 1].list
+      var item = document.createElement('li')
+      item.className = 'toc-item toc-level-' + level
+
+      var link = document.createElement('a')
+      link.className = 'toc-link'
+      link.setAttribute('href', '#' + heading.id)
+
+      var text = document.createElement('span')
+      text.className = 'toc-text'
+      text.innerHTML = heading.innerHTML
+
+      link.appendChild(text)
+      item.appendChild(link)
+      currentList.appendChild(item)
+    })
+
+    tocContent.appendChild(rootList)
+    tocContent.style.display = 'block'
+    card.style.display = ''
+  }
+
+  var unlockWithPassword = function (password, rememberSession, automatic) {
+    if (!password) return Promise.reject(new Error('Missing password.'))
+
+    setStatus(automatic ? '正在恢复本标签页的 GEB 解锁状态...' : '正在解锁...')
+
+    return Promise.resolve()
+      .then(function () {
+        var data = JSON.parse(root.getAttribute('data-payload') || '{}')
+        return decryptEnvelope(data, password)
+      })
+      .then(function (plainBuffer) {
+        var privatePayload = decodePrivatePayload(plainBuffer)
+        if (rememberSession) saveSessionPassword(password)
+        root.outerHTML = privatePayload.html
+        document.documentElement.dataset.gebUnlocked = 'true'
+        restorePrivateHeader(privatePayload)
+        installPrivateToolbar()
+        hydrateProtectedImages(password)
+        rebuildGebToc()
+
+        // Follow Butterfly's native encrypted-post lifecycle. Butterfly listens
+        // for this event and re-runs MathJax plus the other post processors
+        // registered under globalFn.encrypt.
+        if (window.globalFn && window.globalFn.encrypt) {
+          // Butterfly 5.5.3 assumes translateFn exists in its decrypt-event
+          // handler even when the translation feature is disabled. Supply a
+          // temporary no-op so the remaining encrypt callbacks (MathJax, etc.)
+          // can still run, then restore the original global state.
+          var hadTranslateFn = !!window.translateFn
+          var previousTranslateInit = hadTranslateFn ? window.translateFn.translateInitialization : undefined
+          if (!hadTranslateFn) window.translateFn = {}
+          if (typeof window.translateFn.translateInitialization !== 'function') {
+            window.translateFn.translateInitialization = function () {}
+          }
+
+          window.dispatchEvent(new CustomEvent('hexo-blog-decrypt', { detail: { source: 'geb' } }))
+
+          if (previousTranslateInit === undefined) delete window.translateFn.translateInitialization
+          else window.translateFn.translateInitialization = previousTranslateInit
+          if (!hadTranslateFn) delete window.translateFn
+        } else if (window.MathJax && window.MathJax.typesetPromise) {
+          // Fallback for a minimal/non-Butterfly layout.
+          window.MathJax.typesetPromise()
+        }
+      })
+      .catch(function (error) {
+        if (automatic) {
+          clearSessionPassword()
+          setStatus('本标签页保存的 GEB 解锁状态已失效，请重新输入密码。')
+        } else {
+          setStatus('解锁失败，请检查密码。')
+        }
+        throw error
+      })
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    var password = input ? input.value : ''
+    if (!password) {
+      setStatus('请输入访问密码。')
+      return
+    }
+
+    unlockWithPassword(password, true, false).catch(function () {})
+  })
+
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted && document.documentElement.dataset.gebUnlocked === 'true' && !readSessionPassword()) {
+      window.location.reload()
+    }
+  })
+
+  var sessionPassword = readSessionPassword()
+  if (sessionPassword) unlockWithPassword(sessionPassword, false, true).catch(function () {})
+})()
+</script></article></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/Pic.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Explorer0911</div><div class="author-info-description">Keep learning, keep building.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Explorer0911"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Explorer0911" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:explorer0911@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://message/?uin=909838715" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/geb/" title="GEB 几何精确梁知识库">GEB 几何精确梁知识库</a><time datetime="2026-09-13T12:30:00.000Z" title="发表于 2026-09-13 20:30:00">2026-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/15/Git%20%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%88%B0%E6%97%A5%E5%B8%B8%E5%8D%8F%E4%BD%9C/" title="Git 使用入门：从版本管理到日常协作">Git 使用入门：从版本管理到日常协作</a><time datetime="2026-06-15T14:42:38.000Z" title="发表于 2026-06-15 22:42:38">2026-06-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/23/Savitzky-Golay%20%E6%BB%A4%E6%B3%A2%E5%8F%8A%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" title="Savitzky-Golay 滤波及实战演练">Savitzky-Golay 滤波及实战演练</a><time datetime="2026-04-23T11:00:00.000Z" title="发表于 2026-04-23 19:00:00">2026-04-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/12/Word%E5%85%AC%E5%BC%8F%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7%E4%B8%8E%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8%E5%AE%9E%E6%88%98/" title="Word 公式自动编号与交叉引用实战">Word 公式自动编号与交叉引用实战</a><time datetime="2026-04-12T03:20:00.000Z" title="发表于 2026-04-12 11:20:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/30/Emby%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%BD%B1%E8%A7%86%E5%BA%93%EF%BC%9AWindows%20%E5%BB%BA%E5%BA%93%E4%B8%8E%20TV%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5/" title="Emby 搭建个人影视库：Windows 建库与 TV 客户端接入">Emby 搭建个人影视库：Windows 建库与 TV 客户端接入</a><time datetime="2026-03-30T03:30:00.000Z" title="发表于 2026-03-30 11:30:00">2026-03-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Explorer0911</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div><div class="footer_custom_text">Powered by Hexo and Butterfly</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const typesetMathjax = () => {
+    if (!window.MathJax || !MathJax.startup || !MathJax.startup.document || typeof MathJax.typesetPromise !== 'function') return false
+
+    MathJax.startup.document.state(0)
+    if (typeof MathJax.texReset === 'function') MathJax.texReset()
+    MathJax.typesetPromise()
+    return true
+  }
+
+  const typesetWhenReady = () => {
+    if (typesetMathjax()) return
+
+    const script = document.getElementById('MathJax-script')
+    if (script && script.dataset.gebReadyHook !== 'true') {
+      script.dataset.gebReadyHook = 'true'
+      script.addEventListener('load', () => {
+        if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+          MathJax.startup.promise.then(typesetMathjax).catch(console.error)
+        } else {
+          setTimeout(typesetMathjax, 0)
+        }
+      }, { once: true })
+    } else if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+      MathJax.startup.promise.then(typesetMathjax).catch(console.error)
+    }
+  }
+
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      script.addEventListener('load', () => {
+        if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+          MathJax.startup.promise.then(typesetMathjax).catch(console.error)
+        }
+      }, { once: true })
+      document.head.appendChild(script)
+    } else {
+      typesetWhenReady()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script src="/js/font-controls.js"></script><script src="/js/music-card.js"></script><script src="/js/watching-library.js"></script><script src="/js/frieren-pet.js"></script><script src="/js/geb-public-entry.js"></script><script src="/js/geb-knowledge-map.js"></script><script src="/js/geb-portal.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

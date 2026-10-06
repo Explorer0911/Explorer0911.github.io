@@ -1,0 +1,185 @@
+/*
+ * frieren-pet.css — 网页版 Frieren 像素桌宠（复刻 dsh-desktop-pet 桌宠）
+ * 用法：在 _config.butterfly.yml 的 inject.head 引入本文件
+ * 精灵图：/img/frieren/spritesheet.webp（8 列 × 11 行，单格 192×208，RGBA 透明背景）
+ */
+#frieren-pet {
+  --fp-scale: 0.6;                 /* 显示倍率（JS 会覆盖） */
+  --fp-cell-w: 192px;
+  --fp-cell-h: 208px;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;              /* 移动端拖动不触发滚动 */
+}
+
+#frieren-pet[hidden] { display: none; }
+
+/* 拖动中的宠物不让选中、不让触发链接 */
+#frieren-pet.fp-dragging { cursor: grabbing; }
+#frieren-pet.fp-dragging .fp-sprite { cursor: grabbing; }
+
+/* 帧渲染区 */
+#frieren-pet .fp-sprite {
+  width: calc(var(--fp-cell-w) * var(--fp-scale));
+  height: calc(var(--fp-cell-h) * var(--fp-scale));
+  background-image: url('../img/frieren/spritesheet.webp');
+  background-repeat: no-repeat;
+  image-rendering: pixelated;      /* 保持像素风锐利 */
+  cursor: grab;
+}
+
+/* 台词气泡 */
+#frieren-pet .fp-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  max-width: 220px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--fp-bubble-bg, #ffffff);
+  color: var(--fp-bubble-text, #333333);
+  border: 1px solid var(--fp-bubble-border, rgba(0, 0, 0, 0.12));
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+#frieren-pet .fp-bubble.fp-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+#frieren-pet .fp-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-top-color: var(--fp-bubble-bg, #ffffff);
+}
+
+/* 右上角小齿轮 */
+#frieren-pet .fp-gear {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fp-gear-bg, rgba(60, 60, 60, 0.85));
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+#frieren-pet:hover .fp-gear,
+#frieren-pet.fp-gear-open .fp-gear { opacity: 1; }
+
+/* 右键菜单 / 齿轮菜单 */
+#frieren-pet .fp-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 30px);
+  min-width: 150px;
+  padding: 6px;
+  border-radius: 10px;
+  background: var(--fp-menu-bg, #ffffff);
+  border: 1px solid var(--fp-menu-border, rgba(0, 0, 0, 0.12));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 12px;
+  display: none;
+  z-index: 10;
+}
+#frieren-pet .fp-menu.fp-open { display: block; }
+#frieren-pet .fp-menu button {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--fp-menu-text, #333333);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+#frieren-pet .fp-menu button:hover { background: var(--fp-menu-hover, rgba(0, 0, 0, 0.06)); }
+#frieren-pet .fp-menu .fp-sep {
+  height: 1px;
+  margin: 5px 4px;
+  background: var(--fp-menu-border, rgba(0, 0, 0, 0.1));
+}
+
+/* Zzz 打盹标记 */
+#frieren-pet .fp-zzz {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fp-zzz, #7a8aa0);
+  letter-spacing: 2px;
+  pointer-events: none;
+  display: none;
+}
+#frieren-pet.fp-sleeping .fp-zzz { display: block; }
+
+/* 隐藏后的迷你恢复按钮 */
+button.fp-mini {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--fp-menu-border, rgba(0, 0, 0, 0.14));
+  border-radius: 50%;
+  background: var(--fp-bubble-bg, #ffffff);
+  color: var(--fp-bubble-text, #333333);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  opacity: 0.55;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+button.fp-mini:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+button.fp-mini[hidden] { display: none; }
+
+/* 移动端：尺寸缩小一点，齿轮常显 */
+@media (max-width: 600px) {
+  #frieren-pet { right: 12px; bottom: 12px; }
+  #frieren-pet .fp-gear { opacity: 0.85; }
+}
+
+/* Butterfly 暗色模式适配（覆盖变量） */
+[data-theme='dark'] #frieren-pet {
+  --fp-bubble-bg: #1d1d23;
+  --fp-bubble-text: #e9e8e3;
+  --fp-bubble-border: rgba(255, 255, 255, 0.14);
+  --fp-menu-bg: #1d1d23;
+  --fp-menu-border: rgba(255, 255, 255, 0.14);
+  --fp-menu-text: #e9e8e3;
+  --fp-menu-hover: rgba(255, 255, 255, 0.08);
+  --fp-gear-bg: rgba(220, 220, 220, 0.9);
+}
